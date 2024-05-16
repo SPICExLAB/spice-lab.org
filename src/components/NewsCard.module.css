@@ -1,0 +1,18 @@
+/* NewsCard.module.css */
+.newsCard {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.newsCard h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.date {
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 8px;
+}

@@ -17,14 +17,20 @@
   "dependencies": {
     "@mdx-js/react": "^3.0.1",
     "gatsby": "^5.13.3",
-    "gatsby-plugin-google-gtag": "^5.13.1",
     "gatsby-plugin-image": "^3.13.1",
     "gatsby-plugin-manifest": "^5.13.1",
     "gatsby-plugin-mdx": "^5.13.1",
+    "gatsby-plugin-react-leaflet": "^4.0.3",
     "gatsby-plugin-sharp": "^5.13.1",
+    "gatsby-remark-images": "^7.13.1",
     "gatsby-source-filesystem": "^5.13.1",
+    "gatsby-transformer-json": "^5.13.1",
     "gatsby-transformer-sharp": "^5.13.1",
+    "leaflet": "^1.9.4",
+    "mapbox-gl": "^3.3.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-leaflet": "^4.2.1",
+    "react-map-gl": "^7.1.7"
   }
 }
