@@ -105,6 +105,11 @@ export const query = graphql`
     newsData: allMdx(filter: { frontmatter: { type: { eq: "news" } } }) {
       nodes {
         id
+        frontmatter {
+          title
+          date(formatString: "MMMM DD, YYYY")
+          content
+        }
       }
     }
   }
