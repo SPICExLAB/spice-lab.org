@@ -34,10 +34,9 @@ You can download and install them from [Node.js official]([url](https://nodejs.o
 Download the installer from Node.js official website and run it.
 
 After installation, verify that you have Node.js and npm installed:
-   ```bash
-   node -v
-   npm -v
-
+      ```bash
+      node -v
+      npm -v
 
 3. **Install dependencies:**
    Ensure you have Node.js and npm installed. Then run:
