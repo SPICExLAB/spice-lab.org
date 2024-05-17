@@ -86,6 +86,7 @@ module.exports = {
         name: 'news',
         path: './src/content/news',
       },
+      __key: 'news',
     },
 
     {
