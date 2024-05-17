@@ -19,17 +19,19 @@ To set up the project for local development, follow these steps:
    git clone https://github.com/SPICExLAB/spice-lab.org.git
    cd spice-lab.org
 2. **Install dependencies:**
-    Ensure you have Node.js and npm installed. Then run:
-        ```bash
-        npm install
-3. **Start the development server:**
-        ```bash
-        npm run develop
-This will start the Gatsby development server. Open your browser and navigate to http://localhost:8000 to view the site.
+   Ensure you have Node.js and npm installed. Then run:
+   
+   ```bash
+   npm install
+4. **Start the development server:**
+   This will start the Gatsby development server. Open your browser and navigate to http://localhost:8000 to view the site.
+   
+   ```bash
+   npm run develop
 
 ## Updating Team Profiles
 
-Team profiles are stored in the src/content/people/team.json file. Each team member is represented as an object in the JSON array. To update or add a profile, edit this file and ensure structure:
+Team profiles are stored in the src/content/people/team.json file. Each team member is represented as an object in the JSON array. To update or add a profile, edit this file and follow the structure
 
 ### Adding Headshots
 Save the headshot image in the src/content/people/headshots/ directory.
@@ -38,39 +40,31 @@ Ensure the photo field in the team.json file matches the filename of the headsho
 ## Adding Projects and Publications
 Projects and publications are stored as MDX files in the src/content/projects/ directory. Each project should have its own subdirectory containing an index.mdx file (this will create a project page for it) and any related images.
 
+---
 src/content/projects/MobilePoser/
 ├── images
 │   ├── 0.png
 │   ├── 1.png
 │   └── 2.png
 └── index.mdx
+---
 
-    ---
-    type: "project"
-    slug: MobilePoser
-    title: MobilePoser
-    subtitle: A Mobile App for Facial Expression Recognition
-    authors:
-    - John Doe
-    - Chenfeng Gao
-    year: 2024
-    coverImage: './images/0.png'
-    published: 'yes'
-    award: 'Best Paper Award'
-    pdfLink: '/pdfs/project1.pdf'
-    github: 'https://github.com/threedle/3d-paintbrush'
-    videoLink: 'https://www.youtube.com/embed/W_BAASi9LG4?si=gwxwrPUR5eZkNpc9'
-    conference: 'Proceedings of the Annual ACM Conference on Human Factors in Computing Systems (CHI)'
-    conferencePage: 'https://dl.acm.org/doi/10.1145/3491102.3502069'
-    citation: "Craig Shultz, Daehwa Kim, Karan Ahuja, and Chris Harrison. 2022. TriboTouch: Micro-Patterned Surfaces for Low Latency Touchscreens. In CHI Conference on Human Factors in Computing Systems (CHI '22). Association for Computing Machinery, New York, NY, USA, Article 347, 1–13. https://doi.org/10.1145/3491102.3502069"
-    bibtex: |
-    @article{park2021nerfies,
-        author = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-        title = {Nerfies: Deformable Neural Radiance Fields},
-        journal = {ICCV},
-        year = {2021}
-    }
-    ---
+type: Specifies the type of content. For projects, it should be "project".
+slug: A unique identifier for the project, used in the URL.
+title: The title of the project.
+subtitle: A short description or subtitle for the project.
+authors: A list of authors involved in the project, plaese provide the full name.
+year: The year the project was published or created.
+coverImage: The path to the cover image for the project, which should be in the images folder within the same project folder.
+published: A flag indicating whether the project is published. It can be 'yes' or 'no'.
+award: Any awards the project has won, if none, leave it blank.
+pdfLink: A link to a PDF file associated with the project, which should be in our google drive.
+github: A link to the project's GitHub repository.
+videoLink: A link to a video related to the project, which should be either youtube or vemo.
+conference: The name of the conference where the project was presented.
+conferencePage: A link to the conference page where the project is listed.
+citation: The citation for the project.
+bibtex: The BibTeX entry for the project.
 
 
 ## Managing Content with the CMS
