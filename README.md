@@ -40,15 +40,17 @@ Ensure the photo field in the team.json file matches the filename of the headsho
 ## Adding Projects and Publications
 Projects and publications are stored as MDX files in the src/content/projects/ directory. Each project should have its own subdirectory containing an index.mdx file (this will create a project page for it) and any related images.
 
----
+
+```
 src/content/projects/MobilePoser/
 ├── images
 │   ├── 0.png
 │   ├── 1.png
 │   └── 2.png
 └── index.mdx
----
+```
 
+```
 type: Specifies the type of content. For projects, it should be "project".
 slug: A unique identifier for the project, used in the URL.
 title: The title of the project.
