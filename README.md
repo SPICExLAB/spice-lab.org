@@ -31,12 +31,12 @@ You can download and install them from [Node.js official]([url](https://nodejs.o
    sudo apt install nodejs npm
 
 - On Windows:
-Download the installer from Node.js official website and run it.
+   Download the installer from Node.js official website and run it.
 
-After installation, verify that you have Node.js and npm installed:
-      ```bash
-      node -v
-      npm -v
+  After installation, verify that you have Node.js and npm installed:
+   ```bash
+   node -v
+   npm -v
 
 3. **Install dependencies:**
    Ensure you have Node.js and npm installed. Then run:
