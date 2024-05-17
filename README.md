@@ -50,54 +50,22 @@ src/content/projects/YourProjectName/
 └── index.mdx
 ```
 
-
-type
-<div style="background-color: #f0f0f0; padding: 10px;">Specifies the type of content. For projects, it should be "project".</div>
-
-slug
-<div style="background-color: #f0f0f0; padding: 10px;">A unique identifier for the project, used in the URL.</div>
-
-title
-<div style="background-color: #f0f0f0; padding: 10px;">The title of the project.</div>
-
-subtitle
-<div style="background-color: #f0f0f0; padding: 10px;">A short description or subtitle for the project.</div>
-
-authors
-<div style="background-color: #f0f0f0; padding: 10px;">A list of authors involved in the project, please provide the full name.</div>
-
-year
-<div style="background-color: #f0f0f0; padding: 10px;">The year the project was published or created.</div>
-
-coverImage
-<div style="background-color: #f0f0f0; padding: 10px;">The path to the cover image for the project, which should be in the images folder within the same project folder.</div>
-
-published
-<div style="background-color: #f0f0f0; padding: 10px;">A flag indicating whether the project is published. It can be 'yes' or 'no'.</div>
-
-award
-<div style="background-color: #f0f0f0; padding: 10px;">Any awards the project has won, if none, leave it blank.</div>
-
-pdfLink
-<div style="background-color: #f0f0f0; padding: 10px;">A link to a PDF file associated with the project, which should be in our Google Drive.</div>
-
-github
-<div style="background-color: #f0f0f0; padding: 10px;">A link to the project's GitHub repository.</div>
-
-videoLink
-<div style="background-color: #f0f0f0; padding: 10px;">A link to a video related to the project, which should be either YouTube or Vimeo.</div>
-
-conference
-<div style="background-color: #f0f0f0; padding: 10px;">The name of the conference where the project was presented.</div>
-
-conferencePage
-<div style="background-color: #f0f0f0; padding: 10px;">A link to the conference page where the project is listed.</div>
-
-citation
-<div style="background-color: #f0f0f0; padding: 10px;">The citation for the project.</div>
-
-bibtex
-<div style="background-color: #f0f0f0; padding: 10px;">The BibTeX entry for the project.</div>
++ ```type```: Specifies the type of content. For projects, it should be "project".
++ ```slug```: A unique identifier for the project, used in the URL.
++ ```title```: The title of the project.
++ ```subtitle```: A short description or subtitle for the project.
++ ```authors```: A list of authors involved in the project, plaese provide the full name.
++ ```year```: The year the project was published or created.
++ ```coverImage```: The path to the cover image for the project, which should be in the images folder within the same project folder.
++ ```published```: A flag indicating whether the project is published. It can be 'yes' or 'no'.
++ ```award```: Any awards the project has won, if none, leave it blank.
++ ```pdfLink```: A link to a PDF file associated with the project, which should be in our google drive.
++ ```github```: A link to the project's GitHub repository.
++ ```videoLink```: A link to a video related to the project, which should be either youtube or vemo.
++ ```conference```: The name of the conference where the project was presented.
++ ```conferencePage```: A link to the conference page where the project is listed.
++ ```citation```: The citation for the project.
++ ```bibtex```: The BibTeX entry for the project.
 
 ## Managing Content with the CMS
 Our site uses Decap CMS (formerly Netlify CMS) for easy content management. The CMS allows you to update news posts and certain text on the website without needing to edit the code directly.
