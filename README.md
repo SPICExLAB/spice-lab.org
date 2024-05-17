@@ -22,22 +22,21 @@ To set up the project for local development, follow these steps:
 You can download and install them from [Node.js official]([url](https://nodejs.org/en/download/package-manager/current)) website.
 
 - On macOS:
-```bash
-brew install node
+   ```bash
+   brew install node
 
 - On Ubuntu:
-```bash
-sudo apt update
-sudo apt install nodejs npm
+   ```bash
+   sudo apt update
+   sudo apt install nodejs npm
 
 - On Windows:
 Download the installer from Node.js official website and run it.
 
 After installation, verify that you have Node.js and npm installed:
-
-```bash
-node -v
-npm -v
+   ```bash
+   node -v
+   npm -v
 
 
 3. **Install dependencies:**
