@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import MainLayout from '../components/MainLayout';
-import PublicationCard from '../components/PublicationCard';
+import PublicationCard from '../components/publicationCard';
 
 const PublicationsPage = ({ data }) => {
   const { allMdx: publicationsData, allTeamJson: teamData } = data;
