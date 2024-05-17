@@ -47,7 +47,7 @@ export const query = graphql`
   query PublicationsQuery {
     allMdx(
       filter: { frontmatter: { type: { eq: "project" } } }
-      sort: { fields: frontmatter___year, order: DESC }
+      sort: { frontmatter: { year: DESC } }
     ) {
       nodes {
         id
