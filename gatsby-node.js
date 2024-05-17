@@ -1,10 +1,9 @@
 const path = require('path');
-
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
   const result = await graphql(`
     query {
-      allMdx {
+      allMdx(filter: { frontmatter: { type: { eq: "project" } } }) {
         nodes {
           id
           frontmatter {
@@ -34,11 +33,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     });
     console.log(node.id);
   });
-
-
 };
-
-
 
 const fs = require('fs');
 const { createFileNodeFromBuffer } = require('gatsby-source-filesystem');
@@ -80,4 +75,3 @@ exports.onCreateNode = async ({
     }
   }
 };
-

@@ -74,10 +74,26 @@ module.exports = {
     },
 
     {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'settings',
+        path: './src/content/settingTexts',
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'news',
+        path: './src/content/news',
+      },
+    },
+
+    {
       resolve: 'gatsby-plugin-react-leaflet',
       options: {
         linkStyles: true,
       },
     },
+    `gatsby-plugin-netlify-cms`,
   ],
 };
