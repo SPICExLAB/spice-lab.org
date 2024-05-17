@@ -40,12 +40,12 @@ You can download and install them from [Node.js official]([url](https://nodejs.o
 
 3. **Install dependencies:**
    Ensure you have Node.js and npm installed. Then run:
-   
+
    ```bash
    npm install
 4. **Start the development server:**
    This will start the Gatsby development server. Open your browser and navigate to http://localhost:8000 to view the site.
-   
+
    ```bash
    npm run develop
 
@@ -91,8 +91,8 @@ src/content/projects/YourProjectName/
 Our site uses Decap CMS (formerly Netlify CMS) for easy content management. The CMS allows you to update news posts and certain text on the website without needing to edit the code directly.
 
 1. **Accessing the CMS**
-Go to ```https://yoursite.netlify.app/admin```.
-Log in using your Netlify Identity credentials.
+Go to ```https://spice-lab.netlify.app/admin```.
+Log in using your Netlify Identity credentials(sign up one via your email! for the first time, i will disable register in the future).
 2. **Updating News**
 Navigate to the "**News**" section in the CMS.
 Click "**New News**" to add a new news item.
