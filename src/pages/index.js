@@ -58,7 +58,6 @@ const IndexPage = ({ data }) => {
           </div>
         </>
       )}
-
       <h2>Projects</h2>
       <div className={styles.projectGrid}>
         {projectsData.nodes.map((project) => (
@@ -106,9 +105,9 @@ export const query = graphql`
       nodes {
         id
         frontmatter {
-          title
           date(formatString: "MMMM DD, YYYY")
           content
+          image
         }
       }
     }

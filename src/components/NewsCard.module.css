@@ -1,18 +1,44 @@
-/* NewsCard.module.css */
 .newsCard {
-  background-color: #f0f0f0;
-  border-radius: 8px;
+  width: 300px;
+  height: 200px;
   padding: 16px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.newsCard h3 {
-  margin-top: 0;
-  margin-bottom: 8px;
+  border-radius: 8px;
+  margin: 16px;
+  background-size: cover;
+  background-position: center;
 }
 
 .date {
-  color: #888;
-  font-size: 14px;
-  margin-bottom: 8px;
+  background-color: grey;
+  color: white;
+  padding: 4px 8px;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  border-radius: 4px;
+  font-size:14px;
+}
+
+.content {
+  background-color: white;
+  padding: 8px;
+
+  max-height: 80px;
+  overflow: hidden;
+
+
+}
+
+.readMoreButton {
+  background: none;
+  border: none;
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
 }

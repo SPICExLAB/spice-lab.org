@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import * as styles from '../components/projectCard.module.css';
+
 const ProjectCard = ({ frontmatter, heroImage, slug }) => {
   const { title, subtitle, published } = frontmatter;
 
