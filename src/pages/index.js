@@ -1,26 +1,14 @@
 import React, { useRef } from 'react';
 import { graphql } from 'gatsby';
+import ReactMarkdown from 'react-markdown';
 import MainLayout from '../components/MainLayout';
-import ProjectCard from '../components/projectCard';
+import ProjectCard from '../components/ProjectCard';
 import NewsCard from '../components/NewsCard';
 import * as styles from '../components/homePage.module.css';
-
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-};
-
-const paragraphStyles = {
-  fontSize: 20,
-  marginTop: 24,
-  marginBottom: 48,
-};
 
 const IndexPage = ({ data }) => {
   const { projectsData, homepageTextData, newsData } = data;
   const newsCarouselRef = useRef(null);
-
-  // Placeholder news data
 
   const handleScrollRight = () => {
     newsCarouselRef.current.scrollBy({
@@ -31,21 +19,23 @@ const IndexPage = ({ data }) => {
 
   return (
     <MainLayout>
-      <div
-        style={paragraphStyles}
-        dangerouslySetInnerHTML={{
-          __html: homepageTextData.nodes[0].frontmatter.intro_paragraph,
-        }}
-      />
+      <div style={{ marginBottom: 48 }}>
+        <ReactMarkdown className={styles.markdownText}>
+          {homepageTextData.nodes[0].frontmatter.intro_paragraph}
+        </ReactMarkdown>
+      </div>
 
       {newsData.nodes.length > 0 && (
         <>
           <h2>News</h2>
           <div className={styles.newsCarouselContainer}>
             <div className={styles.newsCarousel} ref={newsCarouselRef}>
-              {newsData.nodes.map((news) => (
-                <NewsCard key={news.id} news={news.frontmatter} />
-              ))}
+              {newsData.nodes
+                .slice()
+                .reverse()
+                .map((news) => (
+                  <NewsCard key={news.id} news={news.frontmatter} />
+                ))}
             </div>
             {newsData.nodes.length >= 4 && (
               <button
@@ -58,6 +48,7 @@ const IndexPage = ({ data }) => {
           </div>
         </>
       )}
+      
       <h2>Projects</h2>
       <div className={styles.projectGrid}>
         {projectsData.nodes.map((project) => (

@@ -1,38 +1,35 @@
 .newsCard {
-  width: 300px;
-  height: 200px;
-  padding: 16px;
-  position: relative;
-  overflow: hidden;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  margin: 16px;
-  background-size: cover;
-  background-position: center;
+  border: 1px solid #ddd;
+  padding: 16px;
+  cursor: pointer;
+  background: white;
+  overflow: hidden; /* Prevent content from overflowing */
+  width: 300px; /* Set a fixed width for each card */
+}
+
+.textSection {
+  flex: 1;
+  overflow: hidden; /* Prevent content from overflowing */
 }
 
 .date {
-  background-color: grey;
-  color: white;
-  padding: 4px 8px;
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  border-radius: 4px;
-  font-size:14px;
+  background: #eee;
+  padding: 4px;
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+  display: inline-block; /* Wrap background to text length */
 }
 
 .content {
-  background-color: white;
-  padding: 8px;
-
-  max-height: 80px;
+  color: black; /* Change text color to black */
   overflow: hidden;
-
-
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5; /* Limit to 5 lines */
+  line-clamp: 5;
+  max-height: 7.5em; /* Adjust based on font size and line height */
+  position: relative;
 }
 
 .readMoreButton {
@@ -41,4 +38,100 @@
   color: blue;
   cursor: pointer;
   text-decoration: underline;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 4px;
+  background: white;
+}
+
+.imageSection {
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.image {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 4px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.overlayContent {
+  background: white;
+  padding: 16px;
+  width: 80%;
+  height: auto; /* Adjust height based on content */
+  max-height: 90%; /* Ensure it doesn't overflow viewport */
+  overflow: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  overflow: auto;
+}
+
+.overlayImage {
+  width: calc(50% - 4px);
+  margin: 2px;
+  height: auto;
+}
+
+.overlayImageSingle {
+  width: 100%;
+  height: auto;
+  object-fit: contain; /* Maintain original aspect ratio */
+}
+
+.overlayText {
+  text-align: left;
+}
+
+.overlayDate {
+  background: #eee;
+  padding: 4px;
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+  display: inline-block; /* Wrap background to text length */
+}
+
+.overlayContent {
+  color: black;
+  overflow: auto;
 }
