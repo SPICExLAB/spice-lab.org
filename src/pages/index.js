@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { graphql } from 'gatsby';
 import ReactMarkdown from 'react-markdown';
 import MainLayout from '../components/MainLayout';
-import ProjectCard from '../components/ProjectCard';
+import ProjectCard from '../components/projectCard';
 import NewsCard from '../components/NewsCard';
 import * as styles from '../components/homePage.module.css';
 
@@ -48,7 +48,7 @@ const IndexPage = ({ data }) => {
           </div>
         </>
       )}
-      
+
       <h2>Projects</h2>
       <div className={styles.projectGrid}>
         {projectsData.nodes.map((project) => (
