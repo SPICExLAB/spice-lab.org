@@ -4,7 +4,7 @@ backend:
   branch: main
   auth:
     client_id: Ov23li7tmj3HzMHU0YV7
-    redirect_uri: https://spicexlab.github.io/spice-lab.org/callback
+    redirect_uri: https://spicexlab.github.io/spice-lab.org/admin/callback
 
 media_folder: "static/images/uploads" # Folder where user uploads go
 public_folder: "/images/uploads" # Folder path for the uploads
