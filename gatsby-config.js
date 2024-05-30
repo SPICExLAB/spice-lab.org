@@ -100,7 +100,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-decap-cms`,
       options: {
-        configPath: './static/admin/config.yml',
+        configPath: `${__dirname}/static/admin/config.yml`,
       },
     },
   ],
