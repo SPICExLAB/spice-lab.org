@@ -40,7 +40,6 @@ const { createFileNodeFromBuffer } = require('gatsby-source-filesystem');
 
 exports.onCreateNode = async ({
   node,
-  getNode,
   actions,
   store,
   cache,
@@ -56,22 +55,26 @@ exports.onCreateNode = async ({
       node.photo
     );
 
-    let fileNode = await createFileNodeFromBuffer({
-      buffer: fs.readFileSync(photoPath),
-      store,
-      cache,
-      createNode,
-      createNodeId,
-      parentNodeId: node.id,
-      reporter,
-    });
-
-    if (fileNode) {
-      createNodeField({
-        node,
-        name: 'memberImage___NODE',
-        value: fileNode.id,
+    if (fs.existsSync(photoPath)) {
+      let fileNode = await createFileNodeFromBuffer({
+        buffer: fs.readFileSync(photoPath),
+        store,
+        cache,
+        createNode,
+        createNodeId,
+        parentNodeId: node.id,
+        reporter,
       });
+
+      if (fileNode) {
+        createNodeField({
+          node,
+          name: 'memberImage___NODE',
+          value: fileNode.id,
+        });
+      }
+    } else {
+      reporter.warn(`Image not found at path: ${photoPath}`);
     }
   }
 };
