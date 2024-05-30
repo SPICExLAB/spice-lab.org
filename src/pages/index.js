@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { graphql } from 'gatsby';
+import { graphql, withPrefix } from 'gatsby';
 import ReactMarkdown from 'react-markdown';
 import MainLayout from '../components/MainLayout';
 import ProjectCard from '../components/projectCard';
@@ -58,7 +58,7 @@ const IndexPage = ({ data }) => {
             heroImage={
               project.frontmatter.coverImage.childImageSharp.gatsbyImageData
             }
-            slug={`/projects/${project.frontmatter.slug}`}
+            slug={withPrefix(`/projects/${project.frontmatter.slug}`)}
           />
         ))}
       </div>

@@ -1,8 +1,9 @@
 /** @type {import('gatsby').GatsbyConfig} */
 module.exports = {
+  pathPrefix: '/spice-lab.org',
   siteMetadata: {
-    title: `spice_lab_site`,
-    siteUrl: `https://www.yourdomain.tld`,
+    title: `Spice Lab Site`,
+    siteUrl: `https://SPICExLAB.github.io/spice-lab.org`,
   },
   plugins: [
     `gatsby-plugin-image`,
