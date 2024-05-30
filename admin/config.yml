@@ -1,0 +1,27 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update
+
+media_folder: "static/images/uploads" # Folder where user uploads go
+public_folder: "/images/uploads" # Folder path for the uploads
+
+collections:
+  - name: "settibgTexts"
+    label: "Settings"
+    files:
+      - name: "homepage"
+        label: "Homepage"
+        file: "src/content/settingTexts/homepageText.md"
+        fields:
+          - { label: "Intro Paragraph", name: "intro_paragraph", widget: "markdown" }
+
+  - name: "news"
+    label: "News"
+    folder: "src/content/news"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Type", name: "type", widget: "hidden", default: "news" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Content", name: "content", widget: "markdown" }
+      - { label: "Image", name: "image", widget: "image", required: false }
