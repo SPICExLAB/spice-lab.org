@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, withPrefix } from 'gatsby';
+import { Link } from 'gatsby';
 import logoImage from '../images/icon.png';
 import * as styles from './layout.module.css';
 
@@ -9,13 +9,12 @@ const MainLayout = ({ children }) => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
   return (
     <div className={styles.layoutStyles}>
       <header className={styles.headerStyles}>
         <div className={styles.logo}>
-          <Link to={withPrefix('/')}>
-            <img src={withPrefix(logoImage)} alt="Logo" />
+          <Link to="/">
+            <img src={logoImage} alt="Logo" />
           </Link>
         </div>
         <nav
@@ -24,7 +23,7 @@ const MainLayout = ({ children }) => {
           <ul>
             <li>
               <Link
-                to={withPrefix('/')}
+                to="/"
                 className={styles.navLinkStyle}
                 activeClassName={styles.activeNavLink}
               >
@@ -33,7 +32,7 @@ const MainLayout = ({ children }) => {
             </li>
             <li>
               <Link
-                to={withPrefix('/people')}
+                to="/people"
                 className={styles.navLinkStyle}
                 activeClassName={styles.activeNavLink}
               >
@@ -42,7 +41,7 @@ const MainLayout = ({ children }) => {
             </li>
             <li>
               <Link
-                to={withPrefix('/publications')}
+                to="/publications"
                 className={styles.navLinkStyle}
                 activeClassName={styles.activeNavLink}
               >
@@ -51,7 +50,7 @@ const MainLayout = ({ children }) => {
             </li>
             <li>
               <Link
-                to={withPrefix('/contact')}
+                to="/contact"
                 className={styles.navLinkStyle}
                 activeClassName={styles.activeNavLink}
               >
