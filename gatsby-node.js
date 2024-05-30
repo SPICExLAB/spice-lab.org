@@ -78,3 +78,14 @@ exports.onCreateNode = async ({
     }
   }
 };
+
+
+// exports.onCreateWebpackConfig = ({ stage, actions }) => {
+//   actions.setWebpackConfig({
+//     resolve: {
+//       fallback: {
+//         path: false,
+//       },
+//     },
+//   });
+// };

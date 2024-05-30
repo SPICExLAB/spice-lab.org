@@ -1,6 +1,10 @@
 backend:
-  name: git-gateway
-  branch: main # Branch to update
+  name: github
+  repo: SPICExLAB/spice-lab.org  # Replace with your GitHub username and repository name
+  branch: main
+  auth:
+    client_id: Ov23li7tmj3HzMHU0YV7
+    redirect_uri: https://spicexlab.github.io/spice-lab.org/callback
 
 media_folder: "static/images/uploads" # Folder where user uploads go
 public_folder: "/images/uploads" # Folder path for the uploads
