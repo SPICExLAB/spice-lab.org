@@ -118,7 +118,7 @@ const IndexPage = ({ data }) => {
         </>
       )}
 
-      <h2>Projects</h2>
+      <h2>Selected Projects</h2>
       <ProjectGrid>
         {projectsData.nodes.map((project) => (
           <ProjectCard
