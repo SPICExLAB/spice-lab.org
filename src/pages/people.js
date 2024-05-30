@@ -1,12 +1,109 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import styled from 'styled-components';
 import MainLayout from '../components/MainLayout';
 import MemberCard from '../components/memberCard';
-import * as styles from '../components/people.module.css';
 import twitterIcon from '../images/twitter.svg';
 import scholarIcon from '../images/google-scholar.svg';
 import linkedinIcon from '../images/linkedin-in.svg';
+
+const PiSection = styled.div`
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+`;
+
+const PiInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+`;
+
+const PiImageWrapper = styled.div`
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 250px;
+
+  @media (min-width: 768px) {
+    margin-right: 2rem;
+    margin-bottom: 0;
+  }
+`;
+
+const PiPhoto = styled(GatsbyImage)`
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+`;
+
+const PiDetails = styled.div`
+  text-align: center;
+
+  @media (min-width: 768px) {
+    text-align: left;
+  }
+`;
+
+const PiDetailsHeading = styled.h3`
+  margin-top: 0;
+`;
+
+const PiSocialLinks = styled.div`
+  margin-top: 1rem;
+
+  a {
+    margin-right: 1rem;
+  }
+
+  img {
+    &:nth-child(1) {
+      width: 24px;
+      height: 24px;
+    }
+
+    &:nth-child(2) {
+      width: 22px;
+      height: 28px;
+    }
+
+    &:nth-child(3) {
+      width: 28px;
+      height: 28px;
+    }
+
+    &:nth-child(4) {
+      width: 21px;
+      height: 28px;
+    }
+  }
+`;
+
+const MemberSection = styled.div`
+  margin-bottom: 3rem;
+`;
+
+const MemberGrid = styled.div`
+  display: grid;
+  gap: 2rem;
+  justify-content: start;
+
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  @media (min-width: 481px) and (max-width: 768px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: 769px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+`;
 
 const PeoplePage = ({ data }) => {
   const pi = data.allTeamJson.nodes.find(
@@ -70,21 +167,20 @@ const PeoplePage = ({ data }) => {
   return (
     <MainLayout>
       <h1>People</h1>
-      <div className={styles.piSection}>
-        <div className={styles.piInfo}>
-          <div className={styles.piImageWrapper}>
+      <PiSection>
+        <PiInfo>
+          <PiImageWrapper>
             <a href={pi.website} target="_blank" rel="noopener noreferrer">
               {pi.fields.memberImage && (
-                <GatsbyImage
+                <PiPhoto
                   image={getImage(pi.fields.memberImage)}
                   alt={pi.name}
-                  className={styles.piPhoto}
                 />
               )}
             </a>
-          </div>
-          <div className={styles.piDetails}>
-            <h3>{pi.name}</h3>
+          </PiImageWrapper>
+          <PiDetails>
+            <PiDetailsHeading>{pi.name}</PiDetailsHeading>
             <p>
               I am an incoming Wissner Slivka Assistant Professor in Computer
               Science at Northwestern University (Fall 2024). My research
@@ -95,7 +191,7 @@ const PeoplePage = ({ data }) => {
             </p>
             <p>{pi.program}</p>
 
-            <div className={styles.piSocialLinks}>
+            <PiSocialLinks>
               <p>{pi.email}</p>
               <a
                 href="https://twitter.com/realkaranahuja"
@@ -118,13 +214,13 @@ const PeoplePage = ({ data }) => {
               >
                 <img src={linkedinIcon} alt="LinkedIn" />
               </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={styles.memberSection}>
+            </PiSocialLinks>
+          </PiDetails>
+        </PiInfo>
+      </PiSection>
+      <MemberSection>
         <h2>Current Members</h2>
-        <div className={styles.memberGrid}>
+        <MemberGrid>
           {currentPostDocs.map((person) => (
             <MemberCard key={person.name} person={person} />
           ))}
@@ -143,11 +239,11 @@ const PeoplePage = ({ data }) => {
           {currentothers.map((person) => (
             <MemberCard key={person.name} person={person} />
           ))}
-        </div>
-      </div>
-      <div className={styles.memberSection}>
+        </MemberGrid>
+      </MemberSection>
+      <MemberSection>
         <h2>Former Members</h2>
-        <div className={styles.memberGrid}>
+        <MemberGrid>
           {formerPostDocs.map((person) => (
             <MemberCard key={person.name} person={person} />
           ))}
@@ -166,8 +262,8 @@ const PeoplePage = ({ data }) => {
           {otherFormerMembers.map((person) => (
             <MemberCard key={person.name} person={person} />
           ))}
-        </div>
-      </div>
+        </MemberGrid>
+      </MemberSection>
     </MainLayout>
   );
 };

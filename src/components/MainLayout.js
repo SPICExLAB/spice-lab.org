@@ -1,7 +1,119 @@
 import React, { useState } from 'react';
 import { Link } from 'gatsby';
+import styled from 'styled-components';
 import logoImage from '../images/icon.png';
-import * as styles from './layout.module.css';
+
+const LayoutWrapper = styled.div`
+  color: #232129;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 1rem;
+  font-family: '-apple-system, Roboto, sans-serif, serif';
+`;
+
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+`;
+
+const Logo = styled.div`
+  img {
+    height: 50px;
+  }
+`;
+
+const Nav = styled.nav`
+  ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+
+    &.active {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      z-index: 999;
+
+      ul {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }
+`;
+
+const NavLink = styled(Link)`
+  color: #333;
+  font-weight: bold;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #8954a8;
+  }
+
+  &.active {
+    color: #8954a8;
+    border-bottom: 2px solid #8954a8;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    padding: 1.5rem 0;
+  }
+`;
+
+const Hamburger = styled.div`
+  display: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 1000;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+
+  &.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  &.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  &.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+`;
+
+const Bar = styled.span`
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  background-color: #333;
+  transition: all 0.3s ease-in-out;
+`;
+
+const Main = styled.main`
+  padding: 0 1rem;
+`;
 
 const MainLayout = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,67 +121,47 @@ const MainLayout = ({ children }) => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
   return (
-    <div className={styles.layoutStyles}>
-      <header className={styles.headerStyles}>
-        <div className={styles.logo}>
+    <LayoutWrapper>
+      <Header>
+        <Logo>
           <Link to="/">
             <img src={logoImage} alt="Logo" />
           </Link>
-        </div>
-        <nav
-          className={`${styles.navStyles} ${isMenuOpen ? styles.active : ''}`}
-        >
+        </Logo>
+        <Nav className={isMenuOpen ? 'active' : ''}>
           <ul>
             <li>
-              <Link
-                to="/"
-                className={styles.navLinkStyle}
-                activeClassName={styles.activeNavLink}
-              >
+              <NavLink to="/" activeClassName="active">
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
-                to="/people"
-                className={styles.navLinkStyle}
-                activeClassName={styles.activeNavLink}
-              >
+              <NavLink to="/people" activeClassName="active">
                 People
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
-                to="/publications"
-                className={styles.navLinkStyle}
-                activeClassName={styles.activeNavLink}
-              >
+              <NavLink to="/publications" activeClassName="active">
                 Publications
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
-                to="/contact"
-                className={styles.navLinkStyle}
-                activeClassName={styles.activeNavLink}
-              >
+              <NavLink to="/contact" activeClassName="active">
                 Contact
-              </Link>
+              </NavLink>
             </li>
           </ul>
-        </nav>
-        <div
-          className={`${styles.hamburger} ${isMenuOpen ? styles.active : ''}`}
-          onClick={toggleMenu}
-        >
-          <span className={styles.bar}></span>
-          <span className={styles.bar}></span>
-          <span className={styles.bar}></span>
-        </div>
-      </header>
-      <main>{children}</main>
-    </div>
+        </Nav>
+        <Hamburger className={isMenuOpen ? 'active' : ''} onClick={toggleMenu}>
+          <Bar className="bar"></Bar>
+          <Bar className="bar"></Bar>
+          <Bar className="bar"></Bar>
+        </Hamburger>
+      </Header>
+      <Main>{children}</Main>
+    </LayoutWrapper>
   );
 };
 

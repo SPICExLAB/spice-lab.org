@@ -1,53 +1,119 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-import * as styles from '../components/projectCard.module.css';
+import styled from 'styled-components';
+
+const ProjectCardWrapper = styled.div`
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+`;
+
+const ProjectTitle = styled.h2`
+  margin: 20px;
+  font-size: 1.4rem;
+  text-align: center;
+`;
+
+const ProjectImageWrapper = styled.div`
+  position: relative;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+  overflow: hidden;
+  flex: 1;
+  min-height: 50px;
+`;
+
+const StyledGatsbyImage = styled(GatsbyImage)`
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important; /* Ensure the image covers the box */
+`;
+
+const ProjectOverlayTop = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  top: 0;
+`;
+
+const ProjectOverlayBottom = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: none; /* Hidden by default */
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  bottom: 0;
+
+  ${ProjectImageWrapper}:hover & {
+    display: flex; /* Reveals on hover */
+  }
+`;
+
+const ProjectSubtitle = styled.p`
+  margin: 0;
+  font-size: 1rem;
+  color: #fff;
+  text-align: left;
+`;
+
+const ComingSoonOverlay = styled.p`
+  width: 100%; /* Ensure full width coverage */
+  text-align: center; /* Center the text */
+  font-size: 20px; /* Large font size for visibility */
+`;
 
 const ProjectCard = ({ frontmatter, heroImage, slug }) => {
   const { title, subtitle, published } = frontmatter;
 
   return (
-    <div className={styles.projectCard}>
+    <ProjectCardWrapper>
       {published === 'yes' ? (
         <Link to={`${slug}`}>
-          <div className={styles.projectImageWrapper}>
+          <ProjectImageWrapper>
             {heroImage && (
-              <GatsbyImage
-                image={getImage(heroImage)}
-                alt={title}
-                className={styles.projectImage}
-              />
+              <StyledGatsbyImage image={getImage(heroImage)} alt={title} />
             )}
             {/* Conditionally render overlay only when not published */}
             {published !== 'yes' && (
-              <div className={styles.projectOverlayTop}>
-                <p className={styles.comingSoonOverlay}>Coming Soon!</p>
-              </div>
+              <ProjectOverlayTop>
+                <ComingSoonOverlay>Coming Soon!</ComingSoonOverlay>
+              </ProjectOverlayTop>
             )}
-            <div className={styles.projectOverlayBottom}>
-              <p className={styles.projectSubtitle}>{subtitle}</p>
-            </div>
-          </div>
+            <ProjectOverlayBottom>
+              <ProjectSubtitle>{subtitle}</ProjectSubtitle>
+            </ProjectOverlayBottom>
+          </ProjectImageWrapper>
         </Link>
       ) : (
-        <div className={styles.projectImageWrapper}>
+        <ProjectImageWrapper>
           {heroImage && (
-            <GatsbyImage
-              image={getImage(heroImage)}
-              alt={title}
-              className={styles.projectImage}
-            />
+            <StyledGatsbyImage image={getImage(heroImage)} alt={title} />
           )}
-          <div className={styles.projectOverlayTop}>
-            <p className={styles.comingSoonOverlay}>Coming Soon!</p>
-          </div>
-          <div className={styles.projectOverlayBottom}>
-            <p className={styles.projectSubtitle}>{subtitle}</p>
-          </div>
-        </div>
+          <ProjectOverlayTop>
+            <ComingSoonOverlay>Coming Soon!</ComingSoonOverlay>
+          </ProjectOverlayTop>
+          <ProjectOverlayBottom>
+            <ProjectSubtitle>{subtitle}</ProjectSubtitle>
+          </ProjectOverlayBottom>
+        </ProjectImageWrapper>
       )}
-      <h2 className={styles.projectTitle}>{title}</h2>
-    </div>
+      <ProjectTitle>{title}</ProjectTitle>
+    </ProjectCardWrapper>
   );
 };
 

@@ -1,10 +1,82 @@
 import React, { useRef } from 'react';
 import { graphql } from 'gatsby';
 import ReactMarkdown from 'react-markdown';
+import styled from 'styled-components';
 import MainLayout from '../components/MainLayout';
 import ProjectCard from '../components/projectCard';
 import NewsCard from '../components/NewsCard';
-import * as styles from '../components/homePage.module.css';
+
+const MarkdownText = styled.div`
+  font-weight: light;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  margin-bottom: 48px;
+`;
+
+const NewsCarouselContainer = styled.div`
+  position: relative;
+  margin-bottom: 48px;
+`;
+
+const NewsCarousel = styled.div`
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  & > * {
+    flex: 0 0 auto;
+    width: 300px;
+    margin-right: 16px;
+    scroll-snap-align: start;
+  }
+
+  & > *:last-child {
+    margin-right: 0;
+  }
+`;
+
+const ScrollRightButton = styled.button`
+  position: absolute;
+  top: 50%;
+  right: -24px;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  color: #888;
+  border: none;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+`;
+
+const ProjectGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  padding: 0;
+  list-style: none;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+`;
 
 const IndexPage = ({ data }) => {
   const { projectsData, homepageTextData, newsData } = data;
@@ -19,38 +91,35 @@ const IndexPage = ({ data }) => {
 
   return (
     <MainLayout>
-      <div style={{ marginBottom: 48 }}>
-        <ReactMarkdown className={styles.markdownText}>
+      <MarkdownText>
+        <ReactMarkdown>
           {homepageTextData.nodes[0].frontmatter.intro_paragraph}
         </ReactMarkdown>
-      </div>
+      </MarkdownText>
 
       {newsData.nodes.length > 0 && (
         <>
           <h2>News</h2>
-          <div className={styles.newsCarouselContainer}>
-            <div className={styles.newsCarousel} ref={newsCarouselRef}>
+          <NewsCarouselContainer>
+            <NewsCarousel ref={newsCarouselRef}>
               {newsData.nodes
                 .slice()
                 .reverse()
                 .map((news) => (
                   <NewsCard key={news.id} news={news.frontmatter} />
                 ))}
-            </div>
+            </NewsCarousel>
             {newsData.nodes.length >= 4 && (
-              <button
-                className={styles.scrollRightButton}
-                onClick={handleScrollRight}
-              >
+              <ScrollRightButton onClick={handleScrollRight}>
                 &rarr;
-              </button>
+              </ScrollRightButton>
             )}
-          </div>
+          </NewsCarouselContainer>
         </>
       )}
 
       <h2>Projects</h2>
-      <div className={styles.projectGrid}>
+      <ProjectGrid>
         {projectsData.nodes.map((project) => (
           <ProjectCard
             key={project.frontmatter.slug}
@@ -61,7 +130,7 @@ const IndexPage = ({ data }) => {
             slug={`/projects/${project.frontmatter.slug}`}
           />
         ))}
-      </div>
+      </ProjectGrid>
     </MainLayout>
   );
 };

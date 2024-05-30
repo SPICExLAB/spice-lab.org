@@ -1,12 +1,192 @@
-// src/components/PublicationCard.js
 import React, { useState, useRef } from 'react';
 import { Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-import * as styles from './publicationCard.module.css';
+import styled from 'styled-components';
 import pdfIcon from '../images/pdf.png';
 import citationIcon from '../images/citation.png';
 import bibtexIcon from '../images/bibtex.png';
 import awardIcon from '../images/medal.png';
+
+const PublicationCardWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin-bottom: 16px;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
+`;
+
+const CoverImageContainer = styled.div`
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  min-height: 100px;
+
+  @media (max-width: 767px) {
+    width: 100%;
+    min-height: 200px;
+    flex: none;
+  }
+`;
+
+const CoverImageWrapper = styled(Link)`
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+`;
+
+const CoverImage = styled(GatsbyImage)`
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transform: translateY(-50%);
+`;
+
+const PublicationInfo = styled.div`
+  flex: 3 1 0%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    margin-bottom: 0;
+  }
+`;
+
+const Authors = styled.p`
+  margin-bottom: 0;
+`;
+
+const Conference = styled.p`
+  font-style: italic;
+  margin-top: 8px;
+  margin-bottom: 0;
+  color: rgb(96, 96, 96);
+`;
+
+const ToBePublished = styled.span`
+  color: #8954a8;
+  font-weight: bold;
+`;
+
+const Title = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
+
+const AuthorLink = styled.a`
+  color: inherit;
+`;
+
+const PublicationLinks = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 8px;
+
+  .iconLink,
+  .iconButton {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .iconLink span,
+  .iconButton span {
+    margin-left: 4px;
+    font-size: 14px;
+  }
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+`;
+
+const Award = styled.span`
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: red;
+  margin-right: 8px;
+
+  img {
+    width: 24px;
+    height: 24px;
+    margin-right: 4px;
+  }
+`;
+
+const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+`;
+
+const ModalContent = styled.div`
+  background-color: white;
+  padding: 16px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 600px;
+  max-height: 80%;
+  overflow: auto;
+
+  h4 {
+    margin-top: 0;
+  }
+
+  &.bibtexModalContent {
+    width: 90%;
+    max-width: 800px;
+  }
+`;
+
+const ModalText = styled.textarea`
+  width: 100%;
+  height: 200px;
+  resize: none;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  padding: 8px;
+  box-sizing: border-box;
+`;
+
+const ModalCode = styled.pre`
+  white-space: pre;
+  word-wrap: normal;
+  background-color: #f0f0f0;
+  padding: 8px;
+  border-radius: 4px;
+  overflow: auto;
+
+  code {
+    font-family: monospace;
+  }
+`;
 
 const PublicationCard = ({ publication, teamMembers, slug }) => {
   const {
@@ -23,7 +203,6 @@ const PublicationCard = ({ publication, teamMembers, slug }) => {
     bibtex,
   } = publication.frontmatter;
 
-  // State for modal visibility and content
   const [modalContent, setModalContent] = useState(null);
   const [modalTitle, setModalTitle] = useState('');
   const modalRef = useRef(null);
@@ -41,41 +220,31 @@ const PublicationCard = ({ publication, teamMembers, slug }) => {
   };
 
   return (
-    <div className={styles.publicationCard}>
-      <div className={styles.coverImageContainer}>
+    <PublicationCardWrapper>
+      <CoverImageContainer>
         {published === 'yes' ? (
-          <Link to={`${slug}`} className={styles.coverImageWrapper}>
+          <CoverImageWrapper to={`${slug}`}>
             {coverImage && (
-              <GatsbyImage
-                image={getImage(coverImage)}
-                alt={title}
-                className={styles.coverImage}
-              />
+              <CoverImage image={getImage(coverImage)} alt={title} />
             )}
-          </Link>
+          </CoverImageWrapper>
         ) : (
-          <div className={styles.coverImageWrapper}>
+          <CoverImageWrapper as="div">
             {coverImage && (
-              <GatsbyImage
-                image={getImage(coverImage)}
-                alt={title}
-                className={styles.coverImage}
-              />
+              <CoverImage image={getImage(coverImage)} alt={title} />
             )}
-          </div>
+          </CoverImageWrapper>
         )}
-      </div>
-      <div className={styles.publicationInfo}>
+      </CoverImageContainer>
+      <PublicationInfo>
         <h3>
           {published === 'yes' ? (
-            <Link to={`${slug}`} className={styles.title}>
-              {`${title}: ${subtitle}`}
-            </Link>
+            <Title to={`${slug}`}>{`${title}: ${subtitle}`}</Title>
           ) : (
-            <span className={styles.title}>{`${title}: ${subtitle}`}</span>
+            <span>{`${title}: ${subtitle}`}</span>
           )}
         </h3>
-        <p className={styles.authors}>
+        <Authors>
           {authors.map((author, index) => {
             const teamMember = teamMembers[author];
             const website = teamMember ? teamMember.website : null;
@@ -83,40 +252,38 @@ const PublicationCard = ({ publication, teamMembers, slug }) => {
               <React.Fragment key={author}>
                 {index > 0 && ', '}{' '}
                 {website ? (
-                  <a
+                  <AuthorLink
                     href={website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={styles.authorLink}
                   >
                     {author}
-                  </a>
+                  </AuthorLink>
                 ) : (
-                  <span>{author}</span> // Renders just the name if no website is available
+                  <span>{author}</span>
                 )}
               </React.Fragment>
             );
           })}
-        </p>
-        <p className={styles.conference}>
+        </Authors>
+        <Conference>
           {conference &&
             (published === 'yes' ? (
               conference
             ) : (
               <span>
-                <span className={styles.toBePublished}>To appear in</span>{' '}
-                {conference}
+                <ToBePublished>To appear in</ToBePublished> {conference}
               </span>
             ))}
-        </p>
+        </Conference>
         {published === 'yes' && (
-          <div className={styles.publicationLinks}>
+          <PublicationLinks>
             {pdfLink && (
               <a
                 href={pdfLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.iconLink}
+                className="iconLink"
               >
                 <img src={pdfIcon} alt="PDF" />
                 <span>PDF</span>
@@ -124,7 +291,7 @@ const PublicationCard = ({ publication, teamMembers, slug }) => {
             )}
             {citation && (
               <button
-                className={styles.iconButton}
+                className="iconButton"
                 onClick={() => openModal(citation, 'Citation')}
               >
                 <img src={citationIcon} alt="Citation" />
@@ -133,7 +300,7 @@ const PublicationCard = ({ publication, teamMembers, slug }) => {
             )}
             {bibtex && (
               <button
-                className={styles.iconButton}
+                className="iconButton"
                 onClick={() => openModal(bibtex, 'BibTeX')}
               >
                 <img src={bibtexIcon} alt="BibTeX" />
@@ -141,39 +308,36 @@ const PublicationCard = ({ publication, teamMembers, slug }) => {
               </button>
             )}
             {award && (
-              <span className={styles.award}>
+              <Award>
                 <img src={awardIcon} alt="Award" />
                 {award}
-              </span>
+              </Award>
             )}
-          </div>
+          </PublicationLinks>
         )}
         {modalContent && (
-          <div className={styles.modal} onClick={closeModal}>
-            <div
-              className={`${styles.modalContent} ${
-                modalTitle === 'BibTeX' ? styles.bibtexModalContent : ''
-              }`}
+          <Modal onClick={closeModal}>
+            <ModalContent
+              className={modalTitle === 'BibTeX' ? 'bibtexModalContent' : ''}
               ref={modalRef}
             >
               <h4>{modalTitle}</h4>
               {modalTitle === 'Citation' ? (
-                <textarea
-                  className={styles.modalText}
+                <ModalText
                   value={modalContent}
                   readOnly
                   onClick={(event) => event.stopPropagation()}
                 />
               ) : (
-                <pre className={styles.modalCode}>
+                <ModalCode>
                   <code>{modalContent}</code>
-                </pre>
+                </ModalCode>
               )}
-            </div>
-          </div>
+            </ModalContent>
+          </Modal>
         )}
-      </div>
-    </div>
+      </PublicationInfo>
+    </PublicationCardWrapper>
   );
 };
 

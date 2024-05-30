@@ -6,6 +6,7 @@ module.exports = {
     siteUrl: `https://SPICExLAB.github.io/spice-lab.org`,
   },
   plugins: [
+    `gatsby-plugin-styled-components`,
     `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
