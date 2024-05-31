@@ -2,7 +2,7 @@ backend:
   name: github
   repo: SPICExLAB/spice-lab.org
   branch: main
-  base_url: https://api.github.com
+  base_url: https://github.com
   auth_endpoint: https://github.com/login/oauth/authorize
   token_endpoint: https://github.com/login/oauth/access_token
   client_id: Ov23ct8FHM0kjQvPRPmI
