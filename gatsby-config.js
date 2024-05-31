@@ -97,11 +97,12 @@ module.exports = {
         linkStyles: true,
       },
     },
-    {
-      resolve: `gatsby-plugin-decap-cms`,
-      options: {
-        configPath: `${__dirname}/static/admin/config.yml`,
-      },
-    },
+    `gatsby-plugin-decap-cms`,
+    // {
+    //   resolve: `gatsby-plugin-decap-cms`,
+    //   options: {
+    //     configPath: `${__dirname}/static/admin/config.yml`,
+    //   },
+    // },
   ],
 };
