@@ -1,9 +1,13 @@
 backend:
-  name: git-gateway
-  branch: main # Branch to update
+  name: github
+  repo: SPICExLAB/spice-lab.org
+  branch: main
+  auth:
+    client_id: Ov23li7tmj3HzMHU0YV7
+    redirect_uri: https://spicexlab.github.io/spice-lab.org/admin/callback
 
-media_folder: "static/images/uploads" # Folder where user uploads go
-public_folder: "/images/uploads" # Folder path for the uploads
+media_folder: "static/images/uploads"
+public_folder: "/images/uploads"
 
 collections:
   - name: "settibgTexts"
@@ -21,6 +25,7 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
+      - { label: "Title", name: "title", widget: "string" }
       - { label: "Type", name: "type", widget: "hidden", default: "news" }
       - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Content", name: "content", widget: "markdown" }
