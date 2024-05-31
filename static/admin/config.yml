@@ -1,10 +1,13 @@
 backend:
-  name: git-gateway
+  name: github
   repo: SPICExLAB/spice-lab.org
   branch: main
-  auth:
-    client_id: Ov23li7tmj3HzMHU0YV7
-    redirect_uri: https://spicexlab.github.io/spice-lab.org/admin/callback
+  base_url: https://api.github.com
+  auth_endpoint: https://github.com/login/oauth/authorize
+  token_endpoint: https://github.com/login/oauth/access_token
+  client_id: Ov23ct8FHM0kjQvPRPmI
+  client_secret: 4ad0a964cee1bcfcd3f179c67b122ebb6ceb1668
+  redirect_uri: https://spicexlab.github.io/spice-lab.org/admin/callback
 
 media_folder: "static/images/uploads"
 public_folder: "/images/uploads"
