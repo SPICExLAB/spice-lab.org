@@ -2,11 +2,8 @@ backend:
   name: github
   repo: SPICExLAB/spice-lab.org
   branch: main
-  api_root: https://api.github.com
-  auth_endpoint: https://github.com/login/oauth/authorize
-  client_id: Ov23ct8FHM0kjQvPRPmI
-  client_secret: 4ad0a964cee1bcfcd3f179c67b122ebb6ceb1668
-  redirect_uri: https://spicexlab.github.io/spice-lab.org/admin/#/callback
+  site_domain: netlifserver.netlify.app
+
 
 media_folder: "static/images/uploads"
 public_folder: "/images/uploads"
