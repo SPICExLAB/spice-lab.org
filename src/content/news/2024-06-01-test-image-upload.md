@@ -7,5 +7,3 @@ images:
   - image: /spice-lab.org/images/uploads/screenshot-2024-06-01-at-10.45.11 am.png
   - image: /spice-lab.org/images/uploads/screenshot-2024-05-17-at-8.40.04 pm.png
 ---
-
-

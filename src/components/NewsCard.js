@@ -37,13 +37,13 @@ const Content = styled.div`
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: ${({ isoverflowing }) => (isoverflowing ? 3 : 'unset')};
-  line-clamp: ${({ isoverflowing }) => (isoverflowing ? 3 : 'unset')};
+  -webkit-line-clamp: ${({ $isOverflowing }) => ($isOverflowing ? 3 : 'unset')};
+  line-clamp: ${({ $isOverflowing }) => ($isOverflowing ? 3 : 'unset')};
   max-height: 4.5em; /* Adjust based on font size and line height */
   position: relative;
 
   &::after {
-    content: ${({ isoverflowing }) => (isoverflowing ? '"..."' : '""')};
+    content: ${({ $isOverflowing }) => ($isOverflowing ? '"..."' : '""')};
     position: absolute;
     bottom: 0;
     right: 0;
@@ -68,11 +68,12 @@ const StackedImage = styled.img`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) rotate(${({ index }) => (index - 1) * 15}deg);
+  transform: translate(-50%, -50%)
+    rotate(${({ $index }) => ($index - 1) * 15}deg);
 
   &:hover {
     transform: translate(-50%, -50%) scale(1.1)
-      rotate(${({ index }) => (index - 1) * 5}deg);
+      rotate(${({ $index }) => ($index - 1) * 5}deg);
     z-index: 1;
   }
 `;
@@ -208,7 +209,7 @@ const NewsCard = ({ news }) => {
         <TextSection>
           <Date>{news.date}</Date>
           <Title>{news.title}</Title>
-          <Content ref={contentRef} isoverflowing={isOverflowing.toString()}>
+          <Content ref={contentRef} $isOverflowing={isOverflowing}>
             <ReactMarkdown>{news.content}</ReactMarkdown>
           </Content>
         </TextSection>
@@ -219,7 +220,7 @@ const NewsCard = ({ news }) => {
                 key={index}
                 src={img.image}
                 alt={`News image ${index + 1}`}
-                index={index}
+                $index={index + 1}
               />
             ))}
           </ImageSection>
