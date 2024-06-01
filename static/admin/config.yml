@@ -28,4 +28,8 @@ collections:
       - { label: "Type", name: "type", widget: "hidden", default: "news" }
       - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Content", name: "content", widget: "markdown" }
-      - { label: "Image", name: "image", widget: "image", required: false }
+      - label: "Images"
+          name: "images"
+          widget: "list"
+          required: false
+          field: { label: "Image", name: "image", widget: "image" }

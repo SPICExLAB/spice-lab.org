@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
@@ -22,51 +22,59 @@ const Date = styled.div`
   background: #eee;
   padding: 4px;
   font-size: 0.8rem;
-  margin-bottom: 8px;
+  margin-bottom: 0;
   display: inline-block; /* Wrap background to text length */
 `;
 
+const Title = styled.h3`
+  margin: 8px 0 0 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+`;
+
 const Content = styled.div`
-  color: black; /* Change text color to black */
+  color: black;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5; /* Limit to 5 lines */
-  line-clamp: 5;
-  max-height: 7.5em; /* Adjust based on font size and line height */
+  -webkit-line-clamp: ${({ isoverflowing }) => (isoverflowing ? 3 : 'unset')};
+  line-clamp: ${({ isoverflowing }) => (isoverflowing ? 3 : 'unset')};
+  max-height: 4.5em; /* Adjust based on font size and line height */
   position: relative;
-`;
 
-const ReadMoreButton = styled.button`
-  background: none;
-  border: none;
-  color: blue;
-  cursor: pointer;
-  text-decoration: underline;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  padding: 4px;
-  background: white;
+  &::after {
+    content: ${({ isoverflowing }) => (isoverflowing ? '"..."' : '""')};
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    padding-left: 4px;
+  }
 `;
 
 const ImageSection = styled.div`
   width: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const ImageWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Image = styled.img`
-  width: 100%;
   height: 100px;
+  position: relative;
+`;
+
+const StackedImage = styled.img`
+  width: 80px;
+  height: 80px;
   object-fit: cover;
-  margin-bottom: 4px;
+  border: 2px solid white;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(${({ index }) => (index - 1) * 15}deg);
+
+  &:hover {
+    transform: translate(-50%, -50%) scale(1.1)
+      rotate(${({ index }) => (index - 1) * 5}deg);
+    z-index: 1;
+  }
 `;
 
 const Overlay = styled.div`
@@ -143,6 +151,16 @@ const OverlayContentMarkdown = styled.div`
 
 const NewsCard = ({ news }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isOverflowing, setIsOverflowing] = useState(false);
+  const contentRef = useRef(null);
+
+  useEffect(() => {
+    if (contentRef.current) {
+      setIsOverflowing(
+        contentRef.current.scrollHeight > contentRef.current.clientHeight
+      );
+    }
+  }, [contentRef.current, news.content]);
 
   const handleCardClick = () => {
     setIsOpen(true);
@@ -152,25 +170,21 @@ const NewsCard = ({ news }) => {
     setIsOpen(false);
   };
 
-  const images = news.image
-    ? Array.isArray(news.image)
-      ? news.image
-      : [news.image]
-    : [];
+  const images = news.images || [];
 
   const overlay = (
     <Overlay onClick={handleOverlayClose}>
       <OverlayContent onClick={(e) => e.stopPropagation()}>
         <CloseButton onClick={handleOverlayClose}>&times;</CloseButton>
-        {images.length > 0 && images[0] && (
+        {images.length > 0 && (
           <Gallery>
             {images.length === 1 ? (
-              <OverlayImageSingle src={images[0]} alt="News image" />
+              <OverlayImageSingle src={images[0].image} alt="News image" />
             ) : (
               images.map((img, index) => (
                 <OverlayImage
                   key={index}
-                  src={img}
+                  src={img.image}
                   alt={`News image ${index + 1}`}
                 />
               ))
@@ -179,6 +193,7 @@ const NewsCard = ({ news }) => {
         )}
         <OverlayText>
           <OverlayDate>{news.date}</OverlayDate>
+          <Title>{news.title}</Title>
           <OverlayContentMarkdown>
             <ReactMarkdown>{news.content}</ReactMarkdown>
           </OverlayContentMarkdown>
@@ -192,19 +207,23 @@ const NewsCard = ({ news }) => {
       <NewsCardWrapper onClick={handleCardClick}>
         <TextSection>
           <Date>{news.date}</Date>
-          <Content>
+          <Title>{news.title}</Title>
+          <Content ref={contentRef} isoverflowing={isOverflowing.toString()}>
             <ReactMarkdown>{news.content}</ReactMarkdown>
           </Content>
         </TextSection>
-        <ImageSection>
-          {images.length > 0 && images[0] && (
-            <ImageWrapper>
-              {images.slice(0, 2).map((img, index) => (
-                <Image key={index} src={img} alt={`News image ${index + 1}`} />
-              ))}
-            </ImageWrapper>
-          )}
-        </ImageSection>
+        {images.length > 0 && (
+          <ImageSection>
+            {images.slice(0, 3).map((img, index) => (
+              <StackedImage
+                key={index}
+                src={img.image}
+                alt={`News image ${index + 1}`}
+                index={index}
+              />
+            ))}
+          </ImageSection>
+        )}
       </NewsCardWrapper>
       {isOpen && ReactDOM.createPortal(overlay, document.body)}
     </>

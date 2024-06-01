@@ -166,8 +166,11 @@ export const query = graphql`
         id
         frontmatter {
           date(formatString: "MMMM DD, YYYY")
+          title
           content
-          image
+          images {
+            image
+          }
         }
       }
     }
