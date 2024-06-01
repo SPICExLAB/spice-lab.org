@@ -6,7 +6,7 @@ backend:
 
 
 media_folder: "static/images/uploads"
-public_folder: "/images/uploads"
+public_folder: "/spice-lab.org/images/uploads"
 
 collections:
   - name: "settibgTexts"

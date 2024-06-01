@@ -33,8 +33,8 @@ module.exports = {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 1080,
-              linkImagesToOriginal: true, // Ensures images are wrapped in a link
-              withWebp: true, // Optional: Serve images in WebP format
+              linkImagesToOriginal: true,
+              withWebp: true, 
             },
           },
         ],
@@ -82,13 +82,7 @@ module.exports = {
         path: './src/content/settingTexts',
       },
     },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'uploads',
-        path: `${__dirname}/static/images/uploads`,
-      },
-    },
+
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -105,11 +99,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-decap-cms`,
-    // {
-    //   resolve: `gatsby-plugin-decap-cms`,
-    //   options: {
-    //     configPath: `${__dirname}/static/admin/config.yml`,
-    //   },
-    // },
+
   ],
 };
