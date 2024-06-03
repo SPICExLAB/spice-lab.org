@@ -1,6 +1,6 @@
 # Spice Lab Site
 
-This is the official repository for the Spice Lab website, built using Gatsby. This README provides instructions on how to set up the site for local development, update team profiles, add new projects and publications, and manage news and site text using the CMS.
+This is the official repository for the Spice Lab website, built using Gatsby. This README provides instructions on how to set up the site for local development, update team profiles, add new projects and publications, and manage news and site text using the CMS(only for Admins).
 
 ## Table of Contents
 
@@ -11,7 +11,7 @@ This is the official repository for the Spice Lab website, built using Gatsby. T
 
 ## Local Development Setup
 
-To set up the project for local development, follow these steps:
+Please, ask Admins to add you into this repo first. To set up the project for local development, follow these steps:
 
 1. **Clone the repository:**
 
@@ -39,10 +39,13 @@ You can download and install them from [Node.js official]([url](https://nodejs.o
    npm -v
 
 3. **Install dependencies:**
-   Ensure you have Node.js and npm installed. Then run:
+   Ensure you have Node.js and npm installed. Then run one of the following:
 
    ```bash
    npm install
+   npm install --legacy-peer-deps
+
+
 4. **Start the development server:**
    This will start the Gatsby development server. Open your browser and navigate to http://localhost:8000 to view the site.
 
@@ -52,14 +55,14 @@ You can download and install them from [Node.js official]([url](https://nodejs.o
 ## Updating Team Profiles
 
 1. **Profile information:**:
-Team profiles are stored in the ```src/content/people/team.json``` file. Each team member is represented as an object in the JSON array. To update or add a profile, edit this file and follow the structure
+Team profiles are stored in the ```src/content/people/team.json``` file. Each team member is represented as an object in the JSON array. To update or add a profile, edit this file and follow the structure in the Json.
 
 2. **Adding Headshots:**
 Save the headshot image in the ```src/content/people/headshots/``` directory.
-Ensure the photo field in the team.json file matches the filename of the headshot.
+Ensure the photo field in the team.json file matches the filename and path of the headshot.
 
 ## Adding Projects and Publications
-Projects and publications are stored as MDX files in the ```src/content/projects/``` directory. Each project should have its own subdirectory containing an index.mdx file (this will create a project page for it) and any related images.
+Projects and publications are stored as MDX files in the ```src/content/projects/``` directory. Each project should have its own subdirectory containing an index.mdx file (this will create a project page for it, so that you can add more content to show your work) and any related images.
 
 ```
 src/content/projects/YourProjectName/
@@ -91,12 +94,12 @@ src/content/projects/YourProjectName/
 Our site uses Decap CMS (formerly Netlify CMS) for easy content management. The CMS allows you to update news posts and certain text on the website without needing to edit the code directly.
 
 1. **Accessing the CMS**
-Go to ```https://spice-lab.netlify.app/admin```.
-Log in using your Netlify Identity credentials(sign up one via your email! for the first time, i will disable register in the future).
+Go to ```https://spicexlab.github.io/spice-lab.org/admin```.
+Log in using your github account(I think our lab members/admins can do that).
 2. **Updating News**
 Navigate to the "**News**" section in the CMS.
 Click "**New News**" to add a new news item.
-Fill in the required fields and save the entry.
+Fill in the required fields and save the entry(you can update more than one image).
 3. **Editing Homepage Text**
 Navigate to the "**Settings**" section in the CMS.
 Click on "**Homepage**" to edit the introductory paragraph.
