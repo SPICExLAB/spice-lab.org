@@ -94,7 +94,7 @@ src/content/projects/YourProjectName/
 Our site uses Decap CMS (formerly Netlify CMS) for easy content management. The CMS allows you to update news posts and certain text on the website without needing to edit the code directly.
 
 1. **Accessing the CMS**
-Go to ```https://spicexlab.github.io/spice-lab.org/admin```.
+Go to ```https://spice-lab.org/admin```.
 Log in using your github account(I think our lab members/admins can do that).
 2. **Updating News**
 Navigate to the "**News**" section in the CMS.
