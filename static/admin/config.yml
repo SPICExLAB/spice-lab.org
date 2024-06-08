@@ -33,4 +33,8 @@ collections:
         name: "images"
         widget: "list"
         required: false
-        field: { label: "Image", name: "image", widget: "image" }
+        field:
+          label: "Image"
+          name: "image"
+          widget: "image"
+          default: []
