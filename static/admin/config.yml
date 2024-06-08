@@ -3,6 +3,7 @@ backend:
   repo: SPICExLAB/spice-lab.org
   branch: main
   site_domain: netlifserver.netlify.app
+  # this is only for CMS temporary hosting
 
 
 media_folder: "static/images/uploads"

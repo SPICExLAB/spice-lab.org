@@ -2,8 +2,8 @@
 module.exports = {
   pathPrefix: '/spice-lab.org',
   siteMetadata: {
-    title: `Spice Lab Site`,
-    siteUrl: `https://SPICExLAB.github.io/spice-lab.org`,
+    title: `SPICE Lab Site`,
+    siteUrl: `https://spice-lab.org`,
   },
   plugins: [
     `gatsby-plugin-styled-components`,
@@ -34,7 +34,7 @@ module.exports = {
             options: {
               maxWidth: 1080,
               linkImagesToOriginal: true,
-              withWebp: true, 
+              withWebp: true,
             },
           },
         ],
@@ -99,6 +99,5 @@ module.exports = {
       },
     },
     `gatsby-plugin-decap-cms`,
-
   ],
 };
