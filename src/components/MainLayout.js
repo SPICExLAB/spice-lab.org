@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import logoImage from '../images/icon.png';
 
 const LayoutWrapper = styled.div`
@@ -16,11 +16,45 @@ const Header = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+
+  ${(props) =>
+    props.$isScrolled &&
+    css`
+      padding: 0.5rem 0;
+      .logo img {
+        height: 40px;
+      }
+      .lab-name {
+        display: none;
+      }
+    `}
 `;
 
 const Logo = styled.div`
+  display: flex;
+  align-items: center;
+
   img {
-    height: 50px;
+    height: 60px;
+    transition: height 0.3s ease-in-out;
+  }
+
+  .lab-name {
+    margin-left: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: font-size 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+
+    span {
+      display: block;
+    }
   }
 `;
 
@@ -117,18 +151,38 @@ const Main = styled.main`
 
 const MainLayout = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleScroll = () => {
+    if (window.scrollY > 50) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <LayoutWrapper>
-      <Header>
-        <Logo>
+      <Header $isScrolled={isScrolled}>
+        <Logo className="logo">
           <Link to="/">
             <img src={logoImage} alt="Logo" />
           </Link>
+          <span className="lab-name">
+            <span>Sensing, Perception and</span>
+            <span>Interactive Computing Exploration Lab</span>
+          </span>
         </Logo>
         <Nav className={isMenuOpen ? 'active' : ''}>
           <ul>

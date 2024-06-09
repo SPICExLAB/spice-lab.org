@@ -16,7 +16,7 @@ const MemberImageWrapper = styled.div`
   margin-bottom: 1rem;
 
   ${(props) =>
-    props.isPi &&
+    props.$isPi &&
     css`
       width: 300px;
       height: 300px;
@@ -65,7 +65,7 @@ const MemberCard = ({ person }) => {
 
   return (
     <MemberCardWrapper>
-      <MemberImageWrapper isPi={isPi}>
+      <MemberImageWrapper $isPi={isPi}>
         <a href={person.website} target="_blank" rel="noopener noreferrer">
           {person.fields.memberImage && (
             <MemberPhoto

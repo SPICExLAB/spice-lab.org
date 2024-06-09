@@ -101,6 +101,8 @@ const OverlayContent = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const CloseButton = styled.button`
@@ -128,13 +130,17 @@ const OverlayImage = styled.img`
 `;
 
 const OverlayImageSingle = styled.img`
-  width: 100%;
+  max-width: 100%;
+  max-height: 85vh; /* Ensure it doesn't overflow viewport height */
   height: auto;
   object-fit: contain; /* Maintain original aspect ratio */
+  display: block;
+  margin: 0 auto;
 `;
 
 const OverlayText = styled.div`
   text-align: left;
+  width: 100%; /* Ensure text takes full width */
 `;
 
 const OverlayDate = styled.div`
