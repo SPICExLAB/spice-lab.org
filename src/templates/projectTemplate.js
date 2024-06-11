@@ -7,7 +7,7 @@ import MDXComponents, {
   MediaGrid,
   MediaItem,
   MDXImage,
-} from '../components/MDXComponents';
+} from '../components/MDXcomponents';
 import pdfIcon from '../images/pdf.png';
 import conferenceIcon from '../images/web.png';
 import githubIcon from '../images/github.png';
