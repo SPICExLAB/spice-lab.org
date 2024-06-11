@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { graphql } from 'gatsby';
+import SEO from '../components/SEO';
 import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
 import MainLayout from '../components/MainLayout';
@@ -91,6 +92,8 @@ const IndexPage = ({ data }) => {
 
   return (
     <MainLayout>
+      <SEO title="Home" description="Welcome to SPICE Lab" />
+
       <MarkdownText>
         <ReactMarkdown>
           {homepageTextData.nodes[0].frontmatter.intro_paragraph}
