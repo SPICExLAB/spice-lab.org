@@ -1,0 +1,38 @@
+---
+type: 'project'
+slug: TriboTouch
+title: TriboTouch
+subtitle: Micro-Patterned Surfaces for Low Latency Touchscreens
+authors:
+  - Craig Shultz
+  - Karan Ahuja
+  - Daewha Kim
+  - Chris Harrison
+year: 2022
+coverImage: './images/cover.png'
+published: 'yes'
+award:
+pdfLink: '/papers/tribotouch.pdf'
+github: 
+videoLink: https://www.youtube.com/embed/V2KF1rT5l4w?si=MDj5Q5UfJNhfw6XX
+conference: "CHI '22: Proceedings of the 2022 CHI Conference on Human Factors in Computing Systems"
+conferencePage: 'https://doi.org/10.1145/3491102.3502069'
+citation: 'Shultz, C., Kim, D., Ahuja, K., & Harrison, C. (2022, April). TriboTouch: Micro-Patterned Surfaces for Low Latency Touchscreens. In Proceedings of the 2022 CHI Conference on Human Factors in Computing Systems (pp. 1-13).'
+bibtex: |
+  @inproceedings{shultz2022tribotouch,
+    title={TriboTouch: Micro-Patterned Surfaces for Low Latency Touchscreens},
+    author={Shultz, Craig and Kim, Daehwa and Ahuja, Karan and Harrison, Chris},
+    booktitle={Proceedings of the 2022 CHI Conference on Human Factors in Computing Systems},
+    pages={1--13},
+    year={2022}
+  }
+medias:
+  - './images/0.gif'
+  - './images/1.gif'
+  - './images/2.gif'
+  - './images/3.gif'
+---
+
+## Abstract
+
+Touchscreen tracking latency, often 80ms or more, creates a rubber-banding effect in everyday direct manipulation tasks such as dragging, scrolling, and drawing. This has been shown to decrease system preference, user performance, and overall realism of these interfaces. In this research, we demonstrate how the addition of a thin, 2D micro-patterned surface with 5 micron spaced features can be used to reduce motor-visual touchscreen latency. When a finger, stylus, or tangible is translated across this textured surface frictional forces induce acoustic vibrations which naturally encode sliding velocity. This acoustic signal is sampled at 192kHz using a conventional audio interface pipeline with an average latency of 28ms. When fused with conventional low-speed, but high-spatial-accuracy 2D touch position data, our machine learning model can make accurate predictions of real time touch location.

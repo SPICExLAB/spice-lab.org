@@ -1,0 +1,35 @@
+---
+type: 'project'
+slug: IMUPoser
+title: IMUPoser
+subtitle: Full-Body Pose Estimation using IMUs in Phones, Watches, and Earbuds
+authors:
+  - Vimal Mollyn
+  - Riku Arakawa
+  - Mayank Goel
+  - Chris Harrison
+  - Karan Ahuja
+
+year: 2023
+coverImage: './images/cover.png'
+published: 'yes'
+award:
+pdfLink: '/papers/imuposer.pdf'
+github: https://github.com/FIGLAB/IMUPoser
+videoLink: https://www.youtube.com/embed/hgpjbKv8XFY?si=Ah-nN_K8lliOKCzH
+conference: "CHI '23: Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems"
+conferencePage: 'https://doi.org/10.1145/3544548.3581392'
+citation: 'Mollyn, V., Arakawa, R., Goel, M., Harrison, C., & Ahuja, K. (2023, April). Imuposer: Full-body pose estimation using imus in phones, watches, and earbuds. In Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems (pp. 1-12)'
+bibtex: |
+  @inproceedings{mollyn2023imuposer,
+    title={Imuposer: Full-body pose estimation using imus in phones, watches, and earbuds},
+    author={Mollyn, Vimal and Arakawa, Riku and Goel, Mayank and Harrison, Chris and Ahuja, Karan},
+    booktitle={Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems},
+    pages={1--12},
+    year={2023}
+  }
+---
+
+## Abstract
+
+Tracking body pose on-the-go could have powerful uses in fitness, mobile gaming, context-aware virtual assistants, and rehabilitation. However, users are unlikely to buy and wear special suits or sensor arrays to achieve this end. Instead, in this work, we explore the feasibility of estimating body pose using IMUs already in devices that many users own — namely smartphones, smartwatches, and earbuds. This approach has several challenges, including noisy data from low-cost commodity IMUs, and the fact that the number of instrumentation points on a user’s body is both sparse and in flux. Our pipeline receives whatever subset of IMU data is available, potentially from just a single device, and produces a best-guess pose. To evaluate our model, we created the IMUPoser Dataset, collected from 10 participants wearing or holding off-the-shelf consumer devices and across a variety of activity contexts. We provide a comprehensive evaluation of our system, benchmarking it on both our own and existing IMU datasets.

@@ -11,7 +11,7 @@ const PublicationCardWrapper = styled.div`
   display: flex;
   flex-direction: row;
   gap: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 32px; // Increase margin to create more space between cards
 
   @media (max-width: 767px) {
     flex-direction: column;
@@ -193,7 +193,6 @@ const PublicationCard = ({ publication, teamMembers, slug }) => {
     title,
     subtitle,
     authors,
-    year,
     coverImage,
     published,
     award,

@@ -13,11 +13,10 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/content/people/headshots/`,
+        name: `projects`,
+        path: `${__dirname}/src/content/projects/`,
       },
     },
-
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -56,16 +55,6 @@ module.exports = {
       },
       __key: 'pages',
     },
-
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'projects',
-        path: './src/content/projects',
-      },
-      __key: 'projects',
-    },
-
     'gatsby-transformer-json',
     {
       resolve: 'gatsby-source-filesystem',
@@ -74,7 +63,6 @@ module.exports = {
         path: './src/content/people/team.json',
       },
     },
-
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -82,7 +70,6 @@ module.exports = {
         path: './src/content/settingTexts',
       },
     },
-
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -91,7 +78,6 @@ module.exports = {
       },
       __key: 'news',
     },
-
     {
       resolve: 'gatsby-plugin-react-leaflet',
       options: {

@@ -68,7 +68,7 @@ const ScrollRightButton = styled.button`
 const ProjectGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 24px;
+  gap: 50px;
   padding: 0;
   list-style: none;
 
@@ -118,7 +118,7 @@ const IndexPage = ({ data }) => {
         </>
       )}
 
-      <h2>Selected Projects</h2>
+      <h2>All Projects</h2>
       <ProjectGrid>
         {projectsData.nodes.map((project) => (
           <ProjectCard

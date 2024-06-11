@@ -1,0 +1,36 @@
+---
+type: "project"
+slug: Convolutional_Neural_Networks_for_Ocular_Smartphone-Based_Biometrics
+title: Convolutional Neural Networks for Ocular Smartphone-Based Biometrics
+subtitle:
+authors:
+  - Karan Ahuja
+  - Rahul Islam
+  - Ferdous Barbhuiya
+  - Kuntal Dey
+year: 2017
+coverImage: './images/cover.png'
+published: 'yes'
+award:
+pdfLink: '/papers/biometrics.pdf'
+github:
+videoLink:
+conference: "PRL '17: Pattern Recognition Letters"
+conferencePage: 'https://doi.org/10.1016/j.patrec.2017.04.002'
+citation: "Ahuja, K., Islam, R., Barbhuiya, F. A., & Dey, K. (2017). Convolutional neural networks for ocular smartphone-based biometrics. Pattern Recognition Letters, 91, 17-26."
+bibtex: |
+  @article{ahuja2017convolutional,
+    title={Convolutional neural networks for ocular smartphone-based biometrics},
+    author={Ahuja, Karan and Islam, Rahul and Barbhuiya, Ferdous A and Dey, Kuntal},
+    journal={Pattern Recognition Letters},
+    volume={91},
+    pages={17--26},
+    year={2017},
+    publisher={Elsevier}
+  }
+---
+
+## Abstract
+
+Ocular biometrics in the visible spectrum has emerged as an area of significant research activity. In this paper, we propose a hybrid convolution-based model, for verifying a pair of periocular images containing the iris. We compose the hybrid model as a combination of an unsupervised and a supervised convolution neural network, and augment the combination with the well-known geometry-based Root SIFT model. We also compare the performance of both convolution-based models against each other, as well as, with the baseline Root SIFT. In the first (unsupervised w.r.t target dataset) convolution based deep learning approach, we use a stacked convolutional architecture, using external models learned a-priori on external facial and periocular data, on top of the baseline Root SIFT model applied on the provided data, and apply different score fusion models. In the second (supervised w.r.t target dataset) approach, we again use a stacked convolution architecture; but here, we learn the feature vector in a supervised manner. On the MICHE-II dataset, we obtain an AUROC of 0.946 and 0.981, and EER of 0.092 and 0.066, for the two models respectively. The hybrid model we propose, which combines these two convolutional neural networks, outperforms the constituents, in case both images arise from the same device type, but not necessarily so otherwise, obtaining a AUROC of 0.986 and EER of 0.053. We also benchmark our performance on the standard VISOB database, where we outperform the state of the art methods, achieving a TPR of 99.5% at a FPR of 0.001%. Given the robustness and significant performance of our methodology, our system can be used in practical applications with minimal error.
+

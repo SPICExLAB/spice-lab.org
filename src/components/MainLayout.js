@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
 import styled, { css } from 'styled-components';
-import logoImage from '../images/icon.png';
+import logoImage from '../images/logo.png';
 
 const LayoutWrapper = styled.div`
   color: #232129;
@@ -15,7 +15,7 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
+  padding: 1rem 0 1rem 1rem;
   position: sticky;
   top: 0;
   background: white;
@@ -25,37 +25,42 @@ const Header = styled.header`
   ${(props) =>
     props.$isScrolled &&
     css`
-      padding: 0.5rem 0;
+
       .logo img {
-        height: 40px;
+        height: 55px;
       }
       .lab-name {
-        display: none;
+        opacity: 0;
+        width: 0;
       }
     `}
 `;
 
 const Logo = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
 
   img {
-    height: 60px;
+    height: 100px;
     transition: height 0.3s ease-in-out;
   }
 
   .lab-name {
-    margin-left: 1rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
-    transition: font-size 0.3s ease-in-out;
-    display: flex;
-    flex-direction: column;
-
-    span {
-      display: block;
-    }
+    text-align: left;
+    transition: font-size 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    white-space: nowrap;
   }
+
+  ${(props) =>
+    props.$isScrolled &&
+    css`
+      .lab-name {
+        display: none;
+      }
+    `}
 `;
 
 const Nav = styled.nav`
@@ -175,13 +180,12 @@ const MainLayout = ({ children }) => {
   return (
     <LayoutWrapper>
       <Header $isScrolled={isScrolled}>
-        <Logo className="logo">
+        <Logo $isScrolled={isScrolled} className="logo">
           <Link to="/">
             <img src={logoImage} alt="Logo" />
           </Link>
           <span className="lab-name">
-            <span>Sensing, Perception and</span>
-            <span>Interactive Computing Exploration Lab</span>
+            Sensing, Perception and Interactive Computing Exploration Lab
           </span>
         </Logo>
         <Nav className={isMenuOpen ? 'active' : ''}>

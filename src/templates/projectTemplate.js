@@ -2,8 +2,12 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
 import styled from 'styled-components';
-import MDXComponents from '../components/MDXcomponents';
 import MainLayout from '../components/MainLayout';
+import MDXComponents, {
+  MediaGrid,
+  MediaItem,
+  MDXImage,
+} from '../components/MDXComponents';
 import pdfIcon from '../images/pdf.png';
 import conferenceIcon from '../images/web.png';
 import githubIcon from '../images/github.png';
@@ -134,6 +138,7 @@ export default function ProjectTemplate({
     conferencePage,
     citation,
     bibtex,
+    medias,
   } = mdx.frontmatter;
 
   const teamMembers = allTeamJson.nodes.reduce((acc, member) => {
@@ -141,7 +146,9 @@ export default function ProjectTemplate({
     return acc;
   }, {});
 
-  const formattedBibTeX = bibtex.trim().replace(/\s*\n\s*/g, '\n');
+  const formattedBibTeX = bibtex
+    ? bibtex.trim().replace(/\s*\n\s*/g, '\n')
+    : '';
 
   return (
     <MainLayout>
@@ -149,11 +156,12 @@ export default function ProjectTemplate({
         <Header>
           {year && (
             <p>
-              {year} {conference && `${conference}`} {award && `${award}`}
+              {conference && `${conference}`} {award && `${award}`}
             </p>
           )}
           <Title>
-            {title}: {subtitle}
+            {title}
+            {subtitle && `: ${subtitle}`}
           </Title>
 
           <Authors>
@@ -197,7 +205,7 @@ export default function ProjectTemplate({
                 rel="noopener noreferrer"
               >
                 <img src={conferenceIcon} alt="Link" />
-                <span>conference</span>
+                <span>publication</span>
               </LinkItem>
             )}
             {github && (
@@ -227,6 +235,19 @@ export default function ProjectTemplate({
         <Section>
           <MDXProvider components={MDXComponents}>{children}</MDXProvider>
         </Section>
+
+        {medias && medias.length > 0 && (
+          <Section>
+            <h2>Media</h2>
+            <MediaGrid>
+              {medias.map((image) => (
+                <MediaItem key={image.publicURL}>
+                  <MDXImage src={image.publicURL} alt={image.alt || ''} />
+                </MediaItem>
+              ))}
+            </MediaGrid>
+          </Section>
+        )}
 
         {citation && (
           <Section>
@@ -269,6 +290,9 @@ export const query = graphql`
         conferencePage
         citation
         bibtex
+        medias {
+          publicURL
+        }
       }
     }
     allTeamJson {

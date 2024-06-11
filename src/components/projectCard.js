@@ -11,7 +11,7 @@ const ProjectCardWrapper = styled.div`
 
 const ProjectTitle = styled.h2`
   margin: 20px;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   text-align: center;
 `;
 
@@ -50,7 +50,7 @@ const ProjectOverlayBottom = styled.div`
   position: absolute;
   left: 0;
   right: 0;
-  height: 50px;
+  height: 80px;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   display: none; /* Hidden by default */
@@ -88,15 +88,11 @@ const ProjectCard = ({ frontmatter, heroImage, slug }) => {
             {heroImage && (
               <StyledGatsbyImage image={getImage(heroImage)} alt={title} />
             )}
-            {/* Conditionally render overlay only when not published */}
-            {published !== 'yes' && (
-              <ProjectOverlayTop>
-                <ComingSoonOverlay>Coming Soon!</ComingSoonOverlay>
-              </ProjectOverlayTop>
+            {subtitle && (
+              <ProjectOverlayBottom>
+                <ProjectSubtitle>{subtitle}</ProjectSubtitle>
+              </ProjectOverlayBottom>
             )}
-            <ProjectOverlayBottom>
-              <ProjectSubtitle>{subtitle}</ProjectSubtitle>
-            </ProjectOverlayBottom>
           </ProjectImageWrapper>
         </Link>
       ) : (
@@ -107,9 +103,11 @@ const ProjectCard = ({ frontmatter, heroImage, slug }) => {
           <ProjectOverlayTop>
             <ComingSoonOverlay>Coming Soon!</ComingSoonOverlay>
           </ProjectOverlayTop>
-          <ProjectOverlayBottom>
-            <ProjectSubtitle>{subtitle}</ProjectSubtitle>
-          </ProjectOverlayBottom>
+          {subtitle && (
+            <ProjectOverlayBottom>
+              <ProjectSubtitle>{subtitle}</ProjectSubtitle>
+            </ProjectOverlayBottom>
+          )}
         </ProjectImageWrapper>
       )}
       <ProjectTitle>{title}</ProjectTitle>
