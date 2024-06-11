@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
 import styled from 'styled-components';
 import MainLayout from '../components/MainLayout';
+import SEO from '../components/SEO';
 import MDXComponents, {
   MediaGrid,
   MediaItem,
@@ -152,6 +153,14 @@ export default function ProjectTemplate({
 
   return (
     <MainLayout>
+      <SEO
+        title={`${title} | SPICE Lab | Northwestern University`}
+        description={subtitle}
+        image={coverImage.publicURL}
+        pathname={`/projects/${mdx.frontmatter.slug}`}
+        article
+      />
+
       <ProjectContainer>
         <Header>
           {year && (

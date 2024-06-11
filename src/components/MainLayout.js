@@ -25,7 +25,6 @@ const Header = styled.header`
   ${(props) =>
     props.$isScrolled &&
     css`
-
       .logo img {
         height: 55px;
       }
@@ -50,6 +49,7 @@ const Logo = styled.div`
     font-size: 1rem;
     font-weight: bold;
     text-align: left;
+    color: #663299;
     transition: font-size 0.3s ease-in-out, opacity 0.3s ease-in-out;
     white-space: nowrap;
   }
@@ -91,6 +91,10 @@ const Nav = styled.nav`
         flex-direction: column;
         align-items: center;
       }
+
+      ul li {
+        margin: 20px 0; 
+      }
     }
   }
 `;
@@ -104,17 +108,17 @@ const NavLink = styled(Link)`
   transition: color 0.2s;
 
   &:hover {
-    color: #8954a8;
+    color: #663299;
   }
 
   &.active {
-    color: #8954a8;
-    border-bottom: 2px solid #8954a8;
+    color: #663299;
+    border-bottom: 2px solid #663299;
   }
 
   @media (max-width: 768px) {
     font-size: 2rem;
-    padding: 1.5rem 0;
+    padding: 0.5rem 0;
   }
 `;
 

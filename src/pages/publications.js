@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import SEO from '../components/SEO';
 import MainLayout from '../components/MainLayout';
 import PublicationCard from '../components/publicationCard';
 
@@ -22,6 +23,12 @@ const PublicationsPage = ({ data }) => {
 
   return (
     <MainLayout>
+      <SEO
+        title="Publications | SPICE Lab | Northwestern University"
+        description="See our publications"
+        pathname="/publications"
+      />
+
       <h1>Publications</h1>
 
       {Object.entries(publicationsByYear)

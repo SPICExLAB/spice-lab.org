@@ -3,8 +3,8 @@
     "name": "Karan Ahuja",
     "role": "Principal Investigator",
     "program": "Department of Computer Science",
-    "website": "http://johndoe.com",
-    "email": "johndoe@example.com",
+    "website": "https://karan-ahuja.com/",
+    "email": "kahuja@northwestern.edu",
     "photo": "karan.png"
   },
   {
@@ -12,7 +12,7 @@
     "role": "PhD Student",
     "program": "Universiof Chicago(co-advised by Prof. Hank Hoffmann)",
     "website": "https://www.vascoxu.com/",
-    "email": "min@example.com",
+    "email": "vascoxu@uchicago.edu",
     "photo": "vasco.png",
     "active": true
   },
@@ -21,36 +21,9 @@
     "role": "PhD Student",
     "program": "Technology and Social Behavior",
     "website": "http://jessegao.online",
-    "email": "chenfenggao@example.com",
+    "email": "chenfenggao2029@u.northwestern.edu",
     "photo": "chenfenggao.png",
     "active": true
-  },
-
-  {
-    "name": "Jane Smith",
-    "role": "Masters Studasdasddent",
-    "program": "Electricl Engineering",
-    "website": "http://janesmith.com",
-    "email": "janesmith@examle.com",
-    "photo": "jane.png",
-    "active": true
-  },
-  {
-    "name": "Mike Johnson",
-    "role": "Undergraduate Student",
-    "program": "Computer Engneering",
-    "website": "http://mikejohnson.com",
-    "email": "mikejohnson@example.com",
-    "photo": "mike.png",
-    "active": true
-  },
-  {
-    "name": "Emily Davis",
-    "role": "PhD Alumni",
-    "program": "Computer Sience",
-    "website": "http://emilydavis.com",
-    "email": "emilydavis@example.com",
-    "photo": "emilydavis.png",
-    "active": false
   }
+
 ]

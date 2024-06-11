@@ -4,8 +4,8 @@ module.exports = {
   siteMetadata: {
     title: `SPICE Lab Site`,
     siteUrl: `https://spice-lab.org`,
-    description: `Sensing, Perception and Interactive Computing Exploration Lab`,
-    image: `src/images/logo.png`,
+    description: `Sensing, Perception and Interactive Computing Exploration (SPICE) Lab in Northwestern University`,
+    image: `./src/images/logo.png`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

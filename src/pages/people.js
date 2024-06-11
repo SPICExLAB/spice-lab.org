@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
+import SEO from '../components/SEO';
 import MainLayout from '../components/MainLayout';
 import MemberCard from '../components/memberCard';
 import twitterIcon from '../images/twitter.svg';
@@ -164,8 +165,22 @@ const PeoplePage = ({ data }) => {
       ].includes(person.role)
   );
 
+  const hasFormerMembers =
+    formerPostDocs.length > 0 ||
+    formerPhDs.length > 0 ||
+    formerResearchAssistants.length > 0 ||
+    formerMasters.length > 0 ||
+    formerUndergrads.length > 0 ||
+    otherFormerMembers.length > 0;
+
   return (
     <MainLayout>
+      <SEO
+        title="Team | SPICE Lab | Northwestern University"
+        description="Meet our teammembers"
+        pathname="/people"
+      />
+
       <h1>People</h1>
       <PiSection>
         <PiInfo>
@@ -241,29 +256,31 @@ const PeoplePage = ({ data }) => {
           ))}
         </MemberGrid>
       </MemberSection>
-      <MemberSection>
-        <h2>Former Members</h2>
-        <MemberGrid>
-          {formerPostDocs.map((person) => (
-            <MemberCard key={person.name} person={person} />
-          ))}
-          {formerPhDs.map((person) => (
-            <MemberCard key={person.name} person={person} />
-          ))}
-          {formerResearchAssistants.map((person) => (
-            <MemberCard key={person.name} person={person} />
-          ))}
-          {formerMasters.map((person) => (
-            <MemberCard key={person.name} person={person} />
-          ))}
-          {formerUndergrads.map((person) => (
-            <MemberCard key={person.name} person={person} />
-          ))}
-          {otherFormerMembers.map((person) => (
-            <MemberCard key={person.name} person={person} />
-          ))}
-        </MemberGrid>
-      </MemberSection>
+      {hasFormerMembers && (
+        <MemberSection>
+          <h2>Former Members</h2>
+          <MemberGrid>
+            {formerPostDocs.map((person) => (
+              <MemberCard key={person.name} person={person} />
+            ))}
+            {formerPhDs.map((person) => (
+              <MemberCard key={person.name} person={person} />
+            ))}
+            {formerResearchAssistants.map((person) => (
+              <MemberCard key={person.name} person={person} />
+            ))}
+            {formerMasters.map((person) => (
+              <MemberCard key={person.name} person={person} />
+            ))}
+            {formerUndergrads.map((person) => (
+              <MemberCard key={person.name} person={person} />
+            ))}
+            {otherFormerMembers.map((person) => (
+              <MemberCard key={person.name} person={person} />
+            ))}
+          </MemberGrid>
+        </MemberSection>
+      )}
     </MainLayout>
   );
 };

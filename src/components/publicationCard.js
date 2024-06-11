@@ -55,6 +55,7 @@ const PublicationInfo = styled.div`
 
   h3 {
     margin-top: 0;
+    color: #5a5a5a;
     font-size: 1.2rem;
     margin-bottom: 0;
   }

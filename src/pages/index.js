@@ -92,7 +92,11 @@ const IndexPage = ({ data }) => {
 
   return (
     <MainLayout>
-      <SEO title="Home" description="Welcome to SPICE Lab" />
+      <SEO
+        title="Sensing, Perception and Interactive Computing Exploration Lab | Northwestern University"
+        description="Explore our latest research projects and news at SPICE Lab."
+        pathname="/"
+      />
 
       <MarkdownText>
         <ReactMarkdown>
