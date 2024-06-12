@@ -90,6 +90,16 @@ const IndexPage = ({ data }) => {
     });
   };
 
+  // Filter, sort by year (descending), and limit to the most recent 12 projects for home page
+  const homePageProjects = projectsData.nodes
+    .filter((project) => project.frontmatter.ishomePage === 'yes')
+    .sort((a, b) => b.frontmatter.year - a.frontmatter.year)
+    .slice(0, 12);
+
+  const nonPlaceholderNews = newsData.nodes.filter(
+    (news) => !news.frontmatter.isPlaceholder
+  );
+
   return (
     <MainLayout>
       <SEO
@@ -104,19 +114,19 @@ const IndexPage = ({ data }) => {
         </ReactMarkdown>
       </MarkdownText>
 
-      {newsData.nodes.length > 0 && (
+      {nonPlaceholderNews.length > 0 && (
         <>
           <h2>News</h2>
           <NewsCarouselContainer>
             <NewsCarousel ref={newsCarouselRef}>
-              {newsData.nodes
+              {nonPlaceholderNews
                 .slice()
                 .reverse()
                 .map((news) => (
                   <NewsCard key={news.id} news={news.frontmatter} />
                 ))}
             </NewsCarousel>
-            {newsData.nodes.length >= 4 && (
+            {nonPlaceholderNews.length >= 4 && (
               <ScrollRightButton onClick={handleScrollRight}>
                 &rarr;
               </ScrollRightButton>
@@ -125,9 +135,9 @@ const IndexPage = ({ data }) => {
         </>
       )}
 
-      <h2>All Projects</h2>
+      <h2>Selected Projects</h2>
       <ProjectGrid>
-        {projectsData.nodes.map((project) => (
+        {homePageProjects.map((project) => (
           <ProjectCard
             key={project.frontmatter.slug}
             frontmatter={project.frontmatter}
@@ -150,12 +160,14 @@ export const query = graphql`
           slug
           title
           subtitle
+          year
           coverImage {
             childImageSharp {
               gatsbyImageData(layout: CONSTRAINED, width: 1080)
             }
           }
           published
+          ishomePage
         }
       }
     }
@@ -175,6 +187,7 @@ export const query = graphql`
           date(formatString: "MMMM DD, YYYY")
           title
           content
+          isPlaceholder
           images {
             image
           }

@@ -8,7 +8,7 @@ const LayoutWrapper = styled.div`
   margin: 0 auto;
   max-width: 1200px;
   padding: 0 1rem;
-  font-family: '-apple-system, Roboto, sans-serif, serif';
+  font-family: 'Avenir', sans-serif;
 `;
 
 const Header = styled.header`
@@ -93,7 +93,7 @@ const Nav = styled.nav`
       }
 
       ul li {
-        margin: 20px 0; 
+        margin: 20px 0;
       }
     }
   }

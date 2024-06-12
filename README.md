@@ -84,6 +84,7 @@ src/content/projects/YourProjectName/
 + ```year```: The year the project was published or created.
 + ```coverImage```: The path to the cover image for the project, which should be in the images folder within the same project folder.
 + ```published```: A flag indicating whether the project is published. It can be 'yes' or 'no'. *note: as for no, it means the paper is gong to be published, but not yet.*
++ ```ishomePage```: A flag indicating whether the project will be showcased in home page. It can be 'yes' or 'no'.
 + ```award```: Any awards the project has won, if none, leave it blank.
 + ```pdfLink```: A link to a PDF file associated with the project, link to static/papers.
 + ```github```: A link to the project's GitHub repository.
