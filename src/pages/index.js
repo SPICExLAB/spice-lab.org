@@ -94,7 +94,7 @@ const IndexPage = ({ data }) => {
   const homePageProjects = projectsData.nodes
     .filter((project) => project.frontmatter.ishomePage === 'yes')
     .sort((a, b) => b.frontmatter.year - a.frontmatter.year)
-    .slice(0, 12);
+    .slice(0, 6);
 
   const nonPlaceholderNews = newsData.nodes.filter(
     (news) => !news.frontmatter.isPlaceholder

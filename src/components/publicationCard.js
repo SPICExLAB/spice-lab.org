@@ -2,16 +2,19 @@ import React, { useState, useRef } from 'react';
 import { Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
-import pdfIcon from '../images/pdf.png';
-import citationIcon from '../images/citation.png';
-import bibtexIcon from '../images/bibtex.png';
+
 import awardIcon from '../images/medal.png';
+import pdfIcon from '../images/paper.svg';
+import citationIcon from '../images/citation.svg';
+import bibtexIcon from '../images/bibtex.svg';
+import videoIcon from '../images/video.svg';
+import codeIcon from '../images/code.svg';
 
 const PublicationCardWrapper = styled.div`
   display: flex;
   flex-direction: row;
   gap: 16px;
-  margin-bottom: 32px; // Increase margin to create more space between cards
+  margin-bottom: 36px;
 
   @media (max-width: 767px) {
     flex-direction: column;
@@ -24,6 +27,10 @@ const CoverImageContainer = styled.div`
   overflow: hidden;
   min-height: 100px;
 
+  &:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
   @media (max-width: 767px) {
     width: 100%;
     min-height: 200px;
@@ -35,6 +42,8 @@ const CoverImageWrapper = styled(Link)`
   position: relative;
   overflow: hidden;
   flex: 1;
+
+
 `;
 
 const CoverImage = styled(GatsbyImage)`
@@ -80,42 +89,62 @@ const ToBePublished = styled.span`
 const Title = styled(Link)`
   text-decoration: none;
   color: inherit;
+  transition: color 0.3s, text-decoration 0.3s;
+
+  &:hover {
+    color: black;
+    text-decoration: underline;
+  }
 `;
 
 const AuthorLink = styled.a`
   color: inherit;
+  transition: color 0.3s, text-decoration 0.3s;
+
+  &:hover {
+    color: #663299;
+  }
 `;
 
 const PublicationLinks = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
   margin-top: 8px;
 
-  .iconLink,
   .iconButton {
     display: flex;
     align-items: center;
     margin-right: 8px;
+    margin-bottom: 8px;
     border: none;
     background: none;
-    padding: 0;
+    padding: 6px 10px;
     cursor: pointer;
     text-decoration: none;
     color: inherit;
+    font-size: 15px;
+    font-weight: 300;
+    border-radius: 4px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+
+    &:hover {
+      background-color: #f0f0f0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
   }
 
-  .iconLink span,
   .iconButton span {
-    margin-left: 4px;
-    font-size: 14px;
+    margin-left: 6px;
   }
 
   img {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
   }
 `;
+
 
 const Award = styled.span`
   display: flex;
@@ -125,8 +154,8 @@ const Award = styled.span`
   margin-right: 8px;
 
   img {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     margin-right: 4px;
   }
 `;
@@ -201,6 +230,8 @@ const PublicationCard = ({ publication, teamMembers, slug }) => {
     conference,
     citation,
     bibtex,
+    github,
+    videoLink
   } = publication.frontmatter;
 
   const [modalContent, setModalContent] = useState(null);
@@ -279,15 +310,13 @@ const PublicationCard = ({ publication, teamMembers, slug }) => {
         {published === 'yes' && (
           <PublicationLinks>
             {pdfLink && (
-              <a
-                href={pdfLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="iconLink"
+              <button
+                className="iconButton"
+                onClick={() => window.open(pdfLink, '_blank')}
               >
                 <img src={pdfIcon} alt="PDF" />
-                <span>PDF</span>
-              </a>
+                <span>Paper</span>
+              </button>
             )}
             {citation && (
               <button
@@ -305,6 +334,24 @@ const PublicationCard = ({ publication, teamMembers, slug }) => {
               >
                 <img src={bibtexIcon} alt="BibTeX" />
                 <span>BibTeX</span>
+              </button>
+            )}
+            {videoLink && (
+              <button
+                className="iconButton"
+                onClick={() => window.open(videoLink, '_blank')}
+              >
+                <img src={videoIcon} alt="Video" />
+                <span>Video</span>
+              </button>
+            )}
+            {github && (
+              <button
+                className="iconButton"
+                onClick={() => window.open(github, '_blank')}
+              >
+                <img src={codeIcon} alt="Code" />
+                <span>Code</span>
               </button>
             )}
             {award && (

@@ -9,9 +9,10 @@ import MDXComponents, {
   MediaItem,
   MDXImage,
 } from '../components/MDXcomponents';
-import pdfIcon from '../images/pdf.png';
-import conferenceIcon from '../images/web.png';
-import githubIcon from '../images/github.png';
+
+import conferenceIcon from '../images/publication.svg';
+import pdfIcon from '../images/paper.svg';
+import githubIcon from '../images/code.svg';
 
 const ProjectContainer = styled.article`
   max-width: 800px;
@@ -52,9 +53,15 @@ const LinkItem = styled.a`
   align-items: center;
   margin-right: 1.5rem;
   text-decoration: none;
-  background-color: #555555;
-  border-radius: 20px;
+  background-color: transparent;
+  border: 1px solid #000;
+  border-radius: 10px;
   padding: 10px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
 
   img {
     width: 24px;
@@ -63,7 +70,7 @@ const LinkItem = styled.a`
   }
 
   span {
-    color: white;
+    color: #000;
   }
 `;
 

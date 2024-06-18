@@ -54,19 +54,19 @@ const ProjectOverlayBottom = styled.div`
   height: 80px;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
-  display: none; /* Hidden by default */
+  display: none;
   align-items: center;
   justify-content: center;
   width: 100%;
   bottom: 0;
 
   ${ProjectImageWrapper}:hover & {
-    display: flex; /* Reveals on hover */
+    display: flex;
   }
 `;
 
 const ProjectSubtitle = styled.p`
-  margin: 0;
+  padding: 0 1rem;
   font-size: 1rem;
   color: #fff;
   text-align: left;

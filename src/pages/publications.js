@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import SEO from '../components/SEO';
 import MainLayout from '../components/MainLayout';
 import PublicationCard from '../components/publicationCard';
+import { VALID_NODE_NAMES } from '../../.cache/head/constants';
 
 const PublicationsPage = ({ data }) => {
   const { allMdx: publicationsData, allTeamJson: teamData } = data;
@@ -75,6 +76,8 @@ export const query = graphql`
           conference
           citation
           bibtex
+          github
+          videoLink
         }
       }
     }
