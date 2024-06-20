@@ -58,7 +58,19 @@ const MemberDetails = styled.div`
     margin: 0;
     font-size: 0.8rem;
   }
+
+  a {
+    color: inherit;
+    transition: color 0.3s, text-decoration 0.3s;
+    text-decoration: none;
+
+    &:hover {
+      color: #663299;
+    }
+  }
 `;
+
+
 
 const MemberCard = ({ person }) => {
   const isPi = person.role === 'Principal Investigator';
@@ -77,8 +89,9 @@ const MemberCard = ({ person }) => {
         <MemberRole>{person.role}</MemberRole>
       </MemberImageWrapper>
       <MemberDetails>
-        <h3>{person.name}</h3>
-        <h4>{person.program}</h4>
+        <a href={person.website} target="_blank" rel="noopener noreferrer">
+          <h3>{person.name}</h3>
+        </a>
         <p>{person.email}</p>
       </MemberDetails>
     </MemberCardWrapper>

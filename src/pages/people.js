@@ -45,13 +45,22 @@ const PiPhoto = styled(GatsbyImage)`
 const PiDetails = styled.div`
   text-align: center;
 
+  a {
+    color: inherit;
+    transition: color 0.3s, text-decoration 0.3s;
+    text-decoration: none;
+    &:hover {
+      color: #663299;
+    }
+  }
+  h3 {
+    font-size: 1.2rem;
+    margin-top: 0;
+  }
+
   @media (min-width: 768px) {
     text-align: left;
   }
-`;
-
-const PiDetailsHeading = styled.h3`
-  margin-top: 0;
 `;
 
 const PiSocialLinks = styled.div`
@@ -195,7 +204,9 @@ const PeoplePage = ({ data }) => {
             </a>
           </PiImageWrapper>
           <PiDetails>
-            <PiDetailsHeading>{pi.name}</PiDetailsHeading>
+            <a href={pi.website} target="_blank" rel="noopener noreferrer">
+              <h3>{pi.name}</h3>
+            </a>
             <p>
               I am an incoming Wissner Slivka Assistant Professor in Computer
               Science at Northwestern University (Fall 2024). My research
