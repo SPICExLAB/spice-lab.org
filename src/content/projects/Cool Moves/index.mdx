@@ -1,0 +1,37 @@
+---
+type: 'project'
+slug: Cool Moves
+title: Cool Moves
+subtitle: User Motion Accentuation in Virtual Reality
+authors:
+  - Karan Ahuja
+  - Eyal Ofek
+  - Mar Gonzalez-Franco
+  - Christian Holz
+  - Andrew Wilson
+year: 2021
+coverImage: './images/cover.png'
+published: 'yes'
+award:
+pdfLink: '/papers/coolmoves.pdf'
+github:
+videoLink: https://www.youtube.com/embed/PO9pMAOM4N4?si=3gWjd1UfQ1NiTvXI
+conference: "UbiComp '21: Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies"
+conferencePage: 'https://doi.org/10.1145/3463499'
+citation: 'Ahuja, K., Ofek, E., Gonzalez-Franco, M., Holz, C., & Wilson, A. D. (2021). Coolmoves: User motion accentuation in virtual reality. Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies, 5(2), 1-23.'
+bibtex: |
+  @article{ahuja2021coolmoves,
+    title={Coolmoves: User motion accentuation in virtual reality},
+    author={Ahuja, Karan and Ofek, Eyal and Gonzalez-Franco, Mar and Holz, Christian and Wilson, Andrew D},
+    journal={Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies},
+    volume={5},
+    number={2},
+    pages={1--23},
+    year={2021},
+    publisher={ACM New York, NY, USA}
+  }
+---
+
+## Abstract
+
+Current Virtual Reality (VR) systems are bereft of stylization and embellishment of the user's motion - concepts that have been well explored in animations for games and movies. We present CooIMoves, a system for expressive and accentuated full-body motion synthesis of a user's virtual avatar in real-time, from the limited input cues afforded by current consumer-grade VR systems, specifically headset and hand positions. We make use of existing motion capture databases as a template motion repository to draw from. We match similar spatio-temporal motions present in the database and then interpolate between them using a weighted distance metric. Joint prediction probability is then used to temporally smooth the synthesized motion, using human motion dynamics as a prior. This allows our system to work well even with very sparse motion databases (e.g., with only 3-5 motions per action). We validate our system with four experiments: a technical evaluation of our quantitative pose reconstruction and three additional user studies to evaluate the motion quality, embodiment and agency.
