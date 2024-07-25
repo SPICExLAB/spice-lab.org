@@ -39,7 +39,7 @@ You can download and install them from [Node.js official]([url](https://nodejs.o
    npm -v
 
 3. **Install dependencies:**
-   Ensure you have Node.js and npm installed. Then run one of the following:
+   Ensure you have Node.js and npm installed. Then run one of the following(the first one might now work as expected, I will fix later):
 
    ```bash
    npm install
@@ -80,10 +80,10 @@ src/content/projects/YourProjectName/
 + ```slug```: A unique identifier for the project, used in the URL.
 + ```title```: The title of the project.
 + ```subtitle```: Subtitle for the project, if none, leave it blank.
-+ ```authors```: A list of authors involved in the project, plaese provide the full name.
++ ```authors```: A list of authors involved in the project, plaese provide the full name. If co-first-author exists, just keep the '* 'as it disappeared in the paper.
 + ```year```: The year the project was published or created.
 + ```coverImage```: The path to the cover image for the project, which should be in the images folder within the same project folder.
-+ ```published```: A flag indicating whether the project is published. It can be 'yes' or 'no'. *note: as for no, it means the paper is gong to be published, but not yet.*
++ ```published```: A flag indicating whether the project is published. It can be 'yes' or 'no'. *note: as for no, it means the paper is gong to be published, but not yet. You can upload projects after camera-ready*
 + ```ishomePage```: A flag indicating whether the project will be showcased in home page. It can be 'yes' or 'no'.
 + ```award```: Any awards the project has won, if none, leave it blank.
 + ```pdfLink```: A link to a PDF file associated with the project, link to static/papers.

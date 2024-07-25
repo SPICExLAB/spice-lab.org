@@ -231,7 +231,7 @@ const PublicationCard = ({ publication, teamMembers, slug }) => {
     citation,
     bibtex,
     github,
-    videoLink
+    videoLink,
   } = publication.frontmatter;
 
   const [modalContent, setModalContent] = useState(null);
@@ -248,6 +248,15 @@ const PublicationCard = ({ publication, teamMembers, slug }) => {
       setModalContent(null);
       setModalTitle('');
     }
+  };
+
+  // Function to find team member while ignoring special characters
+  const findTeamMember = (name) => {
+    const cleanName = name.replace(/[^a-zA-Z0-9]/g, '');
+    return Object.entries(teamMembers).find(
+      ([memberName, member]) =>
+        memberName.replace(/[^a-zA-Z0-9]/g, '') === cleanName
+    )?.[1];
   };
 
   return (
@@ -277,7 +286,7 @@ const PublicationCard = ({ publication, teamMembers, slug }) => {
         </h3>
         <Authors>
           {authors.map((author, index) => {
-            const teamMember = teamMembers[author];
+            const teamMember = findTeamMember(author);
             const website = teamMember ? teamMember.website : null;
             return (
               <React.Fragment key={author}>
