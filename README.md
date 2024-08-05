@@ -64,7 +64,7 @@ Ensure the photo field in the team.json file matches the filename and path of th
 ## Adding Projects and Publications
 Projects and publications are stored as MDX files in the ```src/content/projects/``` directory. Each project should have its own subdirectory containing an index.mdx file (this will create a project page for it, so that you can add more content to show your work) and any related images. As for publication pdfs, please dump into /static/papers/.
 
-You can start by copying Pose-on-the-Go. If you have multiple images to be shown at one time, you can use the `medias` field. If you just want a markdown style to display one image in a section, just use `![alt](./images/pathToImage)`.
+You can start by copying ControllerPose/Pose-on-the-go. If you have multiple images to be shown at one time, you can use the `medias` field. If you just want a markdown style to display one image in a section, just use `![alt](./images/pathToImage)`.
 
 
 ```
@@ -80,19 +80,24 @@ src/content/projects/YourProjectName/
 + ```slug```: A unique identifier for the project, used in the URL.
 + ```title```: The title of the project.
 + ```subtitle```: Subtitle for the project, if none, leave it blank.
-+ ```authors```: A list of authors involved in the project, plaese provide the full name. If co-first-author exists, just keep the '* 'as it disappeared in the paper.
++ ```authors```: A list of authors involved in the project, plaese provide the full name. If co-first-author exists, just keep the '* 'as it displayed in the paper.
 + ```year```: The year the project was published or created.
++ ```dateAdded```: The data you add the project in YYY-MM-DD, you can leave it blank.
 + ```coverImage```: The path to the cover image for the project, which should be in the images folder within the same project folder.
 + ```published```: A flag indicating whether the project is published. It can be 'yes' or 'no'. *note: as for no, it means the paper is gong to be published, but not yet. You can upload projects after camera-ready*
 + ```ishomePage```: A flag indicating whether the project will be showcased in home page. It can be 'yes' or 'no'.
-+ ```award```: Any awards the project has won, if none, leave it blank.
++ ```award```: Any awards the project has won, if none, leave it blank. (Best paper award and honorable mention, etc)
 + ```pdfLink```: A link to a PDF file associated with the project, link to static/papers.
 + ```github```: A link to the project's GitHub repository.
 + ```videoLink```: A link to a video related to the project, ask GPT to convert it to a embeded version.
++ ```previewLink```: the 30s preview video link, if you have (no need to convert it).
 + ```conference```: The name of the conference/journal where the project was presented.
 + ```conferencePage```: A link to the conference/journal page where the project is listed, it should be the doi link.
 + ```citation```: The citation for the project(APA style).
 + ```bibtex```: The BibTeX entry for the project. *note: make sure the indentation after you pasted it from google scholar.*
+
+ ### More personalized content in the body:
+ if you want to embed other video, check EITPoser; if you want to add gif/img gallery, check ControllerPose/Pose-on-the-go; If you want to embed a pdf, check EyeSpyVR.
 
 ## Managing Content with the CMS
 Our site uses Decap CMS (formerly Netlify CMS) for easy content management. The CMS allows you to update news posts and certain text on the website without needing to edit the code directly.

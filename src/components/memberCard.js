@@ -43,15 +43,10 @@ const MemberRole = styled.span`
 `;
 
 const MemberDetails = styled.div`
+  align-items: center;
   h3 {
     margin: 0.5rem 0 0.2rem 0;
     font-size: 1.2rem;
-  }
-
-  h4 {
-    margin: 0.5rem 0 0.2rem 0;
-    font-size: 0.9rem;
-    width: 90%;
   }
 
   p {

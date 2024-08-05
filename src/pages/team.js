@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
-import SEO from '../components/Seo';
+import SEO from '../components/SEO';
 import MainLayout from '../components/MainLayout';
 import MemberCard from '../components/memberCard';
 

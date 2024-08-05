@@ -27,26 +27,30 @@ const CoverImageContainer = styled.div`
   overflow: hidden;
   min-height: 160px;
   max-height: 300px;
+  position: relative;
 
   &:hover {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: ${(props) =>
+      props.$published === 'yes' ? '0 4px 6px rgba(0, 0, 0, 0.1)' : 'none'};
   }
 
   @media (max-width: 767px) {
     width: 100%;
-    min-height: 300px; 
+    min-height: 300px;
     max-height: 350px;
     flex: none;
   }
 `;
 
+
 const CoverImageWrapper = styled(Link)`
   position: relative;
   overflow: hidden;
   flex: 1;
+  cursor: ${(props) => (props.$published === 'yes' ? 'pointer' : 'default')};
 `;
 
-const CoverImage = styled(GatsbyImage)`
+const CoverImageStyled = styled(GatsbyImage)`
   position: absolute;
   top: 50%;
   left: 0;
@@ -54,6 +58,21 @@ const CoverImage = styled(GatsbyImage)`
   height: auto;
   object-fit: cover;
   transform: translateY(-50%);
+`;
+
+const UnpublishedOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(78, 42, 132, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  z-index: 1;
 `;
 
 const PublicationInfo = styled.div`
@@ -82,9 +101,10 @@ const Conference = styled.p`
 `;
 
 const ToBePublished = styled.span`
-  color: #8954a8;
+  color: #4e2a84;
   font-weight: bold;
 `;
+
 
 const Title = styled(Link)`
   text-decoration: none;
@@ -235,6 +255,15 @@ const PublicationCard = ({ publication, teamMembers, slug }) => {
      return title;
    };
 
+   const CoverImageWithOverlay = ({ image, alt, published }) => (
+     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+       <CoverImageStyled image={image} alt={alt} />
+       {published !== 'yes' && (
+         <UnpublishedOverlay>Coming Soon</UnpublishedOverlay>
+       )}
+     </div>
+   );
+
   const openModal = (content, title) => {
     setModalContent(content);
     setModalTitle(title);
@@ -258,17 +287,25 @@ const PublicationCard = ({ publication, teamMembers, slug }) => {
 
   return (
     <PublicationCardWrapper>
-      <CoverImageContainer>
+      <CoverImageContainer $published={published}>
         {published === 'yes' ? (
-          <CoverImageWrapper to={`${slug}`}>
+          <CoverImageWrapper to={`${slug}`} $published={published}>
             {coverImage && (
-              <CoverImage image={getImage(coverImage)} alt={title} />
+              <CoverImageWithOverlay
+                image={getImage(coverImage)}
+                alt={title}
+                published={published}
+              />
             )}
           </CoverImageWrapper>
         ) : (
-          <CoverImageWrapper as="div">
+          <CoverImageWrapper as="div" $published={published}>
             {coverImage && (
-              <CoverImage image={getImage(coverImage)} alt={title} />
+              <CoverImageWithOverlay
+                image={getImage(coverImage)}
+                alt={title}
+                published={published}
+              />
             )}
           </CoverImageWrapper>
         )}

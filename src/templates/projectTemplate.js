@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
 import styled from 'styled-components';
 import MainLayout from '../components/MainLayout';
-import SEO from '../components/Seo';
+import SEO from '../components/SEO';
 import MDXComponents, {
   MediaGrid,
   MediaItem,

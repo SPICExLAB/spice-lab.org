@@ -8,6 +8,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           id
           frontmatter {
             slug
+            dateAdded
           }
           internal {
             contentFilePath
@@ -47,6 +48,18 @@ exports.onCreateNode = async ({
   reporter,
 }) => {
   const { createNode, createNodeField } = actions;
+
+  if (node.internal.type === 'Mdx' && node.frontmatter) {
+    // If dateAdded is not set, use the file creation date
+    if (!node.frontmatter.dateAdded) {
+      const stats = fs.statSync(node.internal.contentFilePath);
+      createNodeField({
+        node,
+        name: 'dateAdded',
+        value: stats.birthtime.toISOString().split('T')[0], // Format: YYYY-MM-DD
+      });
+    }
+  }
 
   if (node.internal.type === 'TeamJson') {
     const photoPath = path.resolve(

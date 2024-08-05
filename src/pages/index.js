@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { graphql } from 'gatsby';
-import SEO from '../components/Seo';
+import SEO from '../components/SEO';
 import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
 import MainLayout from '../components/MainLayout';
@@ -90,10 +90,17 @@ const IndexPage = ({ data }) => {
     });
   };
 
-  // Filter, sort by year (descending), and limit to the most recent 12 projects for home page
+  // Filter, sort by year (descending), and limit to the most recent 9 projects for home page
   const homePageProjects = projectsData.nodes
     .filter((project) => project.frontmatter.ishomePage === 'yes')
-    .sort((a, b) => b.frontmatter.year - a.frontmatter.year)
+    .sort((a, b) => {
+      if (b.frontmatter.year !== a.frontmatter.year) {
+        return b.frontmatter.year - a.frontmatter.year;
+      }
+      return (
+        new Date(b.frontmatter.dateAdded) - new Date(a.frontmatter.dateAdded)
+      );
+    })
     .slice(0, 9);
 
   const nonPlaceholderNews = newsData.nodes.filter(
@@ -162,6 +169,7 @@ export const query = graphql`
           title
           subtitle
           year
+          dateAdded
           coverImage {
             childImageSharp {
               gatsbyImageData(layout: CONSTRAINED, width: 1080)

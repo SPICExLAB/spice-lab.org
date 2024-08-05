@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import SEO from '../components/Seo';
+import SEO from '../components/SEO';
 import MainLayout from '../components/MainLayout';
 import LeafletMap from '../components/leafletmap';
 
 const ContactContainer = styled.div`
   max-width: 1200px;
   margin: 0;
-
 `;
 
 const Location = styled.section`

@@ -88,7 +88,7 @@ const ProjectOverlayTop = styled.div`
   left: 0;
   right: 0;
   height: 40px;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(78, 42, 132, 0.8);
   color: white;
   display: flex;
   align-items: center;

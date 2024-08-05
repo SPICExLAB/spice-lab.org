@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import SEO from '../components/Seo';
+import SEO from '../components/SEO';
 import MainLayout from '../components/MainLayout';
 import PublicationCard from '../components/publicationCard';
 
@@ -14,6 +14,14 @@ const PublicationsPage = ({ data }) => {
     acc[year].push(node);
     return acc;
   }, {});
+
+  // Sort publications within each year by dateAdded
+  Object.keys(publicationsByYear).forEach((year) => {
+    publicationsByYear[year].sort(
+      (a, b) =>
+        new Date(b.frontmatter.dateAdded) - new Date(a.frontmatter.dateAdded)
+    );
+  });
 
   // Create a map for easy lookup of team members by name
   const teamMembers = teamData.nodes.reduce((acc, member) => {
@@ -64,6 +72,7 @@ export const query = graphql`
           subtitle
           authors
           year
+          dateAdded
           coverImage {
             childImageSharp {
               gatsbyImageData(layout: CONSTRAINED, width: 1080)
