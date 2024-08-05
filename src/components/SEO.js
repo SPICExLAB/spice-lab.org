@@ -1,4 +1,4 @@
-// src/components/SEO.js
+// src/components/Seo.js
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';

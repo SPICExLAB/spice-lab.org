@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import SEO from '../components/SEO';
+import SEO from '../components/Seo';
 import MainLayout from '../components/MainLayout';
 import LeafletMap from '../components/leafletmap';
 

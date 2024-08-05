@@ -37,7 +37,7 @@ const MemberRole = styled.span`
   right: 0;
   background-color: #eee;
   padding: 0.2rem 0.6rem;
-  border-radius: 0 0 0 10px;
+  border-radius: 10px;
   font-size: 0.7rem;
   z-index: 2;
 `;
@@ -65,7 +65,7 @@ const MemberDetails = styled.div`
     text-decoration: none;
 
     &:hover {
-      color: #663299;
+      color: #4e2a84;
     }
   }
 `;
@@ -92,7 +92,7 @@ const MemberCard = ({ person }) => {
         <a href={person.website} target="_blank" rel="noopener noreferrer">
           <h3>{person.name}</h3>
         </a>
-        <p>{person.email}</p>
+        {/* <p>{person.email}</p> */}
       </MemberDetails>
     </MemberCardWrapper>
   );

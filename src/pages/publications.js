@@ -1,9 +1,8 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import SEO from '../components/SEO';
+import SEO from '../components/Seo';
 import MainLayout from '../components/MainLayout';
 import PublicationCard from '../components/publicationCard';
-
 
 const PublicationsPage = ({ data }) => {
   const { allMdx: publicationsData, allTeamJson: teamData } = data;

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
-import styled, { css } from 'styled-components';
-import logoImage from '../images/logo.png';
+import styled from 'styled-components';
+import logoImage from '../images/Lab_logo.png';
+import logoSmall from '../images/Lab_logo_small.png';
+import logoFormal from '../images/Lab_logo_formal.png';
 
 const HeaderContainer = styled.div`
   width: 100%;
@@ -11,9 +13,12 @@ const HeaderContainer = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  background: white;
   z-index: 1000;
   transition: all 0.3s ease-in-out;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: ${(props) =>
+    props.$isScrolled ? '0 2px 10px rgba(0, 0, 0, 0.05)' : 'none'};
 `;
 
 const HeaderWrapper = styled.header`
@@ -25,18 +30,6 @@ const HeaderWrapper = styled.header`
   margin: 0 auto;
   width: 100%;
   transition: all 0.3s ease-in-out;
-
-  ${(props) =>
-    props.$isScrolled &&
-    css`
-      .logo img {
-        height: 55px;
-      }
-      .lab-name {
-        display: none;
-        width: 0;
-      }
-    `}
 `;
 
 const Logo = styled.div`
@@ -45,16 +38,8 @@ const Logo = styled.div`
   align-items: flex-start;
 
   img {
-    height: 100px;
+    height: ${(props) => (props.$isScrolled ? '45px' : '90px')};
     transition: height 0.3s ease-in-out;
-  }
-
-  .lab-name {
-    font-size: 1rem;
-    font-weight: bold;
-    text-align: left;
-    color: #663299;
-    transition: font-size 0.3s ease-in-out, opacity 0.3s ease-in-out;
   }
 `;
 
@@ -72,15 +57,17 @@ const Nav = styled.nav`
     &.active {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
+      height: 100vh;
       background-color: #fff;
       z-index: 999;
+      padding-top: 80px;
+      overflow-y: auto;
 
       ul {
         flex-direction: column;
@@ -100,19 +87,20 @@ const NavLink = styled(Link)`
   font-size: 1rem;
   text-decoration: none;
   padding: 0.5rem 1rem;
-  transition: color 0.2s;
+  transition: color 0.2s, transform 0.2s;
 
   &:hover {
-    color: #663299;
+    color: #4e2a84;
+    transform: translateY(-2px);
   }
 
   &.active {
-    color: #663299;
-    border-bottom: 2px solid #663299;
+    color: #4e2a84;
+    border-bottom: 2px solid #4e2a84;
   }
 
   @media (max-width: 768px) {
-    font-size: 2rem;
+    font-size: 1.5rem;
     padding: 0.5rem 0;
   }
 `;
@@ -121,7 +109,7 @@ const Hamburger = styled.div`
   display: none;
   cursor: pointer;
   position: relative;
-  z-index: 1000;
+  z-index: 1001;
 
   @media (max-width: 768px) {
     display: block;
@@ -149,55 +137,129 @@ const Bar = styled.span`
   transition: all 0.3s ease-in-out;
 `;
 
+const MobileLogo = styled.div`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+    text-align: center;
+    margin-bottom: 100px;
+
+    img {
+      width: 300px;
+      height: 300px;
+    }
+  }
+`;
+
+const Overlay = styled.div`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: ${(props) => (props.$isMenuOpen ? 'block' : 'none')};
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+  }
+`;
+
 const Header = ({ isScrolled }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+
+    return () => {
+      window.removeEventListener('resize', checkIsMobile);
+      document.body.style.overflow = '';
+    };
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    if (isMobile) {
+      document.body.style.overflow = !isMenuOpen ? 'hidden' : '';
+    }
+  };
+
+  const handleLinkClick = () => {
+    if (isMobile && isMenuOpen) {
+      toggleMenu();
+    }
   };
 
   return (
-    <HeaderContainer>
-      <HeaderWrapper $isScrolled={isScrolled}>
-        <Logo $isScrolled={isScrolled} className="logo">
-          <Link to="/">
-            <img src={logoImage} alt="Logo" />
-          </Link>
-          <span className="lab-name">
-            Sensing, Perception and Interactive Computing Exploration Lab
-          </span>
-        </Logo>
-        <Nav className={isMenuOpen ? 'active' : ''}>
-          <ul>
-            <li>
-              <NavLink to="/" activeClassName="active">
-                HOME
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/people" activeClassName="active">
-                PEOPLE
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/publications" activeClassName="active">
-                PUBLICATIONS
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/contact" activeClassName="active">
-                CONTACT
-              </NavLink>
-            </li>
-          </ul>
-        </Nav>
-        <Hamburger className={isMenuOpen ? 'active' : ''} onClick={toggleMenu}>
-          <Bar className="bar"></Bar>
-          <Bar className="bar"></Bar>
-          <Bar className="bar"></Bar>
-        </Hamburger>
-      </HeaderWrapper>
-    </HeaderContainer>
+    <>
+      <HeaderContainer $isScrolled={isScrolled}>
+        <HeaderWrapper $isScrolled={isScrolled}>
+          <Logo $isScrolled={isScrolled} className="logo">
+            <Link to="/">
+              <img src={isScrolled ? logoSmall : logoImage} alt="Logo" />
+            </Link>
+          </Logo>
+          <Nav className={isMenuOpen ? 'active' : ''}>
+            <MobileLogo>
+              <img src={logoFormal} alt="Lab Logo Formal" />
+            </MobileLogo>
+            <ul>
+              <li>
+                <NavLink
+                  to="/"
+                  activeClassName="active"
+                  onClick={handleLinkClick}
+                >
+                  HOME
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/team"
+                  activeClassName="active"
+                  onClick={handleLinkClick}
+                >
+                  TEAM
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/publications"
+                  activeClassName="active"
+                  onClick={handleLinkClick}
+                >
+                  PUBLICATIONS
+                </NavLink>
+              </li>
+              {/* Commented out Contact tab
+              <li>
+                <NavLink to="/contact" activeClassName="active" onClick={toggleMenu}>
+                  CONTACT
+                </NavLink>
+              </li>
+              */}
+            </ul>
+          </Nav>
+          <Hamburger
+            className={isMenuOpen ? 'active' : ''}
+            onClick={toggleMenu}
+          >
+            <Bar className="bar"></Bar>
+            <Bar className="bar"></Bar>
+            <Bar className="bar"></Bar>
+          </Hamburger>
+        </HeaderWrapper>
+      </HeaderContainer>
+      <Overlay $isMenuOpen={isMenuOpen} onClick={toggleMenu} />
+    </>
   );
 };
 

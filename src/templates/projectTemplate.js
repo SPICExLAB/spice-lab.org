@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
 import styled from 'styled-components';
 import MainLayout from '../components/MainLayout';
-import SEO from '../components/SEO';
+import SEO from '../components/Seo';
 import MDXComponents, {
   MediaGrid,
   MediaItem,
@@ -18,6 +18,11 @@ const ProjectContainer = styled.article`
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
+  font-size: 16px;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const Header = styled.section`
@@ -25,33 +30,81 @@ const Header = styled.section`
   margin-bottom: 2rem;
 `;
 
+const ConferenceInfo = styled.div`
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1em;
+`;
+
+const ConferenceText = styled.span`
+  margin-bottom: 0.25rem;
+`;
+
+const AwardText = styled.span`
+  color: red;
+  font-weight: bold;
+`;
+
 const Title = styled.h1`
-  font-size: 2.5rem;
+  font-size: 2.5em;
   margin-bottom: 0.5rem;
   margin-top: 0;
+
+  @media (max-width: 768px) {
+    font-size: 2em;
+  }
 `;
 
 const Authors = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.2em;
   color: #666;
   margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 1em;
+  }
 `;
 
 const AuthorLink = styled.a`
   text-decoration: none;
-  color: #0070f3;
+  color: ${(props) => (props.$isTeamMember ? '#4E2A84' : '#0070f3')};
+  position: relative;
+
+  ${(props) =>
+    props.$isTeamMember &&
+    `
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 2px;
+      background-color: #4E2A84;
+      transform: scaleX(0);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+    }
+  `}
 `;
 
 const LinksContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 1rem;
+  flex-wrap: wrap;
 `;
 
 const LinkItem = styled.a`
   display: flex;
   align-items: center;
   margin-right: 1.5rem;
+  margin-bottom: 0.5rem;
   text-decoration: none;
   background-color: transparent;
   border: 1px solid #000;
@@ -71,6 +124,7 @@ const LinkItem = styled.a`
 
   span {
     color: #000;
+    font-size: 0.9em;
   }
 `;
 
@@ -81,6 +135,10 @@ const Video = styled.section`
     width: 100%;
     height: 400px;
     border: none;
+
+    @media (max-width: 768px) {
+      height: 300px;
+    }
   }
 `;
 
@@ -102,7 +160,7 @@ const BibTeX = styled.section`
 `;
 
 const BibTeXTitle = styled.h2`
-  font-size: 1.5rem;
+  font-size: 1.5em;
   margin-bottom: 1rem;
 `;
 
@@ -113,7 +171,7 @@ const BibTeXCode = styled.div`
   padding: 1rem;
   overflow-x: auto;
   font-family: 'Fira Code', monospace;
-  font-size: 0.9rem;
+  font-size: 0.9em;
   line-height: 1.4;
   color: #333;
 
@@ -163,7 +221,7 @@ export default function ProjectTemplate({
       <SEO
         title={`${title} | SPICE Lab | Northwestern University`}
         description={subtitle}
-        image={coverImage.publicURL}
+        image={coverImage?.publicURL}
         pathname={`/projects/${mdx.frontmatter.slug}`}
         article
       />
@@ -171,9 +229,10 @@ export default function ProjectTemplate({
       <ProjectContainer>
         <Header>
           {year && (
-            <p>
-              {conference && `${conference}`} {award && `${award}`}
-            </p>
+            <ConferenceInfo>
+              {conference && <ConferenceText>{conference}</ConferenceText>}
+              {award && <AwardText>{award}</AwardText>}
+            </ConferenceInfo>
           )}
           <Title>
             {title}
@@ -192,6 +251,7 @@ export default function ProjectTemplate({
                       href={website}
                       target="_blank"
                       rel="noopener noreferrer"
+                      $isTeamMember={!!teamMember}
                     >
                       {author}
                     </AuthorLink>
@@ -233,7 +293,7 @@ export default function ProjectTemplate({
           </LinksContainer>
         </Header>
 
-        {videoLink && (
+        {videoLink ? (
           <Video>
             <iframe
               src={videoLink}
@@ -242,10 +302,10 @@ export default function ProjectTemplate({
               allowFullScreen
             ></iframe>
           </Video>
-        )}
-
-        {coverImage && (
-          <CoverImage src={coverImage.publicURL} alt="Cover Image" />
+        ) : (
+          coverImage && (
+            <CoverImage src={coverImage.publicURL} alt="Cover Image" />
+          )
         )}
 
         <Section>

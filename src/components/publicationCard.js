@@ -25,7 +25,8 @@ const CoverImageContainer = styled.div`
   flex: 1;
   display: flex;
   overflow: hidden;
-  min-height: 100px;
+  min-height: 160px;
+  max-height: 300px;
 
   &:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -33,7 +34,8 @@ const CoverImageContainer = styled.div`
 
   @media (max-width: 767px) {
     width: 100%;
-    min-height: 200px;
+    min-height: 300px; 
+    max-height: 350px;
     flex: none;
   }
 `;
@@ -42,8 +44,6 @@ const CoverImageWrapper = styled(Link)`
   position: relative;
   overflow: hidden;
   flex: 1;
-
-
 `;
 
 const CoverImage = styled(GatsbyImage)`
@@ -113,7 +113,7 @@ const PublicationLinks = styled.div`
   justify-content: flex-start;
   margin-top: 8px;
 
-  .iconButton {
+  .iconButton, .awardButton {
     display: flex;
     align-items: center;
     margin-right: 8px;
@@ -135,7 +135,7 @@ const PublicationLinks = styled.div`
     }
   }
 
-  .iconButton span {
+  .iconButton span, .awardButton span {
     margin-left: 6px;
   }
 
@@ -145,19 +145,9 @@ const PublicationLinks = styled.div`
   }
 `;
 
-
 const Award = styled.span`
-  display: flex;
-  align-items: center;
   font-weight: bold;
   color: red;
-  margin-right: 8px;
-
-  img {
-    width: 20px;
-    height: 20px;
-    margin-right: 4px;
-  }
 `;
 
 const Modal = styled.div`
@@ -238,6 +228,13 @@ const PublicationCard = ({ publication, teamMembers, slug }) => {
   const [modalTitle, setModalTitle] = useState('');
   const modalRef = useRef(null);
 
+   const renderTitle = () => {
+     if (subtitle) {
+       return `${title}: ${subtitle}`;
+     }
+     return title;
+   };
+
   const openModal = (content, title) => {
     setModalContent(content);
     setModalTitle(title);
@@ -279,9 +276,9 @@ const PublicationCard = ({ publication, teamMembers, slug }) => {
       <PublicationInfo>
         <h3>
           {published === 'yes' ? (
-            <Title to={`${slug}`}>{`${title}: ${subtitle}`}</Title>
+            <Title to={`${slug}`}>{renderTitle()}</Title>
           ) : (
-            <span>{`${title}: ${subtitle}`}</span>
+            <span>{renderTitle()}</span>
           )}
         </h3>
         <Authors>
@@ -364,10 +361,10 @@ const PublicationCard = ({ publication, teamMembers, slug }) => {
               </button>
             )}
             {award && (
-              <Award>
+              <button className="awardButton">
                 <img src={awardIcon} alt="Award" />
-                {award}
-              </Award>
+                <Award>{award}</Award>
+              </button>
             )}
           </PublicationLinks>
         )}

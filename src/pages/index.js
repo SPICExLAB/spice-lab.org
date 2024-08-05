@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { graphql } from 'gatsby';
-import SEO from '../components/SEO';
+import SEO from '../components/Seo';
 import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
 import MainLayout from '../components/MainLayout';
@@ -69,7 +69,7 @@ const ScrollRightButton = styled.button`
 const ProjectGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 50px;
+  gap: 30px;
   padding: 0;
   list-style: none;
 
@@ -94,7 +94,7 @@ const IndexPage = ({ data }) => {
   const homePageProjects = projectsData.nodes
     .filter((project) => project.frontmatter.ishomePage === 'yes')
     .sort((a, b) => b.frontmatter.year - a.frontmatter.year)
-    .slice(0, 6);
+    .slice(0, 9);
 
   const nonPlaceholderNews = newsData.nodes.filter(
     (news) => !news.frontmatter.isPlaceholder
@@ -103,7 +103,7 @@ const IndexPage = ({ data }) => {
   return (
     <MainLayout>
       <SEO
-        title="Sensing, Perception and Interactive Computing Exploration Lab | Northwestern University"
+        title="Sensing, Perception, Interactive Computing and Experiences Lab | Northwestern University"
         description="Explore our latest research projects and news at SPICE Lab."
         pathname="/"
       />
@@ -137,7 +137,7 @@ const IndexPage = ({ data }) => {
 
       <h2>Selected Projects</h2>
       <ProjectGrid>
-        {homePageProjects.map((project) => (
+        {homePageProjects.map((project, index) => (
           <ProjectCard
             key={project.frontmatter.slug}
             frontmatter={project.frontmatter}
@@ -145,6 +145,7 @@ const IndexPage = ({ data }) => {
               project.frontmatter.coverImage.childImageSharp.gatsbyImageData
             }
             slug={`/projects/${project.frontmatter.slug}`}
+            index={index}
           />
         ))}
       </ProjectGrid>
@@ -168,6 +169,7 @@ export const query = graphql`
           }
           published
           ishomePage
+          previewLink
         }
       }
     }
