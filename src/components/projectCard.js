@@ -111,12 +111,12 @@ const ProjectCard = ({ frontmatter, heroImage, slug }) => {
 
   const handleMouseEnter = () => {
     if (previewLink) {
-      setShowVideo(true);
+      //setShowVideo(true);
     }
   };
 
   const handleMouseLeave = () => {
-    setShowVideo(false);
+    //setShowVideo(false);
   };
 
   useEffect(() => {

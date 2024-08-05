@@ -72,10 +72,12 @@ const ProjectGrid = styled.div`
   gap: 30px;
   padding: 0;
   list-style: none;
+  margin-top: 30px;
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 16px;
+    margin-top: 15px;
   }
 `;
 
