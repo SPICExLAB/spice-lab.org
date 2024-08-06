@@ -45,6 +45,13 @@ const GlobalStyle = createGlobalStyle`
     color: #232129;
     font-family: 'Avenir', sans-serif;
   }
+
+  h1 {
+    margin-bottom: 40px;
+  }
+  h2 {
+    margin-bottom: 20px;
+  }
 `;
 
 export default GlobalStyle;

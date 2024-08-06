@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 
-import awardIcon from '../images/medal.png';
+import awardIcon from '../images/medal2.svg';
 import pdfIcon from '../images/paper.svg';
 import citationIcon from '../images/citation.svg';
 import bibtexIcon from '../images/bibtex.svg';
@@ -90,7 +90,8 @@ const PublicationInfo = styled.div`
 `;
 
 const Authors = styled.p`
-  margin-bottom: 0;
+  margin-top: 8px;
+  margin-bottom: 8px;
 `;
 
 const Conference = styled.p`
@@ -133,29 +134,38 @@ const PublicationLinks = styled.div`
   justify-content: flex-start;
   margin-top: 8px;
 
-  .iconButton, .awardButton {
+  .iconButton,
+  .awardText {
     display: flex;
     align-items: center;
     margin-right: 8px;
     margin-bottom: 8px;
-    border: none;
-    background: none;
     padding: 6px 10px;
-    cursor: pointer;
-    text-decoration: none;
-    color: inherit;
     font-size: 15px;
     font-weight: 300;
     border-radius: 4px;
+  }
+
+  .iconButton {
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
     transition: background-color 0.3s, box-shadow 0.3s;
 
     &:hover {
-      background-color: #f0f0f0;
+      background-color: rgba(78, 42, 132, 0.2);
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
   }
 
-  .iconButton span, .awardButton span {
+  .awardText {
+    background: #4e2a84;
+  }
+
+  .iconButton span,
+  .awardText span {
     margin-left: 6px;
   }
 
@@ -167,7 +177,7 @@ const PublicationLinks = styled.div`
 
 const Award = styled.span`
   font-weight: bold;
-  color: red;
+  color: white;
 `;
 
 const Modal = styled.div`
@@ -398,10 +408,10 @@ const PublicationCard = ({ publication, teamMembers, slug }) => {
               </button>
             )}
             {award && (
-              <button className="awardButton">
+              <div className="awardText">
                 <img src={awardIcon} alt="Award" />
                 <Award>{award}</Award>
-              </button>
+              </div>
             )}
           </PublicationLinks>
         )}

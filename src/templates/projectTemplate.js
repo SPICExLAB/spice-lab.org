@@ -13,6 +13,7 @@ import MDXComponents, {
 import conferenceIcon from '../images/publication.svg';
 import pdfIcon from '../images/paper.svg';
 import githubIcon from '../images/code.svg';
+import awardIcon from '../images/medal2-purple.svg';
 
 const ProjectContainer = styled.article`
   max-width: 800px;
@@ -36,6 +37,26 @@ const ConferenceInfo = styled.div`
   flex-direction: column;
   align-items: center;
   font-size: 1em;
+
+  .awardText {
+    background: none;
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  .awardText span {
+    margin-left: 6px;
+    color: #4e2a84;
+    font-weight: bold;
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 const ConferenceText = styled.span`
@@ -43,7 +64,7 @@ const ConferenceText = styled.span`
 `;
 
 const AwardText = styled.span`
-  color: red;
+  color: #4e2a84;
   font-weight: bold;
 `;
 
@@ -231,7 +252,12 @@ export default function ProjectTemplate({
           {year && (
             <ConferenceInfo>
               {conference && <ConferenceText>{conference}</ConferenceText>}
-              {award && <AwardText>{award}</AwardText>}
+              {award && (
+                <div className="awardText">
+                  <img src={awardIcon} alt="Award" />
+                  <span>{award}</span>
+                </div>
+              )}
             </ConferenceInfo>
           )}
           <Title>
