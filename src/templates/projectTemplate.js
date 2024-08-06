@@ -63,11 +63,6 @@ const ConferenceText = styled.span`
   margin-bottom: 0.25rem;
 `;
 
-const AwardText = styled.span`
-  color: #4e2a84;
-  font-weight: bold;
-`;
-
 const Title = styled.h1`
   font-size: 2.5em;
   margin-bottom: 0.5rem;

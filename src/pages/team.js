@@ -31,12 +31,20 @@ const PiImageWrapper = styled.div`
     margin-right: 3rem;
     margin-bottom: 0;
   }
+
+
 `;
 
 const PiPhoto = styled(GatsbyImage)`
   width: 100%;
   height: auto;
   border-radius: 50%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(78, 42, 132, 0.4);
+  }
 `;
 
 const PiDetails = styled.div`
@@ -108,7 +116,9 @@ const StyledMemberCard = styled(MemberCard)`
 `;
 
 const PeoplePage = ({ data }) => {
-  const pi = data.allTeamJson.nodes.find(
+  const allMembers = data.allTeamJson.nodes.filter((node) => node && node.name);
+
+  const pi = allMembers.find(
     (person) => person.role === 'Principal Investigator'
   );
 
@@ -123,13 +133,13 @@ const PeoplePage = ({ data }) => {
     return 0;
   };
 
-  const currentMembers = data.allTeamJson.nodes
+  const currentMembers = allMembers
     .filter(
       (person) => person.active && person.role !== 'Principal Investigator'
     )
     .sort(sortMembers);
 
-  const formerMembers = data.allTeamJson.nodes
+  const formerMembers = allMembers
     .filter(
       (person) => !person.active && person.role !== 'Principal Investigator'
     )
@@ -144,42 +154,45 @@ const PeoplePage = ({ data }) => {
       />
 
       <h1>Team</h1>
-      <PiSection>
-        <PiInfo>
-          <PiImageWrapper>
-            <a href={pi.website} target="_blank" rel="noopener noreferrer">
-              {pi.fields.memberImage && (
-                <PiPhoto
-                  image={getImage(pi.fields.memberImage)}
-                  alt={pi.name}
-                />
-              )}
-            </a>
-          </PiImageWrapper>
-          <PiDetails>
-            <a href={pi.website} target="_blank" rel="noopener noreferrer">
-              <h2>{pi.name}</h2>
-            </a>
-            <p>
-              Karan is the Lisa Wissner-Slivka and Benjamin Slivka Assistant
-              Professor in Computer Science at Northwestern University where he
-              directs the Sensing, Perception, Interactive Computing and
-              Experiences (SPICE) Lab. His research interests are in the areas
-              of Machine Learning and Sensing, Ubiquitous Computing and
-              Human-Computer Interaction. He received his Ph.D. in
-              Human-Computer Interaction from Carnegie Mellon University in 2023
-              and B.Tech. in Computer Science in 2017. Karan is a recipient of
-              the Forbes 30 under 30 (2024), ACM SIGCHI Outstanding Dissertation
-              Award (2024), and Siebel Fellowship (2022).
-            </p>
-          </PiDetails>
-        </PiInfo>
-      </PiSection>
+      {pi && (
+        <PiSection>
+          <PiInfo>
+            <PiImageWrapper>
+              <a href={pi.website} target="_blank" rel="noopener noreferrer">
+                {pi.fields.memberImage && (
+                  <PiPhoto
+                    image={getImage(pi.fields.memberImage)}
+                    alt={pi.name}
+                  />
+                )}
+              </a>
+            </PiImageWrapper>
+            <PiDetails>
+              <a href={pi.website} target="_blank" rel="noopener noreferrer">
+                <h2>{pi.name}</h2>
+              </a>
+              <p>
+                Karan is the Lisa Wissner-Slivka and Benjamin Slivka Assistant
+                Professor in Computer Science at Northwestern University where
+                he directs the Sensing, Perception, Interactive Computing and
+                Experiences (SPICE) Lab. His research interests are in the areas
+                of Machine Learning and Sensing, Ubiquitous Computing and
+                Human-Computer Interaction. He received his Ph.D. in
+                Human-Computer Interaction from Carnegie Mellon University in
+                2023 and B.Tech. in Computer Science in 2017. Karan is a
+                recipient of the Forbes 30 under 30 (2024), ACM SIGCHI
+                Outstanding Dissertation Award (2024), and Siebel Fellowship
+                (2022).
+              </p>
+            </PiDetails>
+          </PiInfo>
+        </PiSection>
+      )}
       <MemberSection>
         <h2>Current Members</h2>
         <MemberGrid>
           {currentMembers.map((person) => (
-            <StyledMemberCard key={person.name} person={person} />
+            <MemberCard key={person.name} person={person} />
           ))}
         </MemberGrid>
       </MemberSection>
@@ -188,7 +201,7 @@ const PeoplePage = ({ data }) => {
           <h2>Former Members</h2>
           <FormerMemberGrid>
             {formerMembers.map((person) => (
-              <StyledMemberCard key={person.name} person={person} />
+              <MemberCard key={person.name} person={person} />
             ))}
           </FormerMemberGrid>
         </MemberSection>
