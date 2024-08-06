@@ -8,6 +8,14 @@
     "photo": "karan.png"
   },
   {
+    "name": "Sungheon Park",
+    "role": "Post-doc",
+    "website": "https://sungheonpark.github.io/",
+    "email": "sungheon.park@gmail.com",
+    "photo": "sungheon.png",
+    "active": true
+  },
+  {
     "name": "Vasco Xu",
     "role": "PhD Student",
     "website": "https://www.vascoxu.com/",
@@ -22,6 +30,21 @@
     "email": "chenfenggao2029@u.northwestern.edu",
     "photo": "chenfenggao.png",
     "active": true
+  },
+  {
+    "name": "Hongyu Mao",
+    "role": "Visiting Masters",
+    "website": "https://www.hongymao.com/",
+    "email": "hongyum@andrew.cmu.edu",
+    "photo": "Hongyu.jpg",
+    "active": true
+  },
+  {
+    "name": "Taeyoung Yeon",
+    "role": "Visiting Student",
+    "website": "https://diffzerg.github.io",
+    "email": "dusxodud98@gmail.com",
+    "photo": "Taeyoung.jpg",
+    "active": true
   }
-
 ]

@@ -79,16 +79,31 @@ const MemberGrid = styled.div`
   gap: 2rem;
   justify-content: start;
 
-  @media (max-width: 480px) {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
-
-  @media (min-width: 481px) and (max-width: 768px) {
+  @media (max-width: 767px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  @media (min-width: 769px) {
+  @media (min-width: 768px) {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+`;
+
+const FormerMemberGrid = styled(MemberGrid)`
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+`;
+
+const StyledMemberCard = styled(MemberCard)`
+  .member-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
   }
 `;
 
@@ -96,68 +111,29 @@ const PeoplePage = ({ data }) => {
   const pi = data.allTeamJson.nodes.find(
     (person) => person.role === 'Principal Investigator'
   );
-  const currentPostDocs = data.allTeamJson.nodes.filter(
-    (person) => person.role === 'Post-doc' && person.active
-  );
-  const currentPhDs = data.allTeamJson.nodes.filter(
-    (person) => person.role === 'PhD Student' && person.active
-  );
-  const currentResearchAssistants = data.allTeamJson.nodes.filter(
-    (person) => person.role === 'Research Assistant' && person.active
-  );
-  const currentMasters = data.allTeamJson.nodes.filter(
-    (person) => person.role === 'Masters Student' && person.active
-  );
-  const currentUndergrads = data.allTeamJson.nodes.filter(
-    (person) => person.role === 'Undergraduate Student' && person.active
-  );
-  const currentothers = data.allTeamJson.nodes.filter(
-    (person) =>
-      person.active &&
-      ![
-        'Principal Investigator',
-        'Post-doc',
-        'PhD Student',
-        'Research Assistant',
-        'Masters Student',
-        'Undergraduate Student',
-      ].includes(person.role)
-  );
-  const formerPostDocs = data.allTeamJson.nodes.filter(
-    (person) => person.role === 'Post-doc' && !person.active
-  );
-  const formerPhDs = data.allTeamJson.nodes.filter(
-    (person) => person.role === 'PhD Student' && !person.active
-  );
-  const formerResearchAssistants = data.allTeamJson.nodes.filter(
-    (person) => person.role === 'Research Assistant' && !person.active
-  );
-  const formerMasters = data.allTeamJson.nodes.filter(
-    (person) => person.role === 'Masters Student' && !person.active
-  );
-  const formerUndergrads = data.allTeamJson.nodes.filter(
-    (person) => person.role === 'Undergraduate Student' && !person.active
-  );
-  const otherFormerMembers = data.allTeamJson.nodes.filter(
-    (person) =>
-      !person.active &&
-      ![
-        'Principal Investigator',
-        'Post-doc',
-        'PhD Student',
-        'Research Assistant',
-        'Masters Student',
-        'Undergraduate Student',
-      ].includes(person.role)
-  );
 
-  const hasFormerMembers =
-    formerPostDocs.length > 0 ||
-    formerPhDs.length > 0 ||
-    formerResearchAssistants.length > 0 ||
-    formerMasters.length > 0 ||
-    formerUndergrads.length > 0 ||
-    otherFormerMembers.length > 0;
+  const sortMembers = (a, b) => {
+    const priorityRoles = ['Post-doc', 'PhD Student'];
+    const aIndex = priorityRoles.indexOf(a.role);
+    const bIndex = priorityRoles.indexOf(b.role);
+
+    if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
+    if (aIndex !== -1) return -1;
+    if (bIndex !== -1) return 1;
+    return 0;
+  };
+
+  const currentMembers = data.allTeamJson.nodes
+    .filter(
+      (person) => person.active && person.role !== 'Principal Investigator'
+    )
+    .sort(sortMembers);
+
+  const formerMembers = data.allTeamJson.nodes
+    .filter(
+      (person) => !person.active && person.role !== 'Principal Investigator'
+    )
+    .sort((a, b) => a.name.localeCompare(b.name));
 
   return (
     <MainLayout>
@@ -202,49 +178,19 @@ const PeoplePage = ({ data }) => {
       <MemberSection>
         <h2>Current Members</h2>
         <MemberGrid>
-          {currentPostDocs.map((person) => (
-            <MemberCard key={person.name} person={person} />
-          ))}
-          {currentPhDs.map((person) => (
-            <MemberCard key={person.name} person={person} />
-          ))}
-          {currentResearchAssistants.map((person) => (
-            <MemberCard key={person.name} person={person} />
-          ))}
-          {currentMasters.map((person) => (
-            <MemberCard key={person.name} person={person} />
-          ))}
-          {currentUndergrads.map((person) => (
-            <MemberCard key={person.name} person={person} />
-          ))}
-          {currentothers.map((person) => (
-            <MemberCard key={person.name} person={person} />
+          {currentMembers.map((person) => (
+            <StyledMemberCard key={person.name} person={person} />
           ))}
         </MemberGrid>
       </MemberSection>
-      {hasFormerMembers && (
+      {formerMembers.length > 0 && (
         <MemberSection>
           <h2>Former Members</h2>
-          <MemberGrid>
-            {formerPostDocs.map((person) => (
-              <MemberCard key={person.name} person={person} />
+          <FormerMemberGrid>
+            {formerMembers.map((person) => (
+              <StyledMemberCard key={person.name} person={person} />
             ))}
-            {formerPhDs.map((person) => (
-              <MemberCard key={person.name} person={person} />
-            ))}
-            {formerResearchAssistants.map((person) => (
-              <MemberCard key={person.name} person={person} />
-            ))}
-            {formerMasters.map((person) => (
-              <MemberCard key={person.name} person={person} />
-            ))}
-            {formerUndergrads.map((person) => (
-              <MemberCard key={person.name} person={person} />
-            ))}
-            {otherFormerMembers.map((person) => (
-              <MemberCard key={person.name} person={person} />
-            ))}
-          </MemberGrid>
+          </FormerMemberGrid>
         </MemberSection>
       )}
     </MainLayout>

@@ -5,8 +5,8 @@ import styled, { css } from 'styled-components';
 const MemberCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
+  align-items: center;
+  text-align: center;
 `;
 
 const MemberImageWrapper = styled.div`
@@ -43,15 +43,16 @@ const MemberRole = styled.span`
 `;
 
 const MemberDetails = styled.div`
-  align-items: center;
-  h3 {
-    margin: 0.5rem 0 0.2rem 0;
-    font-size: 1.2rem;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 3.6em; // Adjust this value to fit two lines of text
+  margin-top: 0.5rem;
 
-  p {
+  h3 {
     margin: 0;
-    font-size: 0.8rem;
+    font-size: 1rem;
+    line-height: 1.2;
   }
 
   a {
@@ -65,13 +66,11 @@ const MemberDetails = styled.div`
   }
 `;
 
-
-
-const MemberCard = ({ person }) => {
+const MemberCard = ({ person, className }) => {
   const isPi = person.role === 'Principal Investigator';
 
   return (
-    <MemberCardWrapper>
+    <MemberCardWrapper className={className}>
       <MemberImageWrapper $isPi={isPi}>
         <a href={person.website} target="_blank" rel="noopener noreferrer">
           {person.fields.memberImage && (
@@ -87,7 +86,6 @@ const MemberCard = ({ person }) => {
         <a href={person.website} target="_blank" rel="noopener noreferrer">
           <h3>{person.name}</h3>
         </a>
-        {/* <p>{person.email}</p> */}
       </MemberDetails>
     </MemberCardWrapper>
   );
