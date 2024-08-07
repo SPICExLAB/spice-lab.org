@@ -81,6 +81,7 @@ const ProjectSubtitle = styled.p`
   font-size: 0.9rem;
   color: #fff;
   text-align: left;
+  margin: 0;
 `;
 
 const ProjectOverlayTop = styled.div`
@@ -102,6 +103,7 @@ const ComingSoonOverlay = styled.p`
   width: 100%;
   text-align: center;
   font-size: 18px;
+  margin: 0;
 `;
 
 const ProjectCard = ({ frontmatter, heroImage, slug }) => {

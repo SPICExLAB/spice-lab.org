@@ -101,7 +101,7 @@ const IndexPage = ({ data }) => {
         new Date(b.frontmatter.dateAdded) - new Date(a.frontmatter.dateAdded)
       );
     })
-    .slice(0, 9);
+    .slice(0, 6);
 
   const nonPlaceholderNews = newsData.nodes.filter(
     (news) => !news.frontmatter.isPlaceholder

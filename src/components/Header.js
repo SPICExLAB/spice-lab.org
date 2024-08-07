@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
-import logoImage from '../images/Lab_logo.png';
+import logoFull from '../images/Lab_logo.png';
 import logoSmall from '../images/Lab_logo_small.png';
 import logoFormal from '../images/Lab_logo_formal.png';
 
@@ -25,7 +25,7 @@ const HeaderWrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: ${(props) => (props.$isScrolled ? '0.5rem 2rem' : '1rem 2rem')};
+  padding: ${(props) => (props.$isScrolled ? '0.5rem 1rem' : '1rem 1rem')};
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
@@ -36,10 +36,11 @@ const Logo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  transition: all 0.3s ease-in-out;
 
   img {
     height: ${(props) => (props.$isScrolled ? '45px' : '90px')};
-    transition: height 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
 `;
 
@@ -204,7 +205,7 @@ const Header = ({ isScrolled }) => {
         <HeaderWrapper $isScrolled={isScrolled}>
           <Logo $isScrolled={isScrolled} className="logo">
             <Link to="/">
-              <img src={isScrolled ? logoSmall : logoImage} alt="Logo" />
+              <img src={isScrolled ? logoSmall : logoFull} alt="Logo" />
             </Link>
           </Logo>
           <Nav className={isMenuOpen ? 'active' : ''}>

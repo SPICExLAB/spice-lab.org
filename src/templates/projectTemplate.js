@@ -202,6 +202,15 @@ const BibTeXCode = styled.div`
   }
 `;
 
+// Function to find team member while ignoring special characters
+const findTeamMember = (name, teamMembers) => {
+  const cleanName = name.replace(/[^a-zA-Z0-9]/g, '');
+  return Object.entries(teamMembers).find(
+    ([memberName, member]) =>
+      memberName.replace(/[^a-zA-Z0-9]/g, '') === cleanName
+  )?.[1];
+};
+
 export default function ProjectTemplate({
   data: { mdx, allTeamJson },
   children,
@@ -262,7 +271,7 @@ export default function ProjectTemplate({
 
           <Authors>
             {authors.map((author, index) => {
-              const teamMember = teamMembers[author];
+              const teamMember = findTeamMember(author, teamMembers);
               const website = teamMember ? teamMember.website : null;
               return (
                 <React.Fragment key={author}>
