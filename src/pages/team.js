@@ -229,6 +229,7 @@ export const query = graphql`
             }
           }
         }
+        key_Interests
       }
     }
   }

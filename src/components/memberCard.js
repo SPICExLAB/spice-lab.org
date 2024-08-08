@@ -114,6 +114,7 @@ const MemberCard = ({ person, className }) => {
         <a href={person.website} target="_blank" rel="noopener noreferrer">
           <h3>{person.name}</h3>
         </a>
+        <p>{person.key_Interests}</p>
       </MemberDetails>
     </MemberCardWrapper>
   );
