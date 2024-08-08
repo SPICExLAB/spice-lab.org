@@ -13,7 +13,7 @@
     "website": "https://sungheonpark.github.io/",
     "email": "sungheon.park@gmail.com",
     "photo": "Sungheon.png",
-    "key_Interests": "3D vision, Graphics",
+    "key_Interests": "3D Vision, Graphics",
     "active": true
   },
   {
@@ -22,7 +22,7 @@
     "website": "https://www.vascoxu.com/",
     "email": "vascoxu@uchicago.edu",
     "photo": "vasco.png",
-    "key_Interests": "Sensing & ML, Indoor Navigation",
+    "key_Interests": "ML & Sensing",
     "active": true
   },
   {
@@ -31,16 +31,16 @@
     "website": "https://www.jessegao.online/",
     "email": "chenfenggao2029@u.northwestern.edu",
     "photo": "chenfenggao.png",
-    "key_Interests": "XR, Interaction Design",
+    "key_Interests": "Interaction Design, Immersive Experiences",
     "active": true
   },
   {
     "name": "Hongyu Mao",
-    "role": "visiting researcher",
+    "role": "Visiting Researcher",
     "website": "https://www.hongymao.com/",
     "email": "hongyum@andrew.cmu.edu",
     "photo": "Hongyu.jpg",
-    "key_Interests": "Sensing & ML, MR, Fabrication",
+    "key_Interests": "Fabrication, Interaction Techniques",
     "active": true
   },
   {
@@ -49,16 +49,16 @@
     "website": "https://www.bishnudev.com/",
     "email": "bd2131@nyu.edu",
     "photo": "bishnu.jpg",
-    "key_Interests": "Sensing & ML, Privacy",
+    "key_Interests": "Privacy Aware Sensing",
     "active": true
   },
   {
     "name": "Taeyoung Yeon",
-    "role": "visiting researcher",
+    "role": "Visiting Researcher",
     "website": "https://diffzerg.github.io",
     "email": "dusxodud98@gmail.com",
     "photo": "Taeyoung.jpg",
-    "key_Interests": "Ubiquitous Computing, VR/AR",
+    "key_Interests": "On-device ML, Ubiquitous Computing",
     "active": true
   }
 ]
