@@ -60,5 +60,14 @@
     "photo": "Taeyoung.jpg",
     "key_Interests": "On-device ML, Ubiquitous Computing",
     "active": true
+  },
+  {
+    "name": "Anjie Yang",
+    "role": "Visiting Researcher",
+    "website": "https://anjieyang.com/",
+    "email": "ayang072@uottawa.com",
+    "photo": "anjie.png",
+    "key_Interests": "ML, Generative AI",
+    "active": true
   }
 ]

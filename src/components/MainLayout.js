@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Header from './Header';
-import GlobalStyle from './GlobalStyle'; 
+import GlobalStyle from './GlobalStyle';
 
 
 const LayoutWrapper = styled.div`
@@ -38,7 +38,7 @@ const MainLayout = ({ children }) => {
       <GlobalStyle />
       <LayoutWrapper>
         <Header isScrolled={isScrolled} />
-        <Main style={{ paddingTop: isScrolled ? '4rem' : '10rem' }}>
+        <Main style={{ paddingTop: isScrolled ? '4rem' : '8rem' }}>
           {children}
         </Main>
       </LayoutWrapper>

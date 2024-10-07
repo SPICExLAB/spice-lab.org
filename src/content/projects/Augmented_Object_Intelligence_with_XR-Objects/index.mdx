@@ -1,0 +1,58 @@
+---
+type: 'project'
+slug: Augmented_Object_Intelligence_with_XR-Objects
+title: Augmented Object Intelligence with XR-Objects
+subtitle:
+authors:
+  - Mustafa Doga Dogan
+  - Eric J. Gonzalez
+  - Andrea Colaco
+  - Karan Ahuja
+  - Ruofei Du
+  - Johnny Lee
+  - Mar Gonzalez-Franco
+  - David Kim
+year: 2024
+dateAdded: 2024-10-07
+coverImage: './images/cover.jpg'
+published: 'yes'
+ishomePage: 'no'
+award:
+pdfLink: '/papers/XR-Objects.pdf'
+github: 'https://github.com/google/xr-objects'
+videoLink: https://xr-objects.github.io/static/videos/XR-Objects-UIST24.mp4
+conference: "UIST '24: Proceedings of the 37th Annual ACM Symposium on User Interface Software and Technology"
+conferencePage: 'https://doi.org/10.1145/3654777.3676379'
+citation: 'Dogan, M. D., Gonzalez, E. J., Colaco, A., Ahuja, K., Du, R., Lee, J., ... & Kim, D. (2024). Augmented Object Intelligence: Making the Analog World Interactable with XR-Objects. arXiv preprint arXiv:2404.13274.'
+bibtex: |
+    @inproceedings{Dogan_2024_XRObjects,
+        address = {New York, NY, USA},
+        title = {Augmented Object Intelligence with XR-Objects},
+        isbn = {979-8-4007-0628-8/24/10},
+        url = {https://doi.org/10.1145/3654777.3676379},
+        doi = {10.1145/3654777.3676379},
+        language = {en},
+        booktitle = {Proceedings of the 37th {Annual} {ACM} {Symposium} on {User} {Interface} {Software} and {Technology}},
+        publisher = {Association for Computing Machinery},
+        author = {Dogan, Mustafa Doga and Gonzalez, Eric J and Ahuja, Karan and Du, Ruofei and Colaco, Andrea and Lee, Johnny and Gonzalez-Franco, Mar and Kim, David},
+        month = oct,
+        year = {2024},
+    }
+
+medias:
+  - './images/discover.png'
+  - './images/productivity.png'
+  - './images/learning.png'
+  - './images/IOT.png'
+---
+
+## Abstract
+
+Seamless integration of physical objects as interactive digital entities remains a challenge for spatial computing. This paper introduces Augmented Object Intelligence (AOI), a novel XR interaction paradigm designed to blur the lines between digital and physical by endowing real-world objects with the ability to interact as if they were digital, where every object has the potential to serve as a portal to vast digital functionalities. Our approach utilizes object segmentation and classification, combined with the power of Multimodal Large Language Models (MLLMs), to facilitate these interactions. We implement the AOI concept in the form of XR-Objects, an open-source prototype system that provides a platform for users to engage with their physical environment in rich and contextually relevant ways. This system enables analog objects to not only convey information but also to initiate digital actions, such as querying for details or executing tasks. Our contributions are threefold: (1) we define the AOI concept and detail its advantages over traditional AI assistants, (2) detail the XR-Objects system's open-source design and implementation, and (3) show its versatility through a variety of use cases and a user study.
+
+
+## Implementation
+
+![Implementation](./images/pipeline_new.png)
+
+XR-Objects leverages developments in spatial understanding via tools such as SLAM, available in [Google ARCore](https://developers.google.com/ar) and [Apple ARKit](https://developer.apple.com/augmented-reality/arkit/), and machine learning models for object segmentation and classification (COCO via [MediaPipe](https://ai.google.dev/edge/mediapipe/solutions/guide)), that enable us to implement AR interactions with semantic depth. We also integrate a Multimodal Large Language Model (MLLM), [Google Gemini](https://deepmind.google/technologies/gemini/), into our system, which further enhances our ability to automate the recognition of objects and their specific semantic information within XR spaces.
