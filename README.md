@@ -43,6 +43,7 @@ You can download and install them from [Node.js official]([url](https://nodejs.o
 
    ```bash
    npm install
+    //or
    npm install --legacy-peer-deps
 
 
@@ -51,6 +52,8 @@ You can download and install them from [Node.js official]([url](https://nodejs.o
 
    ```bash
    npm run develop
+   //or
+   yarn develop
 
 ## Updating Team Profiles
 
@@ -83,14 +86,14 @@ src/content/projects/YourProjectName/
 + ```authors```: A list of authors involved in the project, plaese provide the full name. If co-first-author exists, just keep the '* 'as it displayed in the paper.
 + ```year```: The year the project was published or created.
 + ```dateAdded```: The data you add the project in YYY-MM-DD, for better organizing the projects.
-+ ```coverImage```: The path to the cover image for the project, which should be in the images folder within the same project folder.
++ ```coverImage```: The path to the cover image for the project, which should be in the images folder within the same project folder it's better to make a 16:9 size (3840px X 2160px).
 + ```published```: A flag indicating whether the project is published. It can be 'yes' or 'no'. *note: as for no, it means the paper is gong to be published, but not yet. You can upload projects after camera-ready*
 + ```ishomePage```: A flag indicating whether the project will be showcased in home page. It can be 'yes' or 'no'.
 + ```award```: Any awards the project has won, if none, leave it blank. (Best paper award and honorable mention, etc)
 + ```pdfLink```: A link to a PDF file associated with the project, link to static/papers.
 + ```github```: A link to the project's GitHub repository.
 + ```videoLink```: A link to a video related to the project, ask GPT to convert it to a embeded version.
-+ ```previewLink```: the 30s preview video link, if you have (no need to convert it). We plan to auto-play this while hovering on the project in home page. *note: currently disabled*
++ ```previewLink```: the <10s gif of your work(you can use Adobe express to make it in medium quality). (example see MobilePoser) We plan to auto-play this while hovering on the project in home page. *note: currently disabled*
 + ```conference```: The name of the conference/journal where the project was presented.
 + ```conferencePage```: A link to the conference/journal page where the project is listed, it should be the doi link.
 + ```citation```: The citation for the project(APA style).

@@ -8,20 +8,19 @@ authors:
   - Chenfeng Gao
   - Henry Hoffmann
   - Karan Ahuja
-
 year: 2024
 dateAdded: "2024-10-08"
-coverImage: './images/0.png'
-published: 'no'
+coverImage: './images/cover.png'
+published: 'yes'
 ishomePage: 'yes'
 award:
-pdfLink: '/pdfs/project1.pdf'
+pdfLink: '/papers/MobilePoser.pdf'
 github: 'https://github.com/SPICExLAB/MobilePoser'
-videoLink:
+videoLink: 'https://www.youtube.com/embed/5pc3zfGuL-Q'
 previewLink:
 conference: "UIST '24: Proceedings of the 37th Annual ACM Symposium on User Interface Software and Technology"
-conferencePage: 'https://dl.acm.org/doi/10.1145/3491102.3502069'
-citation: " "
+conferencePage: 'https://doi.org/10.1145/3654777.3676461'
+citation:
 bibtex: |
 
 ---
@@ -30,13 +29,10 @@ bibtex: |
 
 There has been a continued trend towards minimizing instrumentation for full-body motion capture, going from specialized rooms and equipment, to arrays of worn sensors and recently sparse inertial pose capture methods. However, as these techniques migrate towards lower-fidelity IMUs on ubiquitous commodity devices, like phones, watches, and earbuds, challenges arise including compromised online performance, temporal consistency, and loss of global translation due to sensor noise and drift. Addressing these challenges, we introduce MobilePoser, a real-time system for full-body pose and global translation estimation using any available subset of IMUs already present in these consumer devices. MobilePoser employs a multi-stage deep neural network for kinematic pose estimation followed by a physics-based motion optimizer, achieving state-of-the-art accuracy while remaining lightweight. We conclude with a series of demonstrative applications to illustrate the unique potential of MobilePoser across a variety of fields, such as health and wellness, gaming, and indoor navigation to name a few.
 
-## Network Overview
+## System Overview
 
-![Network Overview](./images/1.png)
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac metus in sapien congue bibendum. Nulla facilisi. Donec vel est vel sapien malesuada malesuada.
+![Network Overview](./images/system_overview.png)
 
-## Impact of simultaneous optimization
+MobilePoser accepts any available subset of IMU data from the user and masks absent devices by setting their values to zero. The IMU data is then fed into two main modules: (1) Pose Estimation, which first estimates joint positions followed by joint rotations, and (2) Translation Estimation, which combines foot-ground contact probabilities with a direct neural network-based approach to regress global velocity. Finally, a Physics Optimizer refines the predicted joint rotations and global translation to ensure they satisfy  physical constraints.
 
-![Network Overview](./images/2.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac metus in sapien congue bibendum. Nulla facilisi. Donec vel est vel sapien malesuada malesuada. Check out our [GitHub repository](https://github.com/example/repo) for more info.
