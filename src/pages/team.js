@@ -123,7 +123,7 @@ const PeoplePage = ({ data }) => {
   );
 
   const sortMembers = (a, b) => {
-    const priorityRoles = ['Post-doc', 'PhD Student'];
+    const priorityRoles = ['Post-doc', 'PhD Student','Research Associate'];
     const aIndex = priorityRoles.indexOf(a.role);
     const bIndex = priorityRoles.indexOf(b.role);
 
@@ -133,14 +133,26 @@ const PeoplePage = ({ data }) => {
     return 0;
   };
 
-  const currentMembers = allMembers
+
+  const graduateMembers = allMembers
     .filter(
-      (person) => person.active && person.role !== 'Principal Investigator'
+      (person) =>
+        person.active &&
+        (person.role === 'PhD Student' ||
+         person.role === 'Research Associate' ||
+         person.role === "Master's Researcher")
     )
     .sort(sortMembers);
 
-  const formerMembers = allMembers
+  const undergraduateMembers = allMembers
     .filter(
+      (person) => person.active && person.role === 'Undergrad Researcher'
+    )
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+
+  const formerMembers = allMembers
+   .filter(
       (person) => !person.active && person.role !== 'Principal Investigator'
     )
     .sort((a, b) => a.name.localeCompare(b.name));
@@ -189,23 +201,35 @@ const PeoplePage = ({ data }) => {
         </PiSection>
       )}
       <MemberSection>
-        <h2>Current Members</h2>
+        <h2>Graduate Members</h2>
         <MemberGrid>
-          {currentMembers.map((person) => (
-            <MemberCard key={person.name} person={person} />
+          {graduateMembers.map((person) => (
+            <MemberCard
+              key={person.name}
+              person={person}
+              showRole={person.role !== "Master's Researcher"}
+            />
+          ))}
+        </MemberGrid>
+      </MemberSection>
+      <MemberSection>
+        <h2>Undergraduate Members</h2>
+        <MemberGrid>
+          {undergraduateMembers.map((person) => (
+            <MemberCard key={person.name} person={person} showRole={false} />
           ))}
         </MemberGrid>
       </MemberSection>
       {formerMembers.length > 0 && (
         <MemberSection>
-          <h2>Former Members</h2>
+          <h2>Past Members</h2>
           <FormerMemberGrid>
             {formerMembers.map((person) => (
-              <MemberCard key={person.name} person={person} />
+              <MemberCard key={person.name} person={person} showRole={false} />
             ))}
           </FormerMemberGrid>
         </MemberSection>
-      )}
+        )}
     </MainLayout>
   );
 };

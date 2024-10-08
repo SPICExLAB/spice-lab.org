@@ -9,7 +9,7 @@
   },
   {
     "name": "Sungheon Park",
-    "role": "Post-doc",
+    "role": "Research Associate",
     "website": "https://sungheonpark.github.io/",
     "email": "sungheon.park@gmail.com",
     "photo": "Sungheon.png",
@@ -36,7 +36,7 @@
   },
   {
     "name": "Hongyu Mao",
-    "role": "Visiting Researcher",
+    "role": "Master's Researcher",
     "website": "https://www.hongymao.com/",
     "email": "hongyum@andrew.cmu.edu",
     "photo": "Hongyu.jpg",
@@ -45,7 +45,7 @@
   },
   {
     "name": "Bishnu Dev",
-    "role": "Visiting Researcher",
+    "role": "Master's Researcher",
     "website": "https://www.bishnudev.com/",
     "email": "bd2131@nyu.edu",
     "photo": "bishnu.jpg",
@@ -54,16 +54,16 @@
   },
   {
     "name": "Taeyoung Yeon",
-    "role": "Visiting Researcher",
+    "role": "Undergrad Researcher",
     "website": "https://diffzerg.github.io",
-    "email": "dusxodud98@gmail.com",
+    "email": "taeyoungyeon@northwestern.edu",
     "photo": "Taeyoung.jpg",
     "key_Interests": "On-device ML, Ubiquitous Computing",
     "active": true
   },
   {
     "name": "Anjie Yang",
-    "role": "Visiting Researcher",
+    "role": "Undergrad Researcher",
     "website": "https://anjieyang.com/",
     "email": "ayang072@uottawa.com",
     "photo": "anjie.png",

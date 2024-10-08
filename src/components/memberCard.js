@@ -84,7 +84,7 @@ const MemberDetails = styled.div`
   }
 `;
 
-const MemberCard = ({ person, className }) => {
+const MemberCard = ({ person, className, showRole = true }) => {
   const isPi = person.role === 'Principal Investigator';
   const memberImage =
     person.fields && person.fields.memberImage
@@ -108,7 +108,7 @@ const MemberCard = ({ person, className }) => {
             />
           )}
         </a>
-        {person.role && <MemberRole>{person.role}</MemberRole>}
+        {showRole && person.role && <MemberRole>{person.role}</MemberRole>}
       </MemberImageWrapper>
       <MemberDetails>
         <a href={person.website} target="_blank" rel="noopener noreferrer">
