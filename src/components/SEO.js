@@ -1,4 +1,3 @@
-// src/components/Seo.js
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
@@ -12,8 +11,8 @@ const SEO = ({ title, description, image, pathname, article }) => {
   const seo = {
     title: title || defaultTitle,
     description: description || defaultDescription,
-    image: `${siteUrl}${image || defaultImage}`,
     url: `${siteUrl}${pathname || ''}`,
+    image: image ? `${siteUrl}${image}` : `${siteUrl}${defaultImage}`,
   };
 
   return (
@@ -21,16 +20,10 @@ const SEO = ({ title, description, image, pathname, article }) => {
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
       {seo.url && <meta property="og:url" content={seo.url} />}
-      {article ? (
-        <meta property="og:type" content="article" />
-      ) : (
-        <meta property="og:type" content="website" />
-      )}
-      {seo.title && <meta property="og:title" content={seo.title} />}
-      {seo.description && (
-        <meta property="og:description" content={seo.description} />
-      )}
-      {seo.image && <meta property="og:image" content={seo.image} />}
+      <meta property="og:type" content={article ? 'article' : 'website'} />
+      <meta property="og:title" content={seo.title} />
+      <meta property="og:description" content={seo.description} />
+      <meta property="og:image" content={seo.image} />
     </Helmet>
   );
 };
@@ -44,7 +37,7 @@ const query = graphql`
         defaultTitle: title
         defaultDescription: description
         siteUrl
-        defaultImage: image
+        defaultImage
       }
     }
   }

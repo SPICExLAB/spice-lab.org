@@ -5,7 +5,7 @@ module.exports = {
     title: `SPICE Lab Site`,
     siteUrl: `https://spice-lab.org`,
     description: `Sensing, Perception and Interactive Computing Exploration (SPICE) Lab in Northwestern University`,
-    image: `./src/images/Lab_logo.png`,
+    defaultImage: `/lab.png`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
