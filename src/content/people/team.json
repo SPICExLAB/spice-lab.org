@@ -69,5 +69,16 @@
     "photo": "anjie.png",
     "key_Interests": "ML, Generative AI",
     "active": true
+  },
+  {
+    "name": "Tahira Grewal",
+    "role": "Undergrad Researcher",
+    "website": "www.linkedin.com/in/tahira-grewal",
+    "email": "tahiragrewal2026@u.northwestern.edu",
+    "photo": "tahira.jpg",
+    "key_Interests": "System and Network",
+    "active": true
   }
+
+
 ]
