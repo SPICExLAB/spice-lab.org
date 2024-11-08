@@ -68,6 +68,7 @@ const PiDetails = styled.div`
   p {
     font-size: 1.1rem;
     line-height: 1.6;
+    text-align: justify;
   }
 
   a {
@@ -94,6 +95,14 @@ const MemberGrid = styled.div`
   @media (min-width: 768px) {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
+`;
+
+const JustifiedParagraph = styled.p`
+  text-align: justify;
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  line-height: 1.6;
 `;
 
 const FormerMemberGrid = styled(MemberGrid)`
@@ -192,9 +201,9 @@ const PeoplePage = ({ data }) => {
                 Human-Computer Interaction. He received his Ph.D. in
                 Human-Computer Interaction from Carnegie Mellon University in
                 2023 and B.Tech. in Computer Science in 2017. Karan is a
-                recipient of the Forbes 30 under 30 (2024), ACM SIGCHI
-                Outstanding Dissertation Award (2024), and Siebel Fellowship
-                (2022).
+                recipient of the Forbes 30 under 30 (2024), MIT 35 innovators
+                under 35 Asia Pacific (2024), ACM SIGCHI Outstanding Dissertation Award
+                (2024), and Siebel Fellowship (2022).
               </p>
             </PiDetails>
           </PiInfo>
@@ -229,7 +238,7 @@ const PeoplePage = ({ data }) => {
             ))}
           </FormerMemberGrid>
         </MemberSection>
-        )}
+      )}
     </MainLayout>
   );
 };

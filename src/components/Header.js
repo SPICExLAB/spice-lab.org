@@ -39,7 +39,7 @@ const Logo = styled.div`
   transition: all 0.3s ease-in-out;
 
   img {
-    height: ${(props) => (props.$isScrolled ? '45px' : '90px')};
+    height: ${(props) => (props.$isScrolled ? '45px' : '80px')};
     transition: all 0.3s ease-in-out;
   }
 `;
@@ -240,13 +240,16 @@ const Header = ({ isScrolled }) => {
                   PUBLICATIONS
                 </NavLink>
               </li>
-              {/* Commented out Contact tab
+
               <li>
-                <NavLink to="/contact" activeClassName="active" onClick={toggleMenu}>
+                <NavLink
+                  to="/contact"
+                  activeClassName="active"
+                  onClick={toggleMenu}
+                >
                   CONTACT
                 </NavLink>
               </li>
-              */}
             </ul>
           </Nav>
           <Hamburger
