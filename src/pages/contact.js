@@ -28,9 +28,17 @@ const Link = styled.a`
   }
 `;
 
+const Address = styled.span`
+  text-decoration: underline;
+`;
+
+const PinText = styled.span`
+  color: #ff0000;
+`;
+
 const MapWrapper = styled.div`
   margin-top: 20px;
-  height: 470px;
+  height: 500px;
   width: 100%;
   position: relative;
 
@@ -53,13 +61,6 @@ const ContactPage = () => {
       <ContactContainer>
         <h1>Contact Information</h1>
         <Paragraph>
-          Email to Prof. Karan Ahuja at{' '}
-          <Link href="mailto:kahuja@northwestern.edu">
-            kahuja@northwestern.edu
-          </Link>{' '}
-          for more information.
-        </Paragraph>
-        <Paragraph>
           If you are interested in contributing to research in our lab, fill out
           this{' '}
           <Link
@@ -75,9 +76,13 @@ const ContactPage = () => {
         <Section>
           <h2>Location</h2>
           <Paragraph>
-            SPICE Lab is located in room 3546 of the Mudd Building (the lower
-            pin on the map). <br></br>Visitor parking is available at the North
-            Campus Parking Garage (the upper pin on the map).
+            SPICE Lab is located in room 3546 of the Mudd Building (
+            <Address>2233 Tech Dr, Evanston, IL 60208</Address>) (
+            <PinText>the lower pin </PinText> on the map).
+            <br />
+            Visitor parking is available at the North Campus Parking Garage (
+            <Address>2311 N Campus Dr #2300, Evanston, IL 60208</Address>) (
+            <PinText>the upper pin</PinText> on the map).
           </Paragraph>
 
           <MapWrapper>
