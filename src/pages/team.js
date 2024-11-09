@@ -9,6 +9,11 @@ import MemberCard from '../components/memberCard';
 const PiSection = styled.div`
   margin: 5rem 0;
   padding: 3rem 0;
+
+  @media (max-width: 768px) {
+    margin: 0;
+    padding: 0;
+  }
 `;
 
 const PiInfo = styled.div`
@@ -69,6 +74,14 @@ const PiDetails = styled.div`
     font-size: 1.1rem;
     line-height: 1.6;
     text-align: justify;
+  }
+
+  @media (max-width: 768px) {
+    p {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      
+    }
   }
 
   a {

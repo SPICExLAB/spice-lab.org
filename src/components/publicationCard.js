@@ -18,6 +18,7 @@ const PublicationCardWrapper = styled.div`
 
   @media (max-width: 767px) {
     flex-direction: column;
+    margin-bottom: 0;
   }
 `;
 

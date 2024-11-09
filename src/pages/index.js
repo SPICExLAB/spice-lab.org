@@ -12,6 +12,12 @@ const MarkdownText = styled.div`
   font-size: 1.2rem;
   line-height: 1.4;
   margin-bottom: 48px;
+  @media (max-width: 768px) {
+    p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+  }
 `;
 
 const NewsCarouselContainer = styled.div`

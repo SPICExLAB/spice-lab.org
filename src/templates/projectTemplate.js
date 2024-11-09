@@ -23,6 +23,7 @@ const ProjectContainer = styled.article`
 
   @media (max-width: 768px) {
     font-size: 14px;
+    padding: 1rem;
   }
 `;
 
@@ -69,7 +70,7 @@ const Title = styled.h1`
   margin-top: 0;
 
   @media (max-width: 768px) {
-    font-size: 2em;
+    font-size: 1.6em;
   }
 `;
 
@@ -147,13 +148,23 @@ const LinkItem = styled.a`
 const Video = styled.section`
   margin-bottom: 2rem;
 
+  @media (max-width: 768px) {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;
+  }
+
   iframe {
     width: 100%;
     height: 400px;
     border: none;
 
     @media (max-width: 768px) {
-      height: 300px;
+      height: 250px;
+      width: 100%;
     }
   }
 `;

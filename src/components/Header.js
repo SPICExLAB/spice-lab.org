@@ -144,7 +144,7 @@ const MobileLogo = styled.div`
   @media (max-width: 768px) {
     display: block;
     text-align: center;
-    margin-bottom: 100px;
+    margin-bottom: 0;
 
     img {
       width: 300px;
