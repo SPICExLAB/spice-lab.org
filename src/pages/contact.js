@@ -77,12 +77,14 @@ const ContactPage = () => {
           <h2>Location</h2>
           <Paragraph>
             SPICE Lab is located in room 3546 of the Mudd Building (
-            <Address>2233 Tech Dr, Evanston, IL 60208</Address>) (
-            <PinText>the lower pin </PinText> on the map).
+            <Address>2233 Tech Dr, Evanston, IL 60208</Address>).
+            {/* (<PinText>the lower pin </PinText> on the map) */}
+
             <br />
             Visitor parking is available at the North Campus Parking Garage (
-            <Address>2311 N Campus Dr #2300, Evanston, IL 60208</Address>) (
-            <PinText>the upper pin</PinText> on the map).
+            <Address>2311 N Campus Dr #2300, Evanston, IL 60208</Address>).
+            {/* (<PinText>the upper pin</PinText> on the map) */}
+
           </Paragraph>
 
           <MapWrapper>
