@@ -40,8 +40,8 @@
     "website": "https://www.hongymao.com/",
     "email": "hongyum@andrew.cmu.edu",
     "photo": "Hongyu.jpg",
-    "key_Interests": "Fabrication, Interaction Techniques",
-    "active": true
+    "key_Interests": "Google",
+    "active": false
   },
   {
     "name": "Bishnu Dev",
@@ -79,6 +79,4 @@
     "key_Interests": "System and Network",
     "active": true
   }
-
-
 ]

@@ -36,8 +36,6 @@ const PiImageWrapper = styled.div`
     margin-right: 3rem;
     margin-bottom: 0;
   }
-
-
 `;
 
 const PiPhoto = styled(GatsbyImage)`
@@ -80,7 +78,6 @@ const PiDetails = styled.div`
     p {
       font-size: 0.9rem;
       line-height: 1.4;
-      
     }
   }
 
@@ -119,6 +116,7 @@ const JustifiedParagraph = styled.p`
 `;
 
 const FormerMemberGrid = styled(MemberGrid)`
+  justify-content: start;
   @media (max-width: 767px) {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -145,7 +143,7 @@ const PeoplePage = ({ data }) => {
   );
 
   const sortMembers = (a, b) => {
-    const priorityRoles = ['Post-doc', 'PhD Student','Research Associate'];
+    const priorityRoles = ['Post-doc', 'PhD Student', 'Research Associate'];
     const aIndex = priorityRoles.indexOf(a.role);
     const bIndex = priorityRoles.indexOf(b.role);
 
@@ -155,26 +153,22 @@ const PeoplePage = ({ data }) => {
     return 0;
   };
 
-
   const graduateMembers = allMembers
     .filter(
       (person) =>
         person.active &&
         (person.role === 'PhD Student' ||
-         person.role === 'Research Associate' ||
-         person.role === "Master's Researcher")
+          person.role === 'Research Associate' ||
+          person.role === "Master's Researcher")
     )
     .sort(sortMembers);
 
   const undergraduateMembers = allMembers
-    .filter(
-      (person) => person.active && person.role === 'Undergrad Researcher'
-    )
+    .filter((person) => person.active && person.role === 'Undergrad Researcher')
     .sort((a, b) => a.name.localeCompare(b.name));
 
-
   const formerMembers = allMembers
-   .filter(
+    .filter(
       (person) => !person.active && person.role !== 'Principal Investigator'
     )
     .sort((a, b) => a.name.localeCompare(b.name));
@@ -215,8 +209,8 @@ const PeoplePage = ({ data }) => {
                 Human-Computer Interaction from Carnegie Mellon University in
                 2023 and B.Tech. in Computer Science in 2017. Karan is a
                 recipient of the Forbes 30 under 30 (2024), MIT 35 innovators
-                under 35 Asia Pacific (2024), ACM SIGCHI Outstanding Dissertation Award
-                (2024), and Siebel Fellowship (2022).
+                under 35 Asia Pacific (2024), ACM SIGCHI Outstanding
+                Dissertation Award (2024), and Siebel Fellowship (2022).
               </p>
             </PiDetails>
           </PiInfo>
@@ -244,7 +238,7 @@ const PeoplePage = ({ data }) => {
       </MemberSection>
       {formerMembers.length > 0 && (
         <MemberSection>
-          <h2>Past Members</h2>
+          <h2>Alumni</h2>
           <FormerMemberGrid>
             {formerMembers.map((person) => (
               <MemberCard key={person.name} person={person} showRole={false} />
