@@ -7,15 +7,7 @@
     "email": "kahuja@northwestern.edu",
     "photo": "karan.png"
   },
-  {
-    "name": "Sungheon Park",
-    "role": "Research Associate",
-    "website": "https://sungheonpark.github.io/",
-    "email": "sungheon.park@gmail.com",
-    "photo": "Sungheon.png",
-    "key_Interests": "3D Vision, Graphics",
-    "active": true
-  },
+
   {
     "name": "Vasco Xu",
     "role": "PhD Student",
@@ -34,6 +26,13 @@
     "email": "chenfenggao2029@u.northwestern.edu",
     "photo": "chenfenggao.png",
     "key_Interests": "Interaction Design, Immersive Experiences",
+    "active": true
+  },
+  {
+    "name": "Sungheon Park",
+    "role": "Research Associate",
+    "website": "https://sungheonpark.github.io/",
+    "email": "sungheon.park@gmail.com",
     "active": true
   },
   {
