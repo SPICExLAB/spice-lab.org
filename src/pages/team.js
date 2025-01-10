@@ -303,9 +303,7 @@ const TeamPage = ({ data }) => {
                 key={person.name}
                 href={
                   person.website
-                    ? person.website.includes('linkedin.com')
-                      ? `https://${person.website}`
-                      : person.website
+                    ?  person.website
                     : `mailto:${person.email}`
                 }
                 target={person.website ? '_blank' : '_self'}
@@ -331,7 +329,6 @@ export const query = graphql`
         blurb
         website
         email
-        program
         fields {
           memberImage {
             childImageSharp {
@@ -344,7 +341,6 @@ export const query = graphql`
             }
           }
         }
-        key_Interests
       }
     }
   }

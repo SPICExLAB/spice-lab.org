@@ -1,4 +1,6 @@
 const path = require('path');
+const fs = require('fs');
+const { createFileNodeFromBuffer } = require('gatsby-source-filesystem');
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
   const result = await graphql(`
@@ -36,8 +38,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   });
 };
 
-const fs = require('fs');
-const { createFileNodeFromBuffer } = require('gatsby-source-filesystem');
 
 exports.onCreateNode = async ({
   node,
@@ -62,32 +62,39 @@ exports.onCreateNode = async ({
   }
 
   if (node.internal.type === 'TeamJson') {
-    const photoPath = path.resolve(
-      __dirname,
-      'src/content/people/headshots',
-      node.photo
-    );
+    // Only try to process photo if it exists
+    if (node.photo) {
+      const photoPath = path.resolve(
+        __dirname,
+        'src/content/people/headshots',
+        node.photo
+      );
 
-    if (fs.existsSync(photoPath)) {
-      let fileNode = await createFileNodeFromBuffer({
-        buffer: fs.readFileSync(photoPath),
-        store,
-        cache,
-        createNode,
-        createNodeId,
-        parentNodeId: node.id,
-        reporter,
-      });
-
-      if (fileNode) {
-        createNodeField({
-          node,
-          name: 'memberImage___NODE',
-          value: fileNode.id,
+      if (fs.existsSync(photoPath)) {
+        let fileNode = await createFileNodeFromBuffer({
+          buffer: fs.readFileSync(photoPath),
+          store,
+          cache,
+          createNode,
+          createNodeId,
+          parentNodeId: node.id,
+          reporter,
         });
+
+        if (fileNode) {
+          createNodeField({
+            node,
+            name: 'memberImage___NODE',
+            value: fileNode.id,
+          });
+        }
+      } else {
+        reporter.warn(
+          `Image not found at path: ${photoPath} for member: ${node.name}`
+        );
       }
     } else {
-      reporter.warn(`Image not found at path: ${photoPath}`);
+      reporter.info(`No photo specified for team member: ${node.name}`);
     }
   }
 };

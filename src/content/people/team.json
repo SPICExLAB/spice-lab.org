@@ -2,7 +2,6 @@
   {
     "name": "Karan Ahuja",
     "role": "Principal Investigator",
-    "program": "Department of Computer Science",
     "website": "https://karan-ahuja.com/",
     "email": "kahuja@northwestern.edu",
     "photo": "karan.png"
@@ -15,7 +14,6 @@
     "website": "https://www.vascoxu.com/",
     "email": "vascoxu@uchicago.edu",
     "photo": "vasco.png",
-    "key_Interests": "ML & Sensing",
     "active": true
   },
   {
@@ -24,8 +22,7 @@
     "blurb": "Chenfeng (Jesse) is a PhD student in Technology and Social Behavior. His research focuses on immersive experiences to bridge physical and virtual worlds",
     "website": "https://www.jessegao.online/",
     "email": "chenfenggao2029@u.northwestern.edu",
-    "photo": "chenfenggao.png",
-    "key_Interests": "Interaction Design, Immersive Experiences",
+    "photo": "jesse.png",
     "active": true
   },
   {
