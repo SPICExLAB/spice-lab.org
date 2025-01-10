@@ -51,6 +51,7 @@ const GlobalStyle = createGlobalStyle`
   }
   h2 {
     margin-bottom: 20px;
+    margin-right: 0;
   }
   p {
     margin-bottom: 2rem;

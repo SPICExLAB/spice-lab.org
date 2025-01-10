@@ -19,6 +19,7 @@
   {
     "name": "Vasco Xu",
     "role": "PhD Student",
+    "blurb": "Vasco is a PhD student in Computer Science. His research explores the intersection of machine learning & adaptive sensing systems.",
     "website": "https://www.vascoxu.com/",
     "email": "vascoxu@uchicago.edu",
     "photo": "vasco.png",
@@ -28,6 +29,7 @@
   {
     "name": "Chenfeng Gao",
     "role": "PhD Student",
+    "blurb": "Chenfeng (Jesse) is a PhD student in Technology and Social Behavior. His research focuses on immersive experiences to bridge physical and virtual worlds",
     "website": "https://www.jessegao.online/",
     "email": "chenfenggao2029@u.northwestern.edu",
     "photo": "chenfenggao.png",
@@ -39,8 +41,6 @@
     "role": "Master's Researcher",
     "website": "https://www.hongymao.com/",
     "email": "hongyum@andrew.cmu.edu",
-    "photo": "Hongyu.jpg",
-    "key_Interests": "Google",
     "active": false
   },
   {
@@ -48,17 +48,13 @@
     "role": "Master's Researcher",
     "website": "https://www.bishnudev.com/",
     "email": "bd2131@nyu.edu",
-    "photo": "bishnu.jpg",
-    "key_Interests": "Privacy Aware Sensing",
     "active": true
   },
   {
     "name": "Taeyoung Yeon",
     "role": "Undergrad Researcher",
-    "website": "https://diffzerg.github.io",
+    "website": "",
     "email": "taeyoungyeon@northwestern.edu",
-    "photo": "Taeyoung.jpg",
-    "key_Interests": "On-device ML, Ubiquitous Computing",
     "active": true
   },
   {
@@ -66,17 +62,41 @@
     "role": "Undergrad Researcher",
     "website": "https://anjieyang.com/",
     "email": "ayang072@uottawa.com",
-    "photo": "anjie.png",
-    "key_Interests": "ML, Generative AI",
     "active": true
   },
   {
     "name": "Tahira Grewal",
     "role": "Undergrad Researcher",
-    "website": "www.linkedin.com/in/tahira-grewal",
+    "website": "",
     "email": "tahiragrewal2026@u.northwestern.edu",
-    "photo": "tahira.jpg",
-    "key_Interests": "System and Network",
+    "active": true
+  },
+  {
+    "name": "Brian Chen",
+    "role": "Undergrad Researcher",
+    "website": "",
+    "email": "BrianChen2026@u.northwestern.edu",
+    "active": true
+  },
+  {
+    "name": "Jessie Sheflin",
+    "role": "Undergrad Researcher",
+    "website": "",
+    "email": "jessiesheflin2025@u.northwestern.edu",
+    "active": true
+  },
+  {
+    "name": "Xi-Aan Loh",
+    "role": "Undergrad Researcher",
+    "website": "",
+    "email": "xi-aanloh2027@u.northwestern.edu",
+    "active": true
+  },
+  {
+    "name": "Suril Mehta",
+    "role": "Master's Researcher",
+    "website": "",
+    "email": "suril15104@iiitd.ac.in",
     "active": true
   }
 ]

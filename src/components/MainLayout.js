@@ -10,6 +10,7 @@ const LayoutWrapper = styled.div`
   max-width: 1200px;
   padding: 0 1rem;
   font-family: 'Avenir', sans-serif;
+
 `;
 
 const Main = styled.main``;

@@ -2,13 +2,19 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
-import SEO from '../components/SEO';
 import MainLayout from '../components/MainLayout';
-import MemberCard from '../components/memberCard';
+import SEO from '../components/SEO';
+
+
+const SectionTitle = styled.h2`
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+`;
 
 const PiSection = styled.div`
-  margin: 5rem 0;
-  padding: 3rem 0;
+  margin: 3rem 0;
+  padding: 2rem 0;
 
   @media (max-width: 768px) {
     margin: 0;
@@ -23,39 +29,50 @@ const PiInfo = styled.div`
 
   @media (min-width: 768px) {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: stretch;
   }
 `;
 
 const PiImageWrapper = styled.div`
   margin-bottom: 2rem;
   width: 100%;
-  max-width: 300px;
+  max-width: 400px;
+  aspect-ratio: 1;
 
   @media (min-width: 768px) {
     margin-right: 3rem;
     margin-bottom: 0;
+    width: auto;
+    height: 80%;
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: min(100%, 400px);
   }
 `;
 
-const PiPhoto = styled(GatsbyImage)`
+const StyledPiPhoto = styled(GatsbyImage)`
   width: 100%;
-  height: auto;
-  border-radius: 50%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+`;
 
+
+const PiPhoto = styled(StyledPiPhoto)`
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(78, 42, 132, 0.4);
   }
 `;
 
+
 const PiDetails = styled.div`
   text-align: center;
 
   @media (min-width: 768px) {
     text-align: left;
-    flex: 1;
+    flex: 2;
   }
 
   h2 {
@@ -89,89 +106,112 @@ const PiDetails = styled.div`
   }
 `;
 
-const MemberSection = styled.div`
-  margin-bottom: 3rem;
+const Section = styled.div`
+  margin-bottom: 4rem;
 `;
 
-const MemberGrid = styled.div`
+const Grid = styled.div`
   display: grid;
-  gap: 2rem;
-  justify-content: start;
-
-  @media (max-width: 767px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  gap: ${(props) => props.$gap || '2rem'};
+  grid-template-columns: 1fr;
 
   @media (min-width: 768px) {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(
+      ${(props) => props.$mdCols || 3},
+      minmax(0, 1fr)
+    );
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(
+      ${(props) => props.$lgCols || 4},
+      minmax(0, 1fr)
+    );
   }
 `;
 
-const JustifiedParagraph = styled.p`
+
+const MemberCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+
+const ImageWrapper = styled.div`
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(78, 42, 132, 0.4);
+  }
+`;
+
+
+const Link = styled.a`
+  color: inherit;
+  text-decoration: none;
+  font-weight: ${(props) => props.$weight || 'normal'};
+  font-size: ${(props) => props.$size || '1rem'};
+  transition: color 0.2s;
+
+  &:hover {
+    color: #4e2a84;
+  }
+`;
+
+const Interests = styled.p`
   text-align: justify;
-  color: #555;
-  font-size: 1rem;
-  margin-bottom: 10px;
-  line-height: 1.6;
+  margin-top: 0.5rem;
+  color: #666;
 `;
 
-const FormerMemberGrid = styled(MemberGrid)`
-  justify-content: start;
-  @media (max-width: 767px) {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
+const MemberLink = styled(Link)`
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s, transform 0.2s;
+  display: block;
+  width: 100%;
 
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(8, minmax(0, 1fr));
-  }
-`;
-
-const StyledMemberCard = styled(MemberCard)`
-  .member-name {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+  &:hover {
+    background-color: #eee;
+    transform: translateY(-2px);
   }
 `;
 
-const PeoplePage = ({ data }) => {
+const TeamPage = ({ data }) => {
   const allMembers = data.allTeamJson.nodes.filter((node) => node && node.name);
 
   const pi = allMembers.find(
     (person) => person.role === 'Principal Investigator'
   );
+  const phds = allMembers.filter(
+    (person) => person.active && person.role === 'PhD Student'
+  );
 
-  const sortMembers = (a, b) => {
-    const priorityRoles = ['Post-doc', 'PhD Student', 'Research Associate'];
-    const aIndex = priorityRoles.indexOf(a.role);
-    const bIndex = priorityRoles.indexOf(b.role);
+  const sortByRole = (a, b) => {
+    if (a.active !== b.active) return b.active - a.active;
 
-    if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
-    if (aIndex !== -1) return -1;
-    if (bIndex !== -1) return 1;
-    return 0;
+    const roleOrder = {
+      'Research Associate': 1,
+      "Master's Researcher": 2,
+      'Undergrad Researcher': 3,
+    };
+    return (roleOrder[a.role] || 99) - (roleOrder[b.role] || 99);
   };
 
-  const graduateMembers = allMembers
+  const otherMembers = allMembers
     .filter(
       (person) =>
-        person.active &&
-        (person.role === 'PhD Student' ||
-          person.role === 'Research Associate' ||
-          person.role === "Master's Researcher")
+        person.role !== 'Principal Investigator' &&
+        person.role !== 'PhD Student'
     )
-    .sort(sortMembers);
-
-  const undergraduateMembers = allMembers
-    .filter((person) => person.active && person.role === 'Undergrad Researcher')
-    .sort((a, b) => a.name.localeCompare(b.name));
-
-  const formerMembers = allMembers
-    .filter(
-      (person) => !person.active && person.role !== 'Principal Investigator'
-    )
-    .sort((a, b) => a.name.localeCompare(b.name));
+    .sort(sortByRole);
 
   return (
     <MainLayout>
@@ -181,13 +221,12 @@ const PeoplePage = ({ data }) => {
         pathname="/team"
       />
 
-      <h1>Team</h1>
       {pi && (
         <PiSection>
           <PiInfo>
             <PiImageWrapper>
               <a href={pi.website} target="_blank" rel="noopener noreferrer">
-                {pi.fields.memberImage && (
+                {pi.fields?.memberImage && (
                   <PiPhoto
                     image={getImage(pi.fields.memberImage)}
                     alt={pi.name}
@@ -216,35 +255,67 @@ const PeoplePage = ({ data }) => {
           </PiInfo>
         </PiSection>
       )}
-      <MemberSection>
-        <h2>Graduate Members</h2>
-        <MemberGrid>
-          {graduateMembers.map((person) => (
-            <MemberCard
-              key={person.name}
-              person={person}
-              showRole={person.role !== "Master's Researcher"}
-            />
-          ))}
-        </MemberGrid>
-      </MemberSection>
-      <MemberSection>
-        <h2>Undergraduate Members</h2>
-        <MemberGrid>
-          {undergraduateMembers.map((person) => (
-            <MemberCard key={person.name} person={person} showRole={false} />
-          ))}
-        </MemberGrid>
-      </MemberSection>
-      {formerMembers.length > 0 && (
-        <MemberSection>
-          <h2>Alumni</h2>
-          <FormerMemberGrid>
-            {formerMembers.map((person) => (
-              <MemberCard key={person.name} person={person} showRole={false} />
+
+      {phds.length > 0 && (
+        <Section>
+          <SectionTitle>PhD Students</SectionTitle>
+          <Grid>
+            {phds.map((person) => (
+              <MemberCard key={person.name}>
+                <Link
+                  href={person.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ImageWrapper>
+                    {person.fields?.memberImage && (
+                      <StyledPiPhoto
+                        image={getImage(person.fields.memberImage)}
+                        alt={person.name}
+                      />
+                    )}
+                  </ImageWrapper>
+                </Link>
+                <Link
+                  href={person.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  $weight="600"
+                  $size="1.25rem"
+                >
+                  {person.name}
+                </Link>
+                <Interests>{person.blurb}</Interests>
+              </MemberCard>
             ))}
-          </FormerMemberGrid>
-        </MemberSection>
+          </Grid>
+        </Section>
+      )}
+
+      {otherMembers.length > 0 && (
+        <Section>
+          <SectionTitle>
+            Graduate, Undergrad, Visiting Researchers & Alumni
+          </SectionTitle>
+          <Grid $lgCols={4} $gap="1rem">
+            {otherMembers.map((person) => (
+              <MemberLink
+                key={person.name}
+                href={
+                  person.website
+                    ? person.website.includes('linkedin.com')
+                      ? `https://${person.website}`
+                      : person.website
+                    : `mailto:${person.email}`
+                }
+                target={person.website ? '_blank' : '_self'}
+                rel={person.website ? 'noopener noreferrer' : undefined}
+              >
+                {person.name}
+              </MemberLink>
+            ))}
+          </Grid>
+        </Section>
       )}
     </MainLayout>
   );
@@ -257,12 +328,16 @@ export const query = graphql`
         active
         name
         role
+        blurb
         website
+        email
+        program
         fields {
           memberImage {
             childImageSharp {
               gatsbyImageData(
-                layout: FULL_WIDTH
+                width: 400
+                height: 400
                 placeholder: BLURRED
                 transformOptions: { fit: COVER, cropFocus: CENTER }
               )
@@ -275,4 +350,4 @@ export const query = graphql`
   }
 `;
 
-export default PeoplePage;
+export default TeamPage;
