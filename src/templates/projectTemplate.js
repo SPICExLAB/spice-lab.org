@@ -238,6 +238,7 @@ export default function ProjectTemplate({
     videoLink,
     conference,
     conferencePage,
+    additionalLinks,
     citation,
     bibtex,
     medias,
@@ -331,6 +332,18 @@ export default function ProjectTemplate({
                 <span>code</span>
               </LinkItem>
             )}
+            {/* Render additional links */}
+            {additionalLinks &&
+              additionalLinks.map((link, index) => (
+                <LinkItem
+                  key={index}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>{link.label}</span>
+                </LinkItem>
+              ))}
           </LinksContainer>
         </Header>
 
@@ -409,6 +422,10 @@ export const query = graphql`
         bibtex
         medias {
           publicURL
+        }
+        additionalLinks {
+          label
+          url
         }
       }
     }

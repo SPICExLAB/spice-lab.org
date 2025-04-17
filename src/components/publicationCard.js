@@ -9,6 +9,7 @@ import citationIcon from '../images/citation.svg';
 import bibtexIcon from '../images/bibtex.svg';
 import videoIcon from '../images/video.svg';
 import codeIcon from '../images/code.svg';
+import webIcon from '../images/web.svg';
 
 const PublicationCardWrapper = styled.div`
   display: flex;
@@ -42,7 +43,6 @@ const CoverImageContainer = styled.div`
     flex: none;
   }
 `;
-
 
 const CoverImageWrapper = styled(Link)`
   position: relative;
@@ -106,7 +106,6 @@ const ToBePublished = styled.span`
   color: #4e2a84;
   font-weight: bold;
 `;
-
 
 const Title = styled(Link)`
   text-decoration: none;
@@ -252,6 +251,7 @@ const PublicationCard = ({ publication, teamMembers, slug }) => {
     citation,
     bibtex,
     github,
+    additionalLinks,
     videoLink,
   } = publication.frontmatter;
 
@@ -259,21 +259,21 @@ const PublicationCard = ({ publication, teamMembers, slug }) => {
   const [modalTitle, setModalTitle] = useState('');
   const modalRef = useRef(null);
 
-   const renderTitle = () => {
-     if (subtitle) {
-       return `${title}: ${subtitle}`;
-     }
-     return title;
-   };
+  const renderTitle = () => {
+    if (subtitle) {
+      return `${title}: ${subtitle}`;
+    }
+    return title;
+  };
 
-   const CoverImageWithOverlay = ({ image, alt, published }) => (
-     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-       <CoverImageStyled image={image} alt={alt} />
-       {published !== 'yes' && (
-         <UnpublishedOverlay>Coming Soon</UnpublishedOverlay>
-       )}
-     </div>
-   );
+  const CoverImageWithOverlay = ({ image, alt, published }) => (
+    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+      <CoverImageStyled image={image} alt={alt} />
+      {published !== 'yes' && (
+        <UnpublishedOverlay>Coming Soon</UnpublishedOverlay>
+      )}
+    </div>
+  );
 
   const openModal = (content, title) => {
     setModalContent(content);
@@ -408,6 +408,18 @@ const PublicationCard = ({ publication, teamMembers, slug }) => {
                 <span>Code</span>
               </button>
             )}
+            {/* Render additional links without icons */}
+            {additionalLinks &&
+              additionalLinks.map((link, index) => (
+                <button
+                  key={index}
+                  className="iconButton"
+                  onClick={() => window.open(link.url, '_blank')}
+                >
+                  <img src={webIcon} alt="Web" />
+                  <span>{link.label}</span>
+                </button>
+              ))}
             {award && (
               <div className="awardText">
                 <img src={awardIcon} alt="Award" />

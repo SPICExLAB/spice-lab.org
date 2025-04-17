@@ -86,6 +86,10 @@ export const query = graphql`
           bibtex
           github
           videoLink
+          additionalLinks {
+            label
+            url
+          }
         }
       }
     }
