@@ -26,25 +26,29 @@
     "active": true
   },
   {
+    "name": "Yiquan Li",
+    "role": "PhD Student",
+    "blurb": "Yiquan is a PhD student in Computer Science. His research focuses on machine learning for wearable devices that interact with the physical world and human users.",
+    "website": "https://li-yiquan.github.io/",
+    "email": "yiquanli2030@u.northwetsern.edu",
+    "photo": "yiquan.png",
+    "active": true
+  },
+  {
+    "name": "Xuanyou (Zed) Liu",
+    "role": "PhD Student",
+    "blurb": "Zed is a Ph.D. student in Computer Science whose research focuses on the intersection of Internet of Things (IoT) technologies with multimodal sensing systems.",
+    "website": "https://xuanyouliu.com",
+    "email": "xuanyou2030@u.northwestern.edu",
+    "photo": "zed.png",
+    "active": true
+  },
+  {
     "name": "Naoto Nishida",
     "role": "Visiting PhD Student",
     "website": "https://nawta.github.io/",
     "email": "nawta@g.ecc.u-tokyo.ac.jp",
     "active": true
-  },
-  {
-    "name": "Sungheon Park",
-    "role": "Research Associate",
-    "website": "https://sungheonpark.github.io/",
-    "email": "sungheon.park@gmail.com",
-    "active": true
-  },
-  {
-    "name": "Hongyu Mao",
-    "role": "Master's Researcher",
-    "website": "https://www.hongymao.com/",
-    "email": "hongyum@andrew.cmu.edu",
-    "active": false
   },
   {
     "name": "Bishnu Dev",
@@ -61,34 +65,6 @@
     "active": true
   },
   {
-    "name": "Anjie Yang",
-    "role": "Undergrad Researcher",
-    "website": "https://anjieyang.com/",
-    "email": "ayang072@uottawa.com",
-    "active": true
-  },
-  {
-    "name": "Tahira Grewal",
-    "role": "Undergrad Researcher",
-    "website": "",
-    "email": "tahiragrewal2026@u.northwestern.edu",
-    "active": true
-  },
-  {
-    "name": "Brian Chen",
-    "role": "Undergrad Researcher",
-    "website": "",
-    "email": "BrianChen2026@u.northwestern.edu",
-    "active": true
-  },
-  {
-    "name": "Jessie Sheflin",
-    "role": "Undergrad Researcher",
-    "website": "",
-    "email": "jessiesheflin2025@u.northwestern.edu",
-    "active": true
-  },
-  {
     "name": "Xi-Aan Loh",
     "role": "Undergrad Researcher",
     "website": "",
@@ -101,5 +77,47 @@
     "website": "",
     "email": "suril15104@iiitd.ac.in",
     "active": true
+  },
+  {
+    "name": "Sungheon Park",
+    "role": "Research Associate",
+    "website": "https://sungheonpark.github.io/",
+    "email": "sungheon.park@gmail.com",
+    "active": false
+  },
+  {
+    "name": "Hongyu Mao",
+    "role": "Master's Researcher",
+    "website": "https://www.hongymao.com/",
+    "email": "hongyum@andrew.cmu.edu",
+    "active": false
+  },
+  {
+    "name": "Anjie Yang",
+    "role": "Undergrad Researcher",
+    "website": "https://anjieyang.com/",
+    "email": "ayang072@uottawa.com",
+    "active": false
+  },
+  {
+    "name": "Tahira Grewal",
+    "role": "Undergrad Researcher",
+    "website": "",
+    "email": "tahiragrewal2026@u.northwestern.edu",
+    "active": false
+  },
+  {
+    "name": "Brian Chen",
+    "role": "Undergrad Researcher",
+    "website": "",
+    "email": "BrianChen2026@u.northwestern.edu",
+    "active": false
+  },
+  {
+    "name": "Jessie Sheflin",
+    "role": "Undergrad Researcher",
+    "website": "",
+    "email": "jessiesheflin2025@u.northwestern.edu",
+    "active": false
   }
 ]
