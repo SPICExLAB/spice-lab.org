@@ -1,13 +1,16 @@
 [
   {
+    "_comment": "PRINCIPAL INVESTIGATOR",
     "name": "Karan Ahuja",
     "role": "Principal Investigator",
     "website": "https://karan-ahuja.com/",
     "email": "kahuja@northwestern.edu",
-    "photo": "karan.png"
+    "photo": "karan.png",
+    "active": true
   },
 
   {
+    "_comment": "PHD STUDENTS",
     "name": "Vasco Xu",
     "role": "PhD Student",
     "blurb": "Vasco is a PhD student in Computer Science. His research explores the intersection of machine learning & adaptive sensing systems.",
@@ -35,89 +38,127 @@
     "active": true
   },
   {
-    "name": "Xuanyou (Zed) Liu",
+    "name": "Xuanyou Liu",
     "role": "PhD Student",
-    "blurb": "Zed is a Ph.D. student in Computer Science whose research focuses on the intersection of Internet of Things (IoT) technologies with multimodal sensing systems.",
+    "blurb": "Xuanyou (Zed) is a Ph.D. student in Computer Science whose research focuses on the intersection of Internet of Things (IoT) technologies with multimodal sensing systems.",
     "website": "https://xuanyouliu.com",
     "email": "xuanyou2030@u.northwestern.edu",
     "photo": "zed.png",
     "active": true
   },
   {
-    "name": "Naoto Nishida",
-    "role": "Visiting PhD Student",
-    "website": "https://nawta.github.io/",
-    "email": "nawta@g.ecc.u-tokyo.ac.jp",
+    "_comment": "RESEARCHERS",
+    "name": "Taeyoung Yeon",
+    "role": "Researcher",
+    "blurb": "Taeyoung is a pre-doctoral researcher developing multimodal machine learning, sensing and interaction techniques for XR and ambient environments.",
+    "website": "https://taeyoungyeon.com",
+    "photo": "taeyoung.png",
+    "active": true
+  },
+  {
+    "name": "Aidan Bradshaw",
+    "role": "Researcher",
+    "blurb": "Aidan is a PhD student exploring on device Machine Learning and behavioral sensing systems for digital health, activity understanding, and affective computing.",
+    "website": "https://abradshaw1.github.io/",
+    "photo": "aidan.png",
     "active": true
   },
   {
     "name": "Bishnu Dev",
-    "role": "Master's Researcher",
+    "role": "Researcher",
+    "blurb": "Bishnu is a visiting scholar, interested in machine learning theory and its applications.",
     "website": "https://www.bishnudev.com/",
-    "email": "bd2131@nyu.edu",
+    "photo": "bishnu.png",
     "active": true
   },
-  {
-    "name": "Taeyoung Yeon",
-    "role": "Undergrad Researcher",
-    "website": "",
-    "email": "taeyoungyeon@northwestern.edu",
-    "active": true
-  },
+
   {
     "name": "Xi-Aan Loh",
-    "role": "Undergrad Researcher",
-    "website": "",
-    "email": "xi-aanloh2027@u.northwestern.edu",
+    "role": "Researcher",
+    "blurb": "Xi-Aan is a CS undergraduate researching motion capture and 3D pose estimation.",
+    "website": "https://linkedin.com/in/xi-aan-lucas-loh",
+    "photo": "xiaan.png",
     "active": true
   },
   {
     "name": "Suril Mehta",
-    "role": "Master's Researcher",
-    "website": "",
-    "email": "suril15104@iiitd.ac.in",
+    "role": "Researcher",
+    "blurb": "Suril is a visiting scholar investigating deep learning techniques for adaptive sensing, representation learning, and real-time human understanding.",
+    "website": "https://linkedin.com/in/suril-mehta",
+    "photo": "suril.png",
     "active": true
   },
   {
+    "name": "Naoto Nishida",
+    "role": "Researcher",
+    "blurb": "Naoto is a visiting PhD student from the University of Tokyo researching AI-assisted communication and learning systems, bridging education, cognition, and intelligent interfaces.",
+    "website": "https://nawta.github.io/",
+    "photo": "naoto.png",
+    "active": true
+  },
+
+  {
+    "_comment": "Undergrad, Masters, Alumni & Mentees",
+    "name": "Myles Gould",
+    "role": "Master's Researcher",
+    "website": "https://mylesgould.com/",
+    "active": true
+  },
+  {
+    "name": "Zhuoran (Elara) Liu",
+    "role": "Master's Researcher",
+    "website": "https://elaraliu.com/",
+    "active": true
+  },
+  {
+    "name": "Jiawei Zhang",
+    "role": "Master's Researcher",
+    "website": "https://github.com/ShaCoZha",
+    "active": true
+  },
+  {
+    "name": "Anthony Zhang",
+    "role": "Master's Researcher",
+    "website": "https://antzed.com/",
+    "active": true
+  },
+
+  {
+    "name": "Novel Alam",
+    "role": "Master's Researcher",
+    "website": "https://www.linkedin.com/in/novel-alam/",
+    "active": true
+  },
+
+  {
+    "name": "Brian Chen",
+    "role": "Undergrad Researcher",
+    "website": "https://linkedin.com/in/brianc6",
+    "active": true
+  },
+
+  {
     "name": "Sungheon Park",
-    "role": "Research Associate",
+    "role": "now Senior ML Engineer at Lucid Motors",
     "website": "https://sungheonpark.github.io/",
-    "email": "sungheon.park@gmail.com",
     "active": false
   },
   {
     "name": "Hongyu Mao",
-    "role": "Master's Researcher",
+    "role": "now PhD at University of Washington",
     "website": "https://www.hongymao.com/",
-    "email": "hongyum@andrew.cmu.edu",
-    "active": false
-  },
-  {
-    "name": "Anjie Yang",
-    "role": "Undergrad Researcher",
-    "website": "https://anjieyang.com/",
-    "email": "ayang072@uottawa.com",
-    "active": false
-  },
-  {
-    "name": "Tahira Grewal",
-    "role": "Undergrad Researcher",
-    "website": "",
-    "email": "tahiragrewal2026@u.northwestern.edu",
-    "active": false
-  },
-  {
-    "name": "Brian Chen",
-    "role": "Undergrad Researcher",
-    "website": "",
-    "email": "BrianChen2026@u.northwestern.edu",
     "active": false
   },
   {
     "name": "Jessie Sheflin",
-    "role": "Undergrad Researcher",
-    "website": "",
-    "email": "jessiesheflin2025@u.northwestern.edu",
+    "role": "now Research Scientist at ElectroCeption",
+    "website": "https://jessie.red/",
+    "active": false
+  },
+  {
+    "name": "Anjie Yang",
+    "role": "now AI Engineer at Gradient Network",
+    "website": "https://anjieyang.com/",
     "active": false
   }
 ]

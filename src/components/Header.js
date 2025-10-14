@@ -240,7 +240,15 @@ const Header = ({ isScrolled }) => {
                   PUBLICATIONS
                 </NavLink>
               </li>
-
+              <li>
+                <NavLink
+                  to="/awards"
+                  activeClassName="active"
+                  onClick={handleLinkClick}
+                >
+                  AWARDS
+                </NavLink>
+              </li>
               <li>
                 <NavLink
                   to="/contact"

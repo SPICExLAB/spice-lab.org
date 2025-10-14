@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import MainLayout from '../components/MainLayout';
 import SEO from '../components/SEO';
 
-
 const SectionTitle = styled.h2`
   font-size: 1.5rem;
   font-weight: bold;
@@ -57,7 +56,6 @@ const StyledPiPhoto = styled(GatsbyImage)`
   border-radius: 8px;
 `;
 
-
 const PiPhoto = styled(StyledPiPhoto)`
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   &:hover {
@@ -65,7 +63,6 @@ const PiPhoto = styled(StyledPiPhoto)`
     box-shadow: 0 5px 15px rgba(78, 42, 132, 0.4);
   }
 `;
-
 
 const PiDetails = styled.div`
   text-align: center;
@@ -130,7 +127,6 @@ const Grid = styled.div`
   }
 `;
 
-
 const MemberCard = styled.div`
   display: flex;
   flex-direction: column;
@@ -152,7 +148,6 @@ const ImageWrapper = styled.div`
   }
 `;
 
-
 const Link = styled.a`
   color: inherit;
   text-decoration: none;
@@ -171,16 +166,32 @@ const Interests = styled.p`
   color: #666;
 `;
 
-const MemberLink = styled(Link)`
-  padding: 0.8rem 1rem;
-  border-radius: 0.5rem;
-  transition: background-color 0.2s, transform 0.2s;
-  display: block;
-  width: 100%;
+const Blurb = styled(Interests)`
+  text-align: left;
+  font-size: 0.875rem;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+`;
 
-  &:hover {
-    background-color: #eee;
-    transform: translateY(-2px);
+const AlumniList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
+const AlumniItem = styled.div`
+  font-size: 1rem;
+  line-height: 1.6;
+
+  a {
+    color: #000;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #4e2a84;
+    }
   }
 `;
 
@@ -190,28 +201,23 @@ const TeamPage = ({ data }) => {
   const pi = allMembers.find(
     (person) => person.role === 'Principal Investigator'
   );
+
   const phds = allMembers.filter(
     (person) => person.active && person.role === 'PhD Student'
   );
 
-  const sortByRole = (a, b) => {
-    if (a.active !== b.active) return b.active - a.active;
+  const researchers = allMembers.filter(
+    (person) => person.active && person.role === 'Researcher'
+  );
 
-    const roleOrder = {
-      'Research Associate': 1,
-      "Master's Researcher": 2,
-      'Undergrad Researcher': 3,
-    };
-    return (roleOrder[a.role] || 99) - (roleOrder[b.role] || 99);
-  };
+  const mentees = allMembers.filter(
+    (person) =>
+      person.active &&
+      (person.role === "Master's Researcher" ||
+        person.role === 'Undergrad Researcher')
+  );
 
-  const otherMembers = allMembers
-    .filter(
-      (person) =>
-        person.role !== 'Principal Investigator' &&
-        person.role !== 'PhD Student'
-    )
-    .sort(sortByRole);
+  const alumni = allMembers.filter((person) => !person.active);
 
   return (
     <MainLayout>
@@ -292,27 +298,86 @@ const TeamPage = ({ data }) => {
         </Section>
       )}
 
-      {otherMembers.length > 0 && (
+      {researchers.length > 0 && (
         <Section>
-          <SectionTitle>
-            Graduate, Undergrad, Visiting Researchers & Alumni
-          </SectionTitle>
-          <Grid $lgCols={4} $gap="1rem">
-            {otherMembers.map((person) => (
-              <MemberLink
-                key={person.name}
-                href={
-                  person.website
-                    ?  person.website
-                    : `mailto:${person.email}`
-                }
-                target={person.website ? '_blank' : '_self'}
-                rel={person.website ? 'noopener noreferrer' : undefined}
-              >
-                {person.name}
-              </MemberLink>
+          <SectionTitle>Researchers</SectionTitle>
+          <Grid $mdCols={3} $lgCols={5} $gap="2rem">
+            {researchers.map((person) => (
+              <MemberCard key={person.name}>
+                <Link
+                  href={person.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ImageWrapper>
+                    {person.fields?.memberImage && (
+                      <StyledPiPhoto
+                        image={getImage(person.fields.memberImage)}
+                        alt={person.name}
+                      />
+                    )}
+                  </ImageWrapper>
+                </Link>
+                <Link
+                  href={person.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  $weight="600"
+                  $size="1rem"
+                >
+                  {person.name}
+                </Link>
+                <Blurb>{person.blurb}</Blurb>
+              </MemberCard>
             ))}
           </Grid>
+        </Section>
+      )}
+
+      {mentees.length > 0 && (
+        <Section>
+          <SectionTitle>Undergrad, Masters, & Mentees</SectionTitle>
+          <AlumniList>
+            {mentees.map((person) => (
+              <AlumniItem key={person.name}>
+                {person.website ? (
+                  <a
+                    href={person.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {person.name}
+                  </a>
+                ) : (
+                  person.name
+                )}
+              </AlumniItem>
+            ))}
+          </AlumniList>
+        </Section>
+      )}
+
+      {alumni.length > 0 && (
+        <Section>
+          <SectionTitle>Alumni</SectionTitle>
+          <AlumniList>
+            {alumni.map((person) => (
+              <AlumniItem key={person.name}>
+                {person.website ? (
+                  <a
+                    href={person.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {person.name}
+                  </a>
+                ) : (
+                  person.name
+                )}
+                {person.role && ` — ${person.role}`}
+              </AlumniItem>
+            ))}
+          </AlumniList>
         </Section>
       )}
     </MainLayout>
