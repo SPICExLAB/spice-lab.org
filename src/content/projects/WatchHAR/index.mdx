@@ -1,0 +1,44 @@
+---
+type: 'project'
+slug: WatchHAR
+title: WatchHAR
+subtitle: Real-time On-device Human Activity Recognition System for Smartwatches
+authors:
+  - Taeyoung Yeon
+  - Vasco Xu
+  - Henry Hoffmann
+  - Karan Ahuja
+year: 2025
+dateAdded: '2025-10-014'
+coverImage: './images/cover2.png'
+published: 'yes'
+ishomePage: 'yes'
+award:
+pdfLink: '/papers/watchHar.pdf'
+github: https://github.com/SPICExLAB/WatchHAR
+videoLink: https://www.youtube.com/embed/kKn3T5r7iHs
+previewLink:
+conference: "ICMI '25: Proceedings of the 2025 International Conference on Multimodal Interaction"
+conferencePage: 'https://doi.org/10.1145/3716553.3750775'
+citation: "Yeon, T., Xu, V., Hoffmann, H., & Ahuja, K. (2025). WatchHAR: Real-Time On-Device Human Activity Recognition System for Smartwatches. In Proceedings of the 27th International Conference on Multimodal Interaction (pp. 387-394)."
+bibtex: |
+    @inproceedings{yeon2025watchhar,
+        title={WatchHAR: Real-Time On-Device Human Activity Recognition System for Smartwatches},
+        author={Yeon, Taeyoung and Xu, Vasco and Hoffmann, Henry and Ahuja, Karan},
+        booktitle={Proceedings of the 27th International Conference on Multimodal Interaction},
+        pages={387--394},
+        year={2025}
+    }
+---
+
+## Abstract
+
+Despite advances in practical and multimodal fine-grained Human Activity Recognition (HAR), a system that runs entirely on smartwatches in unconstrained environments remains elusive. We present WatchHAR, an audio and inertial-based HAR system that operates fully on smartwatches, addressing privacy and latency issues associated with external data processing. By optimizing each component of the pipeline, WatchHAR achieves compounding performance gains. We introduce a novel architecture that unifies sensor data preprocessing and inference into an end-to-end trainable module, achieving 5x faster processing while maintaining over 90% accuracy across more than 25 activity classes. WatchHAR outperforms state-of-the-art models for event detection and activity classification while running directly on the smartwatch, achieving 9.3 ms processing time for activity event detection and 11.8 ms for multimodal activity classification. This research advances on-device activity recognition, realizing smartwatches' potential as standalone, privacy-aware, and minimally-invasive continuous activity tracking devices.
+
+## System Overview
+
+![Model Architecture](./images/system_overview.png)
+
+The model processes 1-second windows of raw audio and 6-axis IMU data to predict activities. Audio preprocessing is integrated directly into the neural network as trainable layers.
+
+
