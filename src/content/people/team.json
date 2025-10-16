@@ -47,6 +47,14 @@
     "active": true
   },
   {
+    "name": "Aidan Bradshaw",
+    "role": "PhD Student",
+    "blurb": "Aidan is a PhD student exploring on device Machine Learning and behavioral sensing systems for digital health, activity understanding, and affective computing.",
+    "website": "https://abradshaw1.github.io/",
+    "photo": "aidan.png",
+    "active": true
+  },
+  {
     "_comment": "RESEARCHERS",
     "name": "Taeyoung Yeon",
     "role": "Researcher",
@@ -55,14 +63,7 @@
     "photo": "taeyoung.png",
     "active": true
   },
-  {
-    "name": "Aidan Bradshaw",
-    "role": "Researcher",
-    "blurb": "Aidan is a PhD student exploring on device Machine Learning and behavioral sensing systems for digital health, activity understanding, and affective computing.",
-    "website": "https://abradshaw1.github.io/",
-    "photo": "aidan.png",
-    "active": true
-  },
+
   {
     "name": "Bishnu Dev",
     "role": "Researcher",
