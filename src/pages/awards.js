@@ -121,6 +121,11 @@ const AwardBadge = styled.span`
 
 const awardsData = [
   {
+    title: 'CRA Outstanding Undergraduate Research Award Honorable Mention',
+    members: ['Xi-Aan Loh'],
+    year: '2025',
+  },
+  {
     title: 'Red Dot Design Award',
     members: ['Chenfeng Gao'],
     year: '2025',
