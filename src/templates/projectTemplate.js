@@ -14,6 +14,7 @@ import conferenceIcon from '../images/publication.svg';
 import pdfIcon from '../images/paper.svg';
 import githubIcon from '../images/code.svg';
 import awardIcon from '../images/medal2-purple.svg';
+import appStoreIcon from '../images/apple _store.svg';
 
 const ProjectContainer = styled.article`
   max-width: 800px;
@@ -142,6 +143,24 @@ const LinkItem = styled.a`
   span {
     color: #000;
     font-size: 0.9em;
+  }
+`;
+
+const AppStoreBadge = styled.a`
+  display: flex;
+  align-items: center;
+  margin-right: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+  transition: opacity 0.3s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  img {
+    height: 44px;
+    width: auto;
   }
 `;
 
@@ -334,16 +353,31 @@ export default function ProjectTemplate({
             )}
             {/* Render additional links */}
             {additionalLinks &&
-              additionalLinks.map((link, index) => (
-                <LinkItem
-                  key={index}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span>{link.label}</span>
-                </LinkItem>
-              ))}
+              additionalLinks.map((link, index) => {
+                const isAppStore = link.url.includes('apps.apple.com');
+                if (isAppStore) {
+                  return (
+                    <AppStoreBadge
+                      key={index}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img src={appStoreIcon} alt="Download on the App Store" />
+                    </AppStoreBadge>
+                  );
+                }
+                return (
+                  <LinkItem
+                    key={index}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span>{link.label}</span>
+                  </LinkItem>
+                );
+              })}
           </LinksContainer>
         </Header>
 
