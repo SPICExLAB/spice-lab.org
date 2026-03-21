@@ -38,15 +38,6 @@
     "active": true
   },
   {
-    "name": "Xuanyou Liu",
-    "role": "PhD Student",
-    "blurb": "Xuanyou (Zed) is a Ph.D. student in Computer Science whose research focuses on the intersection of Internet of Things (IoT) technologies with multimodal sensing systems.",
-    "website": "https://xuanyouliu.com",
-    "email": "xuanyou2030@u.northwestern.edu",
-    "photo": "zed.png",
-    "active": true
-  },
-  {
     "name": "Aidan Bradshaw",
     "role": "PhD Student",
     "blurb": "Aidan is a PhD student exploring on device Machine Learning and behavioral sensing systems for digital health, activity understanding, and affective computing.",
