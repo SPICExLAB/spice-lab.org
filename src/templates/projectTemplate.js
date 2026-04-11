@@ -251,6 +251,7 @@ export default function ProjectTemplate({
     authors,
     year,
     coverImage,
+    showCoverVideo,
     award,
     pdfLink,
     github,
@@ -391,7 +392,7 @@ export default function ProjectTemplate({
             ></iframe>
           </Video>
         ) : (
-          coverImage && (
+          showCoverVideo !== false && coverImage && (
             <CoverImage src={coverImage.publicURL} alt="Cover Image" />
           )
         )}
@@ -445,6 +446,7 @@ export const query = graphql`
         coverImage {
           publicURL
         }
+        showCoverVideo
         published
         award
         pdfLink
