@@ -44,3 +44,5 @@ Mid-air gestures in Extended Reality (XR) often lead to fatigue, discomfort, and
 ## System Overview
 
 ![System Architecture](./images/system-architecture.jpg)
+
+Our network receives hand tracking data from a Quest headset and IMU data from a smartwatch. Hand keypoints are normalized relative to a surface-aligned coordinate system. A Temporal Convolutional Network (TCN) extracts features from the hand tracking data, while a 2D-CNN processes the IMU data. The features are fused using a gated fusion mechanism and used for multi-task prediction of surface contact and gesture classification.
