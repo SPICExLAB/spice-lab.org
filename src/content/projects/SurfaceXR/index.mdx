@@ -1,0 +1,46 @@
+---
+type: 'project'
+slug: SurfaceXR
+title: SurfaceXR
+subtitle: Fusing Smartwatch IMUs and Egocentric Hand Pose for Seamless Surface Interactions
+authors:
+  - Vasco Xu
+  - Brian Chen
+  - Eric J Gonzalez
+  - Andrea Colaço
+  - Henry Hoffmann
+  - Mar Gonzalez-Franco
+  - Karan Ahuja
+year: 2026
+dateAdded: '2026-03-25'
+coverImage: './images/cover.png'
+published: 'yes'
+ishomePage: 'yes'
+award:
+pdfLink: '/papers/SurfaceXR.pdf'
+github:
+videoLink: https://www.youtube.com/embed/58lyf6TWnDE
+previewLink:
+conference: "IEEE VR '26 (TVCG Special Issue)"
+conferencePage: 'https://ieeexplore.ieee.org/document/11459128'
+citation: "Xu, V., Chen, B., Gonzalez, E. J., Colaço, A., Hoffmann, H., Gonzalez-Franco, M., & Ahuja, K. (2026). SurfaceXR: Fusing Smartwatch IMUs and Egocentric Hand Pose for Seamless Surface Interactions. IEEE Transactions on Visualization and Computer Graphics, 1-9. https://doi.org/10.1109/TVCG.2026.3679136"
+bibtex: |
+    @ARTICLE{11459128,
+        author={Xu, Vasco and Chen, Brian and Gonzalez, Eric J. and Colaço, Andrea and Hoffmann, Henry and Gonzalez-Franco, Mar and Ahuja, Karan},
+        journal={IEEE Transactions on Visualization and Computer Graphics},
+        title={SurfaceXR: Fusing Smartwatch IMUs and Egocentric Hand Pose for Seamless Surface Interactions},
+        year={2026},
+        volume={},
+        number={},
+        pages={1-9},
+        doi={10.1109/TVCG.2026.3679136}
+    }
+---
+
+## Abstract
+
+Mid-air gestures in Extended Reality (XR) often lead to fatigue, discomfort, and imprecision, limiting their suitability for extended use, while surface-based interactions offer a compelling alternative by providing improved accuracy, speed, and comfort; however, current egocentric vision-based methods struggle with reliable surface inputs due to challenges in hand tracking and surface plane estimation from oblique and occluded viewing angles. To this extent, we introduce SurfaceXR, a novel sensor fusion approach that combines headset-based hand tracking with micro-vibration data sampled from commodity smartwatch IMUs to enable precise and robust inputs on everyday surfaces. Our system is designed with flexibility in mind—it can function using only hand tracking, only IMU sensing, or optimally with both modalities combined, and remains robust even without explicit surface calibration. Our key insight is that these modalities are complementary: hand tracking provides 3D positional data of hand joints, whereas IMUs supply high-frequency wrist and hand motion data. Our user study across 21 participants validates SurfaceXR's effectiveness in augmenting surface touch tracking and 8-class hand-surface gesture recognition, demonstrating significant improvements over single-modality approaches, and enabled by SurfaceXR, we demonstrate a series of interactive apps for both AR and VR, ranging from on-surface sketching, text entry, and gesture-based navigation.
+
+## System Overview
+
+![System Architecture](./images/system-architecture.jpg)
