@@ -47,88 +47,76 @@
   },
   {
     "_comment": "RESEARCHERS",
-    "name": "Taeyoung Yeon",
+    "name": "Novel Alam",
     "role": "Researcher",
-    "blurb": "Taeyoung is a pre-doctoral researcher developing multimodal machine learning, sensing and interaction techniques for XR and ambient environments.",
-    "website": "https://taeyoungyeon.com",
-    "photo": "taeyoung.png",
+    "blurb": "Novel is an M.S. student in Computer Engineering researching novel, non-camera-based hand and arm pose estimation and gesture recognition.",
+    "website": "https://www.linkedin.com/in/novel-alam/",
+    "photo": "novel.png",
     "active": true
   },
 
   {
-    "name": "Bishnu Dev",
+    "name": "Jiawei Zhang",
     "role": "Researcher",
-    "blurb": "Bishnu is a visiting scholar, interested in machine learning theory and its applications.",
-    "website": "https://www.bishnudev.com/",
-    "photo": "bishnu.png",
-    "active": true
-  },
-
-  {
-    "name": "Xi-Aan Loh",
-    "role": "Researcher",
-    "blurb": "Xi-Aan is a CS undergraduate researching motion capture and 3D pose estimation.",
-    "website": "https://linkedin.com/in/xi-aan-lucas-loh",
-    "photo": "xiaan.png",
-    "active": true
-  },
-  {
-    "name": "Suril Mehta",
-    "role": "Researcher",
-    "blurb": "Suril is a visiting scholar investigating deep learning techniques for adaptive sensing, representation learning, and real-time human understanding.",
-    "website": "https://linkedin.com/in/suril-mehta",
-    "photo": "suril.png",
-    "active": true
-  },
-  {
-    "name": "Naoto Nishida",
-    "role": "Researcher",
-    "blurb": "Naoto is a visiting PhD student from the University of Tokyo researching AI-assisted communication and learning systems, bridging education, cognition, and intelligent interfaces.",
-    "website": "https://nawta.github.io/",
-    "photo": "naoto.png",
+    "blurb": "Jiawei is an M.S. student in Computer Science interested in advancing new forms of spatial and embodied interaction through multimodal machine learning.",
+    "website": "https://github.com/ShaCoZha",
+    "photo": "jiawei.png",
     "active": true
   },
 
   {
     "_comment": "Undergrad, Masters, Alumni & Mentees",
-    "name": "Myles Gould",
-    "role": "Master's Researcher",
-    "website": "https://mylesgould.com/",
+    "name": "Charlie Zou",
+    "role": "Undergrad Researcher",
+    "website": "https://charliezou.com",
     "active": true
+  },
+
+  {
+    "name": "Sid Chalasani",
+    "role": "Undergrad Researcher",
+    "website": "https://www.linkedin.com/in/sid-chalasani/",
+    "active": true
+  },
+
+  {
+    "name": "Xi-Aan Loh",
+    "role": "Undergrad Researcher",
+    "website": "https://linkedin.com/in/xi-aan-lucas-loh",
+    "active": true
+  },
+
+  {
+    "name": "Suril Mehta",
+    "role": "Undergrad Researcher",
+    "website": "https://linkedin.com/in/suril-mehta",
+    "active": true
+  },
+
+  {
+    "name": "Bishnu Dev",
+    "role": "now PhD at Johns Hopkins University",
+    "website": "https://www.bishnudev.com/",
+    "active": false
+  },
+  {
+    "name": "Taeyoung Yeon",
+    "role": "now PhD at NYU",
+    "website": "https://taeyoungyeon.github.io/",
+    "active": false
   },
   {
     "name": "Zhuoran (Elara) Liu",
-    "role": "Master's Researcher",
+    "role": "now PhD at Emory University",
     "website": "https://elaraliu.com/",
-    "active": true
+    "active": false
   },
   {
-    "name": "Jiawei Zhang",
-    "role": "Master's Researcher",
-    "website": "https://github.com/ShaCoZha",
-    "active": true
+    "name": "Naoto Nishida",
+    "role": "now PhD at University of Tokyo",
+    "website": "https://nawta.github.io/",
+    "active": false
   },
-  {
-    "name": "Anthony Zhang",
-    "role": "Master's Researcher",
-    "website": "https://antzed.com/",
-    "active": true
-  },
-
-  {
-    "name": "Novel Alam",
-    "role": "Master's Researcher",
-    "website": "https://www.linkedin.com/in/novel-alam/",
-    "active": true
-  },
-
-  {
-    "name": "Brian Chen",
-    "role": "Undergrad Researcher",
-    "website": "https://linkedin.com/in/brianc6",
-    "active": true
-  },
-
   {
     "name": "Sungheon Park",
     "role": "now Senior ML Engineer at Lucid Motors",

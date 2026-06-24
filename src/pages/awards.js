@@ -121,6 +121,11 @@ const AwardBadge = styled.span`
 
 const awardsData = [
   {
+    title: 'PhD Student Research Award, Northwestern University CS Department',
+    members: ['Chenfeng Gao'],
+    year: '2026',
+  },
+  {
     title: 'CRA Outstanding Undergraduate Research Award Honorable Mention',
     members: ['Xi-Aan Loh'],
     year: '2025',
