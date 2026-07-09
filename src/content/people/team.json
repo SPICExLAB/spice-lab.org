@@ -54,6 +54,13 @@
     "photo": "novel.png",
     "active": true
   },
+  {
+    "name": "Brendan O'Rourke",
+    "role": "Researcher",
+    "blurb": "Brendan is an M.S. student in Biomedical Engineering researching novel control systems for prosthetic devices, feature extraction, and patient-device embodiment.",
+    "photo": "brendan.png",
+    "active": true
+  },
 
   {
     "name": "Jiawei Zhang",
