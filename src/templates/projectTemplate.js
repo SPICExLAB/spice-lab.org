@@ -258,6 +258,7 @@ export default function ProjectTemplate({
     videoLink,
     conference,
     conferencePage,
+    arxivLink,
     additionalLinks,
     citation,
     bibtex,
@@ -344,6 +345,16 @@ export default function ProjectTemplate({
               >
                 <img src={conferenceIcon} alt="Link" />
                 <span>publication</span>
+              </LinkItem>
+            )}
+            {arxivLink && (
+              <LinkItem
+                href={arxivLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={conferenceIcon} alt="arXiv" />
+                <span>arXiv</span>
               </LinkItem>
             )}
             {github && (
@@ -454,6 +465,7 @@ export const query = graphql`
         videoLink
         conference
         conferencePage
+        arxivLink
         citation
         bibtex
         medias {
