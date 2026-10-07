@@ -1,0 +1,33 @@
+---
+type: 'project'
+slug: ArmPoser
+title: ArmPoser
+subtitle: Real-Time, Calibration-Free Arm Pose Estimation from Smartwatch IMU
+authors:
+  - Bishnu Dev
+  - Vasco Xu
+  - Xi-Aan Loh
+  - Chenfeng Gao
+  - Henry Hoffmann
+  - Karan Ahuja
+year: 2026
+dateAdded: '2026-10-06'
+coverImage: './images/cover.png'
+showCoverVideo: false
+published: 'no'
+ishomePage: 'no'
+award:
+pdfLink:
+github:
+videoLink:
+previewLink:
+conference: "SUI '26: Proceedings of the 2026 ACM Symposium on Spatial User Interaction"
+conferencePage:
+citation:
+bibtex:
+medias:
+---
+
+## Abstract
+
+Arm pose estimation enables applications in fitness, extended reality input, rehabilitation, and life logging. Prior smartwatch-based approaches rely on calibration poses and preprocessing pipelines that transform raw IMU measurements into standardized training formats. These steps hinder deployment in everyday settings and introduce errors due to imperfect calibration and sensor drift. We present ArmPoser, a calibration-free arm pose estimation system using a single smartwatch IMU. Our central contribution is training models directly in the reference frame native to consumer smartwatches, aligning learning with how IMU data is produced by deployed devices. By operating on device-native axes, ArmPoser removes the need for coordinate transformations, explicit alignment, and bone-offset calibration used in prior work. We further augment training with physically grounded variations in watch placement and arm morphology to account for user-specific variability. ArmPoser also includes a wear-configuration module that infers anterior or posterior forearm placement and crown orientation. We evaluate pose estimation on public benchmarks and on a 10-participant, 30-activity study using watchOS and Android smartwatches, where ArmPoser matches or exceeds calibrated baselines without any user calibration.
