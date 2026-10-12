@@ -69,17 +69,21 @@ We further improve long-term performance through a sensor-fusion framework that 
 
 ## Demo
 
+<div style={{width:'min(1150px, 94vw)', marginLeft:'calc(50% - min(575px, 47vw))', marginBottom:'0.75rem'}}>
 <video controls muted loop playsInline preload="metadata" poster="/images/MARIO/trajectory_poster.jpg" style={{width:'100%', borderRadius:'8px', border:'1px solid #ddd', background:'#000'}}>
   <source src="/videos/MARIO/trajectory.mp4" type="video/mp4" />
 </video>
+</div>
 
 <p style={{color:'#666', fontSize:'0.92em'}}>
   <strong>Trajectory.</strong> Left: the egocentric RGB stream of an Aria Everyday Activities recording (loc1_script1_seq6_rec1, 128 s, 53 m of walking around an apartment). Right: the top-down trajectory integrated from MARIO's velocity estimates (orange), drawn against the ground truth (black) as the person moves. The model was trained on Nymeria only and is run here without fine-tuning; it ends the sequence with 0.51 m ATE and 2.9% drift. The camera is shown for context only and is never an input to the model.
 </p>
 
+<div style={{width:'min(1150px, 94vw)', marginLeft:'calc(50% - min(575px, 47vw))', marginBottom:'0.75rem'}}>
 <video controls muted loop playsInline preload="metadata" style={{width:'100%', borderRadius:'8px', border:'1px solid #ddd', background:'#000'}}>
   <source src="/videos/MARIO/pose.mp4" type="video/mp4" />
 </video>
+</div>
 
 <p style={{color:'#666', fontSize:'0.92em'}}>
   <strong>Pose prior.</strong> PoseNet predicts the SMPL body configuration from a single head-mounted IMU and its orientation. Shown on a held-out Nymeria sequence (20230622_s0_john_solomon_act4) at 50 Hz, root-relative, with the pelvis and leg joints that feed the fusion module highlighted; the inset is the wearer's egocentric view at the same moment, for context only. Over the full 12-minute sequence the mean per-joint error is 10.1 cm.
