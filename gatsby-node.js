@@ -11,6 +11,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           frontmatter {
             slug
             dateAdded
+            title
+            subtitle
+            standaloneHtml
           }
           internal {
             contentFilePath
@@ -20,6 +23,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
   `);
   const projectTemplate = path.resolve('./src/templates/projectTemplate.js');
+  const standaloneTemplate = path.resolve('./src/templates/standaloneTemplate.js');
 
   if (result.errors) {
     reporter.panicOnBuild('Error while running GraphQL query.');
@@ -27,8 +31,27 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   result.data.allMdx.nodes.forEach((node) => {
+    const pagePath = `/projects/${node.frontmatter?.slug}`;
+    if (node.frontmatter?.standaloneHtml) {
+      // Hand-written page: render the HTML file next to index.mdx as-is.
+      const dir = path.dirname(node.internal.contentFilePath);
+      const html = fs.readFileSync(path.join(dir, node.frontmatter.standaloneHtml), 'utf8');
+      const fontsFile = path.join(dir, 'fonts.txt');
+      createPage({
+        path: pagePath,
+        component: standaloneTemplate,
+        context: {
+          id: node.id,
+          html,
+          title: node.frontmatter.title,
+          description: node.frontmatter.subtitle,
+          fonts: fs.existsSync(fontsFile) ? fs.readFileSync(fontsFile, 'utf8').trim() : null,
+        },
+      });
+      return;
+    }
     createPage({
-      path: `/projects/${node.frontmatter?.slug}`,
+      path: pagePath,
       component: `${projectTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
       context: {
         id: node.id,
@@ -99,3 +122,12 @@ exports.onCreateNode = async ({
   }
 };
 
+
+// `standaloneHtml` is only set on a few projects; declare it so the query above
+// resolves even when no MDX file defines it.
+exports.createSchemaCustomization = ({ actions }) => {
+  actions.createTypes(`
+    type Mdx implements Node { frontmatter: MdxFrontmatter }
+    type MdxFrontmatter { standaloneHtml: String }
+  `);
+};

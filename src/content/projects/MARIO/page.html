@@ -1,0 +1,270 @@
+<style>
+/* Layout: one reading column (72ch) for prose; figures, videos and the table break out to a wider media column. */
+:root {
+  --bg: #f7f8fa; --surface: #ffffff; --fg: #16181d; --mute: #5f6673; --line: #dfe3e8;
+  --accent: #e8590c; --accent-ink: #b3430a; --accent-soft: #fdeee5; --gt: #16181d;
+  --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+}
+
+* { box-sizing: border-box }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.6; }
+a { color: var(--accent-ink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+img, video { max-width: 100%; height: auto; display: block; }
+
+.labbar { border-bottom: 1px solid var(--line); background: var(--surface); }
+.labbar .in { max-width: 1100px; margin: 0 auto; padding: 12px 20px; display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center; justify-content: space-between; }
+.labbar .brand { font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: .01em; color: var(--fg); }
+.labbar .brand span { color: var(--mute); font-weight: 500; }
+.labbar nav { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 12.5px; letter-spacing: .09em; text-transform: uppercase; }
+.labbar nav a { color: var(--mute); }
+.labbar nav a:hover { color: var(--fg); text-decoration: none; }
+
+.wrap { max-width: 1100px; margin: 0 auto; padding-block: 48px 72px; padding-inline: 20px; }
+.prose { max-width: 72ch; margin-inline: auto; }
+.media { max-width: 1000px; margin-inline: auto; }
+
+.hero { text-align: center; display: grid; gap: 18px; justify-items: center; margin-bottom: 44px; }
+.venue { font-family: var(--mono); font-size: 12.5px; color: var(--accent-ink); letter-spacing: .06em; text-transform: uppercase; }
+h1 { font-family: var(--display); font-weight: 800; font-size: clamp(30px, 5vw, 46px); line-height: 1.08; letter-spacing: -.015em; margin: 0; max-width: 24ch; text-wrap: balance; }
+h1 em { font-style: normal; color: var(--accent); }
+.authors { font-size: 18px; line-height: 1.7; max-width: 60ch; }
+.authors sup { font-size: .62em; color: var(--mute); margin-left: 1px; }
+.affil { color: var(--mute); font-size: 15.5px; }
+.affil sup { font-size: .7em; }
+.buttons { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 6px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); font-weight: 600; font-size: 15px; }
+.btn:hover { border-color: var(--fg); text-decoration: none; }
+.btn.primary { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.btn.primary:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+figure { margin: 0; }
+figcaption { color: var(--mute); font-size: 14.5px; line-height: 1.55; margin-top: 12px; max-width: 80ch; }
+figcaption b { color: var(--fg); font-weight: 600; }
+.teaser { max-width: 820px; }
+.teaser img { border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+.teaser figcaption { text-align: left; }
+
+section { margin-top: 64px; }
+h2 { font-family: var(--display); font-weight: 700; font-size: 26px; letter-spacing: -.01em; margin: 0 0 16px; text-wrap: balance; }
+h2 .k { font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: .08em; color: var(--mute); display: block; margin-bottom: 6px; text-transform: uppercase; }
+p { margin: 0 0 14px; }
+.lead { font-size: 19px; }
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin: 26px 0 8px; }
+.stat { border-top: 2px solid var(--line); padding-top: 10px; }
+.stat b { display: block; font-family: var(--display); font-weight: 800; font-size: 30px; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
+.stat span { display: block; margin-top: 6px; font-size: 14px; color: var(--mute); line-height: 1.4; }
+
+/* power panel: log-scale bars, 1 mW .. 1000 mW */
+.power { margin-top: 30px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 20px 22px 16px; display: grid; gap: 14px; }
+.power h3 { margin: 0; font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: -.005em; }
+.power .ratio { font-family: var(--display); font-weight: 800; font-size: 34px; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
+.power .ratio small { font-family: var(--body); font-weight: 600; font-size: 14px; color: var(--mute); margin-left: 8px; }
+.pbars { display: grid; gap: 10px; }
+.pbar { display: grid; grid-template-columns: minmax(0, 11ch) minmax(0, 1fr) auto; gap: 12px; align-items: center; font-size: 14.5px; }
+.pbar .name { color: var(--fg); font-weight: 600; }
+.pbar .track { position: relative; height: 14px; background: var(--bg); border-radius: 7px; overflow: hidden; }
+.pbar .fill { position: absolute; inset: 0 auto 0 0; border-radius: 7px; background: var(--mute); }
+.pbar.imu .fill { background: var(--accent); }
+.pbar .val { font-family: var(--mono); font-size: 13.5px; color: var(--fg); font-variant-numeric: tabular-nums; }
+.paxis { display: grid; grid-template-columns: minmax(0, 11ch) minmax(0, 1fr) auto; gap: 12px; font-family: var(--mono); font-size: 11px; color: var(--mute); }
+.paxis .ticks { display: flex; justify-content: space-between; }
+.power .note { font-size: 13.5px; color: var(--mute); margin: 0; }
+@media (max-width: 480px) { .pbar, .paxis { grid-template-columns: minmax(0, 8ch) minmax(0, 1fr) auto; } }
+
+.demo { display: grid; gap: 14px; }
+.demo video { width: min(1150px, 94vw); margin-left: calc(50% - min(575px, 47vw)); border-radius: 8px; border: 1px solid var(--line); background: #000; }
+.demo + .demo { margin-top: 36px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; color: var(--mute); font-family: var(--mono); }
+.legend i { display: inline-block; width: 18px; height: 3px; vertical-align: middle; margin-right: 7px; border-radius: 2px; }
+.legend .gt i { background: var(--gt); }
+.legend .ours i { background: var(--accent); }
+
+.method { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+.method img { border: 1px solid var(--line); border-radius: 6px; background: #fff; padding: 8px; }
+.steps { display: grid; gap: 16px; }
+.step { border-left: 3px solid var(--accent); padding-left: 14px; }
+.step h3 { margin: 0 0 4px; font-family: var(--display); font-weight: 700; font-size: 17px; }
+.step p { margin: 0; font-size: 15.5px; color: var(--mute); }
+@media (max-width: 760px) { .method { grid-template-columns: 1fr; } }
+
+.tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 14.5px; font-variant-numeric: tabular-nums; }
+th, td { padding: 8px 12px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { font-weight: 600; color: var(--mute); font-size: 13px; letter-spacing: .03em; }
+th.l, td.l { text-align: left; }
+thead tr:first-child th { border-bottom: none; padding-bottom: 2px; }
+thead tr:first-child th.grp { text-align: center; color: var(--fg); font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; border-bottom: 2px solid var(--line); }
+tbody tr.model td.l { font-weight: 600; }
+tbody tr:last-child td { border-bottom: none; }
+td.best { font-weight: 600; color: var(--accent-ink); background: var(--accent-soft); }
+.tnote { font-size: 14px; color: var(--mute); margin-top: 10px; }
+.qual { max-width: 560px; margin: 28px auto 0; }
+.qual img { border: 1px solid var(--line); border-radius: 6px; background: #fff; padding: 6px; }
+
+pre { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; overflow-x: auto; font-family: var(--mono); font-size: 13px; line-height: 1.55; margin: 0; }
+.bib { position: relative; }
+.copy { position: absolute; top: 10px; right: 10px; font: 600 12.5px var(--body); padding: 5px 10px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; }
+.copy:hover { border-color: var(--fg); }
+
+footer { margin-top: 72px; border-top: 1px solid var(--line); padding-top: 22px; color: var(--mute); font-size: 14px; display: grid; gap: 8px; }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+<header class="labbar">
+  <div class="in">
+    <a class="brand" href="https://spice-lab.org/">SPICE Lab <span>· Northwestern University</span></a>
+    <nav>
+      <a href="https://spice-lab.org/">Home</a>
+      <a href="https://spice-lab.org/team/">Team</a>
+      <a href="https://spice-lab.org/publications/">Publications</a>
+      <a href="https://spice-lab.org/awards/">Awards</a>
+      <a href="https://spice-lab.org/contact/">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <div class="venue">CVPR 2026 Findings</div>
+    <h1><em>MARIO:</em> Motion-Augmented Real-Time Multi-Sensor Inertial Odometry</h1>
+    <!-- Add personal-page links around each name if you like: <a href="...">Yiquan Li</a> -->
+    <div class="authors">
+      Yiquan Li<sup>1,*</sup> &nbsp; Taeyoung Yeon<sup>1,*</sup> &nbsp; Chenfeng Gao<sup>1</sup> &nbsp;
+      Vasco Xu<sup>2</sup> &nbsp; Xuanyou Liu<sup>1</sup> &nbsp; Karan Ahuja<sup>1</sup>
+    </div>
+    <div class="affil"><sup>1</sup> Northwestern University &nbsp;&nbsp; <sup>2</sup> University of Chicago &nbsp;&nbsp; <sup>*</sup> Equal contribution</div>
+    <div class="buttons">
+      <a class="btn primary" href="https://arxiv.org/abs/2606.02996">
+        <svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg>Paper</a>
+      <a class="btn" href="https://arxiv.org/pdf/2606.02996">
+        <svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>PDF</a>
+      <a class="btn" href="https://github.com/SPICExLAB/MARIO">
+        <svg viewBox="0 0 24 24"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>Code</a>
+      <a class="btn" href="#bibtex">
+        <svg viewBox="0 0 24 24"><path d="M17 6.1H3"/><path d="M21 12.1H3"/><path d="M15.1 18H3"/></svg>BibTeX</a>
+    </div>
+  </div>
+
+  <figure class="teaser media">
+    <img src="/images/MARIO/teaser.png" width="1334" height="624" alt="A person wearing AR glasses walks along a corridor; the lower-body pose MARIO infers from the head IMU is drawn along the walk, next to the five inputs the model uses: two IMUs, barometer, magnetometer and PoseNet.">
+    <figcaption><b>One pair of glasses, five signals.</b> MARIO takes the two IMUs, barometer and magnetometer already built into AR glasses, adds a lower-body pose inferred from the head IMU by a pretrained PoseNet, and feeds all of it to an off-the-shelf inertial odometry network.</figcaption>
+  </figure>
+
+  <section class="prose">
+    <h2><span class="k">Abstract</span>Inertial odometry that knows how people move</h2>
+    <p class="lead">Inertial odometry (IO) using only IMUs is a lightweight way to track a person in AR and wearable devices, but learned IO models still drift because they integrate acceleration without any notion of the body producing it.</p>
+    <p>MARIO grounds inertial odometry in human kinematics. A learned, IMU-inferred pose prior injects physically consistent motion constraints into existing IO architectures and reduces positional drift by up to 36% on Nymeria, a daily-activity dataset five times larger than those used in prior work. A second stage fuses the magnetometer, barometer and secondary IMU that commercial AR glasses already carry; with it, drift falls by up to 42% and the models generalize better across motions and environments. MARIO plugs into AirIO, TLIO, EqNIO and RoNIN-LSTM without changing their backbones, and the full AirIO variant runs at 315 FPS on a single GPU.</p>
+    <div class="stats">
+      <div class="stat"><b>−36%</b><span>drift on Nymeria from the pose prior alone</span></div>
+      <div class="stat"><b>−42%</b><span>drift with the full multi-sensor fusion</span></div>
+      <div class="stat"><b>4</b><span>IO backbones improved without modification</span></div>
+      <div class="stat"><b>300 h</b><span>of Nymeria used for training and evaluation</span></div>
+    </div>
+
+    <div class="power" aria-label="Power draw of a camera pipeline versus an IMU">
+      <h3>Why inertial: the power budget</h3>
+      <div class="ratio">≈ 450×<small>less power than a full camera pipeline</small></div>
+      <div class="pbars">
+        <div class="pbar cam"><span class="name">Camera pipeline</span><span class="track"><span class="fill" style="width:95.8%"></span></span><span class="val">750 mW</span></div>
+        <div class="pbar imu"><span class="name">IMU</span><span class="track"><span class="fill" style="width:7.7%"></span></span><span class="val">1.7 mW</span></div>
+      </div>
+      <div class="paxis"><span></span><span class="ticks"><span>1 mW</span><span>10</span><span>100</span><span>1000 mW</span></span><span>log scale</span></div>
+      <!-- Add a source for these figures here if you cite one. -->
+      <p class="note">Camera capture plus the visual processing it feeds, end to end, against the IMU on its own. MARIO adds a barometer, magnetometer and second IMU, all of which sit in the same milliwatt class.</p>
+    </div>
+  </section>
+
+  <section class="media" id="demo">
+    <h2><span class="k">Demo</span>What the model sees, and where it thinks it is</h2>
+    <div class="demo">
+      <video controls muted loop playsinline preload="metadata" poster="/images/MARIO/trajectory_poster.jpg" width="1024" height="512">
+        <source src="/videos/MARIO/trajectory.mp4" type="video/mp4">
+      </video>
+      <div class="legend"><span class="gt"><i></i>Ground truth (Aria MPS)</span><span class="ours"><i></i>MARIO, AirIO + all sensors</span></div>
+      <figcaption><b>Trajectory.</b> Left: the egocentric RGB stream of an Aria Everyday Activities recording (loc1_script1_seq6_rec1, 128 s, 53 m of walking around an apartment). Right: the top-down trajectory integrated from MARIO's velocity estimates, drawn against the ground truth as the person moves. The model was trained on Nymeria only and is run here without fine-tuning; it ends the sequence with 0.51 m ATE and 2.9% drift. The camera is shown for context only and is never an input to the model.</figcaption>
+    </div>
+    <div class="demo">
+      <video controls muted loop playsinline preload="metadata" width="1024" height="576">
+        <source src="/videos/MARIO/pose.mp4" type="video/mp4">
+      </video>
+      <div class="legend"><span class="gt"><i></i>Xsens ground truth</span><span class="ours"><i></i>PoseNet from the head IMU</span></div>
+      <figcaption><b>Pose prior.</b> PoseNet predicts the SMPL body configuration from a single head-mounted IMU and its orientation. Shown on a held-out Nymeria sequence (20230622_s0_john_solomon_act4) at 50 Hz, root-relative, with the pelvis and leg joints that feed the fusion module highlighted; the inset is the wearer's egocentric view at the same moment, for context only. Over the full 12-minute sequence the mean per-joint error is 10.1 cm.</figcaption>
+    </div>
+  </section>
+
+  <section class="media" id="method">
+    <h2><span class="k">Method</span>A pose prior, a fusion layer, and the backbone you already have</h2>
+    <div class="method">
+      <figure>
+        <img src="/images/MARIO/architecture.png" width="1328" height="1048" alt="Architecture diagram: five input streams (IMU 1, IMU 2, barometer, magnetometer, PoseNet) each pass through a small encoder, are concatenated and fused, then fed to an inertial odometry network that outputs the trajectory. Below, PoseNet maps IMU and orientation through a feature encoder and GRUs to joint positions and joint rotations.">
+        <figcaption>Per-stream encoders, one fusion layer, and an unchanged IO network. PoseNet (bottom) is trained once and frozen.</figcaption>
+      </figure>
+      <div class="steps">
+        <div class="step"><h3>PoseNet learns the body from one IMU</h3><p>A CNN-GRU network maps head-IMU acceleration, angular velocity and orientation to SMPL joint positions and 6D joint rotations. Only the pelvis and legs are kept: they dominate global motion and are the joints a head sensor can actually constrain.</p></div>
+        <div class="step"><h3>Auxiliary sensors become mid-level features</h3><p>Barometric pressure is converted to altitude and vertical velocity, the magnetometer to a tilt-compensated heading, and the second IMU is kept as a raw 6-axis stream. Each is encoded by a small temporal CNN at the IMU rate.</p></div>
+        <div class="step"><h3>Concatenate, fuse, hand off</h3><p>The per-stream features are concatenated with the primary IMU features and passed through an MLP fusion layer. The result goes straight into AirIO, TLIO, EqNIO or RoNIN-LSTM, which predict velocity as usual.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="media" id="results">
+    <h2><span class="k">Results on Nymeria</span>Consistent gains on every backbone</h2>
+    <p class="prose" style="margin-inline:0">Nymeria test split, 300 hours of daily activities with an average trajectory of 298 m. ATE is the root-mean-square position error over the sequence; RTE is the relative error over 5-second and 1-second windows; drift is the mean relative error in percent. The best variant within the single-IMU and multi-sensor groups is highlighted.</p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th class="l"></th><th class="l"></th><th class="grp" colspan="2">Single IMU</th><th class="grp" colspan="4">Multi-sensor</th></tr>
+          <tr><th class="l">Backbone</th><th class="l">Metric</th><th>Base</th><th>+ Pose</th><th>+ 2nd IMU</th><th>+ Baro</th><th>+ Mag</th><th>+ All</th></tr>
+        </thead>
+        <tbody>
+          <tr class="model"><td class="l" rowspan="4">AirIO</td><td class="l">ATE (m)</td><td>6.85</td><td class="best">5.22</td><td>5.20</td><td>5.25</td><td>5.71</td><td class="best">4.64</td></tr>
+          <tr><td class="l">RTE-5s (m)</td><td>0.363</td><td class="best">0.323</td><td>0.332</td><td>0.362</td><td>0.360</td><td class="best">0.297</td></tr>
+          <tr><td class="l">RTE-1s (m)</td><td>0.099</td><td class="best">0.085</td><td>0.088</td><td>0.109</td><td>0.098</td><td class="best">0.078</td></tr>
+          <tr><td class="l">Drift (%)</td><td>3.56</td><td class="best">2.35</td><td>2.52</td><td>2.56</td><td>2.77</td><td class="best">2.16</td></tr>
+          <tr class="model"><td class="l" rowspan="4">TLIO</td><td class="l">ATE (m)</td><td>10.19</td><td class="best">7.97</td><td>6.45</td><td>5.85</td><td>8.57</td><td class="best">5.73</td></tr>
+          <tr><td class="l">RTE-5s (m)</td><td>0.322</td><td class="best">0.281</td><td>0.300</td><td>0.260</td><td>0.304</td><td class="best">0.242</td></tr>
+          <tr><td class="l">RTE-1s (m)</td><td>0.103</td><td class="best">0.096</td><td>0.097</td><td>0.088</td><td>0.099</td><td class="best">0.083</td></tr>
+          <tr><td class="l">Drift (%)</td><td>6.46</td><td class="best">4.94</td><td>3.70</td><td>3.34</td><td>5.17</td><td class="best">3.64</td></tr>
+          <tr class="model"><td class="l" rowspan="4">EqNIO</td><td class="l">ATE (m)</td><td class="best">7.63</td><td>7.65</td><td>5.49</td><td>5.27</td><td>6.85</td><td class="best">4.52</td></tr>
+          <tr><td class="l">RTE-5s (m)</td><td>0.379</td><td class="best">0.316</td><td>0.273</td><td>0.270</td><td>0.331</td><td class="best">0.231</td></tr>
+          <tr><td class="l">RTE-1s (m)</td><td>0.122</td><td class="best">0.101</td><td>0.091</td><td>0.093</td><td>0.107</td><td class="best">0.081</td></tr>
+          <tr><td class="l">Drift (%)</td><td class="best">3.93</td><td>4.30</td><td>2.84</td><td>2.85</td><td>3.39</td><td class="best">2.40</td></tr>
+          <tr class="model"><td class="l" rowspan="4">RoNIN-LSTM</td><td class="l">ATE (m)</td><td>9.10</td><td class="best">6.83</td><td>8.76</td><td class="best">5.88</td><td>5.93</td><td>5.89</td></tr>
+          <tr><td class="l">RTE-5s (m)</td><td>0.330</td><td class="best">0.281</td><td>0.289</td><td>0.261</td><td>0.254</td><td class="best">0.246</td></tr>
+          <tr><td class="l">RTE-1s (m)</td><td>0.103</td><td class="best">0.092</td><td>0.093</td><td>0.088</td><td>0.085</td><td class="best">0.084</td></tr>
+          <tr><td class="l">Drift (%)</td><td>6.22</td><td class="best">3.99</td><td>6.13</td><td class="best">3.44</td><td>3.64</td><td>3.61</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <figure class="qual">
+      <img src="/images/MARIO/fig5_trajectories.png" width="1340" height="1250" alt="Three Nymeria sequences shown as top-down trajectories in three columns: TLIO in magenta, TLIO with the pose prior in orange, and TLIO with all sensors in blue, each drawn over the ground truth in grey. Each column to the right stays closer to the grey ground-truth path.">
+      <figcaption><b>Three Nymeria sequences, three TLIO variants.</b> Ground truth in grey; start and end positions marked. Adding the pose prior pulls the estimate back toward the true path, and adding the remaining sensors removes most of the residual drift. Scale bars: 2 m, 8 m and 24 m.</figcaption>
+    </figure>
+    <p class="tnote">Removing gravity from the raw accelerometer before encoding helps every variant (AirIO + All: 6.12 m → 4.64 m ATE). Mid-level feature fusion also outperforms early concatenation and cross-attention in our ablations. The paper reports the same pattern on Aria Everyday Activities and on the TLIO dataset.</p>
+  </section>
+
+  <section class="prose" id="bibtex">
+    <h2><span class="k">Citation</span>BibTeX</h2>
+    <div class="bib">
+      <button class="copy" id="copybib" type="button">Copy</button>
+<pre id="bibtext">@article{li2026mario,
+  title   = {MARIO: Motion-Augmented Real-Time Multi-Sensor Inertial Odometry},
+  author  = {Li, Yiquan and Yeon, Taeyoung and Gao, Chenfeng and Xu, Vasco and Liu, Xuanyou and Ahuja, Karan},
+  journal = {arXiv preprint arXiv:2606.02996},
+  year    = {2026}
+}</pre>
+    </div>
+  </section>
+
+  <footer>
+    <div>Built on <a href="https://github.com/Air-IO/Air-IO">AirIO</a> and <a href="https://github.com/pypose/pypose">PyPose</a>. Data from <a href="https://github.com/facebookresearch/nymeria_dataset">Nymeria</a>, <a href="https://www.projectaria.com/datasets/aea/">Aria Everyday Activities</a> and <a href="https://github.com/CathIAS/TLIO">TLIO</a>.</div>
+    <div>Questions about the work: see the <a href="https://spice-lab.org/contact/">lab contact page</a>. Code and configs are on <a href="https://github.com/SPICExLAB/MARIO">GitHub</a> under the MIT license.</div>
+  </footer>
+</main>
+
