@@ -77,8 +77,10 @@ p { margin: 0 0 14px; }
 .power .note { font-size: 13.5px; color: var(--mute); margin: 0; }
 @media (max-width: 480px) { .pbar, .paxis { grid-template-columns: minmax(0, 8ch) minmax(0, 1fr) auto; } }
 
+#demo { max-width: 1150px; }
+#demo figcaption { max-width: none; }
 .demo { display: grid; gap: 14px; }
-.demo video { width: min(1150px, 94vw); margin-left: calc(50% - min(575px, 47vw)); border-radius: 8px; border: 1px solid var(--line); background: #000; }
+.demo video { width: 100%; border-radius: 8px; border: 1px solid var(--line); background: #000; }
 .demo + .demo { margin-top: 36px; }
 .legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; color: var(--mute); font-family: var(--mono); }
 .legend i { display: inline-block; width: 18px; height: 3px; vertical-align: middle; margin-right: 7px; border-radius: 2px; }
