@@ -18,6 +18,7 @@ published: 'yes'
 ishomePage: 'no'
 award:
 pdfLink: '/papers/MARIO.pdf'
+arxivLink: 'https://arxiv.org/abs/2606.02996'
 github: 'https://github.com/SPICExLAB/MARIO'
 videoLink:
 conference: "CVPR '26: Proceedings of the 2026 IEEE/CVF Conference on Computer Vision and Pattern Recognition (Findings)"
@@ -34,7 +35,11 @@ bibtex: |
 medias:
 ---
 
-![Teaser](./images/teaser.png)
+![A person wearing AR glasses walks along a corridor; the lower-body pose MARIO infers from the head IMU is drawn along the walk, next to the five inputs the model uses.](./images/teaser.png)
+
+<p style={{color:'#666', fontSize:'0.92em', marginTop:'-0.5rem'}}>
+  <strong>One pair of glasses, five signals.</strong> MARIO takes the two IMUs, barometer and magnetometer already built into AR glasses, adds a lower-body pose inferred from the head IMU by a pretrained PoseNet, and feeds all of it to an off-the-shelf inertial odometry network.
+</p>
 
 ## Abstract
 
@@ -44,10 +49,91 @@ To address this limitation, we ground inertial odometry in human kinematics thro
 
 We further improve long-term performance through a sensor-fusion framework that incorporates auxiliary signals from lightweight sensors already available on commercial AR glasses, including the magnetometer, barometer, and a secondary IMU. With this fusion strategy, drift is reduced by up to 42%, improving robustness and generalization across diverse motion conditions. Together, our results establish a new paradigm for inertial and lightweight odometry by unifying human motion kinematics with multimodal sensing, setting a new benchmark for accurate and robust camera-less human tracking.
 
-## Experimental Results on Nymeria
+<div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(150px, 1fr))', gap:'14px', margin:'1.5rem 0 0.5rem'}}>
+  <div style={{borderTop:'2px solid #ddd', paddingTop:'10px'}}><div style={{fontSize:'1.9em', fontWeight:700, lineHeight:1, color:'#4E2A84'}}>&minus;36%</div><div style={{fontSize:'0.88em', color:'#666', marginTop:'6px'}}>drift on Nymeria from the pose prior alone</div></div>
+  <div style={{borderTop:'2px solid #ddd', paddingTop:'10px'}}><div style={{fontSize:'1.9em', fontWeight:700, lineHeight:1, color:'#4E2A84'}}>&minus;42%</div><div style={{fontSize:'0.88em', color:'#666', marginTop:'6px'}}>drift with the full multi-sensor fusion</div></div>
+  <div style={{borderTop:'2px solid #ddd', paddingTop:'10px'}}><div style={{fontSize:'1.9em', fontWeight:700, lineHeight:1, color:'#4E2A84'}}>4</div><div style={{fontSize:'0.88em', color:'#666', marginTop:'6px'}}>IO backbones improved without modification</div></div>
+  <div style={{borderTop:'2px solid #ddd', paddingTop:'10px'}}><div style={{fontSize:'1.9em', fontWeight:700, lineHeight:1, color:'#4E2A84'}}>300 h</div><div style={{fontSize:'0.88em', color:'#666', marginTop:'6px'}}>of Nymeria used for training and evaluation</div></div>
+</div>
 
-We benchmark MARIO on Nymeria, a challenging daily-activity inertial dataset, and compare it with prior inertial odometry approaches. Our method improves robustness and reduces positional drift by leveraging human motion-aware pose priors together with lightweight multimodal fusion.
+<div style={{marginTop:'1.75rem', border:'1px solid #ddd', borderRadius:'10px', padding:'18px 20px 14px', display:'grid', gap:'12px'}}>
+  <div style={{fontWeight:700, fontSize:'1.1em'}}>Why inertial: the power budget</div>
+  <div style={{fontSize:'1.9em', fontWeight:700, lineHeight:1, color:'#4E2A84'}}>&asymp; 450&times; <span style={{fontSize:'0.45em', fontWeight:600, color:'#666', marginLeft:'6px'}}>less power than a full camera pipeline</span></div>
+  <div style={{display:'grid', gridTemplateColumns:'minmax(0, 11ch) minmax(0, 1fr) auto', gap:'12px', alignItems:'center', fontSize:'0.92em'}}>
+    <span style={{fontWeight:600}}>Camera pipeline</span><span style={{position:'relative', height:'14px', background:'#f0f0f0', borderRadius:'7px', overflow:'hidden'}}><span style={{position:'absolute', left:0, top:0, bottom:0, width:'95.8%', background:'#9a9a9a', borderRadius:'7px'}}></span></span><span style={{fontFamily:'monospace'}}>750 mW</span>
+    <span style={{fontWeight:600}}>IMU</span><span style={{position:'relative', height:'14px', background:'#f0f0f0', borderRadius:'7px', overflow:'hidden'}}><span style={{position:'absolute', left:0, top:0, bottom:0, width:'7.7%', background:'#4E2A84', borderRadius:'7px'}}></span></span><span style={{fontFamily:'monospace'}}>1.7 mW</span>
+  </div>
+  <div style={{display:'grid', gridTemplateColumns:'minmax(0, 11ch) minmax(0, 1fr) auto', gap:'12px', fontFamily:'monospace', fontSize:'0.72em', color:'#888'}}><span></span><span style={{display:'flex', justifyContent:'space-between'}}><span>1 mW</span><span>10</span><span>100</span><span>1000 mW</span></span><span>log scale</span></div>
+  <p style={{fontSize:'0.88em', color:'#666', margin:0}}>Camera capture plus the visual processing it feeds, end to end, against the IMU on its own. MARIO adds a barometer, magnetometer and second IMU, all of which sit in the same milliwatt class.</p>
+</div>
 
-![Table 1](./images/table.jpg)
+## Demo
 
-Table 1. Quantitative results on the Nymeria dataset. MARIO improves inertial odometry accuracy over prior baselines, especially in drift-sensitive settings.
+<video controls muted loop playsInline preload="metadata" poster="/images/MARIO/trajectory_poster.jpg" style={{width:'100%', borderRadius:'8px', border:'1px solid #ddd', background:'#000'}}>
+  <source src="/videos/MARIO/trajectory.mp4" type="video/mp4" />
+</video>
+
+<p style={{color:'#666', fontSize:'0.92em'}}>
+  <strong>Trajectory.</strong> Left: the egocentric RGB stream of an Aria Everyday Activities recording (loc1_script1_seq6_rec1, 128 s, 53 m of walking around an apartment). Right: the top-down trajectory integrated from MARIO's velocity estimates (orange), drawn against the ground truth (black) as the person moves. The model was trained on Nymeria only and is run here without fine-tuning; it ends the sequence with 0.51 m ATE and 2.9% drift. The camera is shown for context only and is never an input to the model.
+</p>
+
+<video controls muted loop playsInline preload="metadata" style={{width:'100%', borderRadius:'8px', border:'1px solid #ddd', background:'#000'}}>
+  <source src="/videos/MARIO/pose.mp4" type="video/mp4" />
+</video>
+
+<p style={{color:'#666', fontSize:'0.92em'}}>
+  <strong>Pose prior.</strong> PoseNet predicts the SMPL body configuration from a single head-mounted IMU and its orientation. Shown on a held-out Nymeria sequence (20230622_s0_john_solomon_act4) at 50 Hz, root-relative, with the pelvis and leg joints that feed the fusion module highlighted; the inset is the wearer's egocentric view at the same moment, for context only. Over the full 12-minute sequence the mean per-joint error is 10.1 cm.
+</p>
+
+## Method
+
+![Architecture: five input streams each pass through a small encoder, are concatenated and fused, then fed to an inertial odometry network. Below, PoseNet maps IMU and orientation through a feature encoder and GRUs to joint positions and rotations.](./images/architecture.png)
+
+**PoseNet learns the body from one IMU.** A CNN-GRU network maps head-IMU acceleration, angular velocity and orientation to SMPL joint positions and 6D joint rotations. Only the pelvis and legs are kept: they dominate global motion and are the joints a head sensor can actually constrain. PoseNet is trained once on Nymeria and frozen.
+
+**Auxiliary sensors become mid-level features.** Barometric pressure is converted to altitude and vertical velocity, the magnetometer to a tilt-compensated heading, and the second IMU is kept as a raw 6-axis stream. Each is encoded by a small temporal CNN at the IMU rate.
+
+**Concatenate, fuse, hand off.** The per-stream features are concatenated with the primary IMU features and passed through an MLP fusion layer. The result goes straight into AirIO, TLIO, EqNIO or RoNIN-LSTM, which predict velocity as usual. The full AirIO variant runs at 315 FPS on a single GPU.
+
+## Results on Nymeria
+
+Nymeria test split, 300 hours of daily activities with an average trajectory of 298 m. ATE is the root-mean-square position error over the sequence; RTE is the relative error over 5-second and 1-second windows; drift is the mean relative error in percent. The best variant within the single-IMU and multi-sensor groups is highlighted.
+
+<div style={{overflowX:'auto', border:'1px solid #ddd', borderRadius:'8px'}}>
+<table style={{borderCollapse:'collapse', width:'100%', minWidth:'640px', fontSize:'0.9em', fontVariantNumeric:'tabular-nums'}}>
+<thead>
+<tr><th style={{padding:'8px 12px'}}></th><th style={{padding:'8px 12px'}}></th><th colSpan={2} style={{padding:'6px 12px 2px', textAlign:'center', fontSize:'0.8em', letterSpacing:'0.08em', textTransform:'uppercase', borderBottom:'2px solid #ddd'}}>Single IMU</th><th colSpan={4} style={{padding:'6px 12px 2px', textAlign:'center', fontSize:'0.8em', letterSpacing:'0.08em', textTransform:'uppercase', borderBottom:'2px solid #ddd'}}>Multi-sensor</th></tr>
+<tr style={{color:'#666', fontSize:'0.88em'}}><th style={{padding:'8px 12px', textAlign:'left'}}>Backbone</th><th style={{padding:'8px 12px', textAlign:'left'}}>Metric</th><th style={{padding:'8px 12px', textAlign:'right'}}>Base</th><th style={{padding:'8px 12px', textAlign:'right'}}>+ Pose</th><th style={{padding:'8px 12px', textAlign:'right'}}>+ 2nd IMU</th><th style={{padding:'8px 12px', textAlign:'right'}}>+ Baro</th><th style={{padding:'8px 12px', textAlign:'right'}}>+ Mag</th><th style={{padding:'8px 12px', textAlign:'right'}}>+ All</th></tr>
+</thead>
+<tbody style={{textAlign:'right'}}>
+<tr style={{borderTop:'1px solid #ddd'}}><td rowSpan={4} style={{padding:'8px 12px', textAlign:'left', fontWeight:600, verticalAlign:'top'}}>AirIO</td><td style={{padding:'8px 12px', textAlign:'left'}}>ATE (m)</td><td style={{padding:'8px 12px'}}>6.85</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>5.22</td><td style={{padding:'8px 12px'}}>5.20</td><td style={{padding:'8px 12px'}}>5.25</td><td style={{padding:'8px 12px'}}>5.71</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>4.64</td></tr>
+<tr><td style={{padding:'8px 12px', textAlign:'left'}}>RTE-5s (m)</td><td style={{padding:'8px 12px'}}>0.363</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>0.323</td><td style={{padding:'8px 12px'}}>0.332</td><td style={{padding:'8px 12px'}}>0.362</td><td style={{padding:'8px 12px'}}>0.360</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>0.297</td></tr>
+<tr><td style={{padding:'8px 12px', textAlign:'left'}}>RTE-1s (m)</td><td style={{padding:'8px 12px'}}>0.099</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>0.085</td><td style={{padding:'8px 12px'}}>0.088</td><td style={{padding:'8px 12px'}}>0.109</td><td style={{padding:'8px 12px'}}>0.098</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>0.078</td></tr>
+<tr><td style={{padding:'8px 12px', textAlign:'left'}}>Drift (%)</td><td style={{padding:'8px 12px'}}>3.56</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>2.35</td><td style={{padding:'8px 12px'}}>2.52</td><td style={{padding:'8px 12px'}}>2.56</td><td style={{padding:'8px 12px'}}>2.77</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>2.16</td></tr>
+<tr style={{borderTop:'1px solid #ddd'}}><td rowSpan={4} style={{padding:'8px 12px', textAlign:'left', fontWeight:600, verticalAlign:'top'}}>TLIO</td><td style={{padding:'8px 12px', textAlign:'left'}}>ATE (m)</td><td style={{padding:'8px 12px'}}>10.19</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>7.97</td><td style={{padding:'8px 12px'}}>6.45</td><td style={{padding:'8px 12px'}}>5.85</td><td style={{padding:'8px 12px'}}>8.57</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>5.73</td></tr>
+<tr><td style={{padding:'8px 12px', textAlign:'left'}}>RTE-5s (m)</td><td style={{padding:'8px 12px'}}>0.322</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>0.281</td><td style={{padding:'8px 12px'}}>0.300</td><td style={{padding:'8px 12px'}}>0.260</td><td style={{padding:'8px 12px'}}>0.304</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>0.242</td></tr>
+<tr><td style={{padding:'8px 12px', textAlign:'left'}}>RTE-1s (m)</td><td style={{padding:'8px 12px'}}>0.103</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>0.096</td><td style={{padding:'8px 12px'}}>0.097</td><td style={{padding:'8px 12px'}}>0.088</td><td style={{padding:'8px 12px'}}>0.099</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>0.083</td></tr>
+<tr><td style={{padding:'8px 12px', textAlign:'left'}}>Drift (%)</td><td style={{padding:'8px 12px'}}>6.46</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>4.94</td><td style={{padding:'8px 12px'}}>3.70</td><td style={{padding:'8px 12px'}}>3.34</td><td style={{padding:'8px 12px'}}>5.17</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>3.64</td></tr>
+<tr style={{borderTop:'1px solid #ddd'}}><td rowSpan={4} style={{padding:'8px 12px', textAlign:'left', fontWeight:600, verticalAlign:'top'}}>EqNIO</td><td style={{padding:'8px 12px', textAlign:'left'}}>ATE (m)</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>7.63</td><td style={{padding:'8px 12px'}}>7.65</td><td style={{padding:'8px 12px'}}>5.49</td><td style={{padding:'8px 12px'}}>5.27</td><td style={{padding:'8px 12px'}}>6.85</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>4.52</td></tr>
+<tr><td style={{padding:'8px 12px', textAlign:'left'}}>RTE-5s (m)</td><td style={{padding:'8px 12px'}}>0.379</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>0.316</td><td style={{padding:'8px 12px'}}>0.273</td><td style={{padding:'8px 12px'}}>0.270</td><td style={{padding:'8px 12px'}}>0.331</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>0.231</td></tr>
+<tr><td style={{padding:'8px 12px', textAlign:'left'}}>RTE-1s (m)</td><td style={{padding:'8px 12px'}}>0.122</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>0.101</td><td style={{padding:'8px 12px'}}>0.091</td><td style={{padding:'8px 12px'}}>0.093</td><td style={{padding:'8px 12px'}}>0.107</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>0.081</td></tr>
+<tr><td style={{padding:'8px 12px', textAlign:'left'}}>Drift (%)</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>3.93</td><td style={{padding:'8px 12px'}}>4.30</td><td style={{padding:'8px 12px'}}>2.84</td><td style={{padding:'8px 12px'}}>2.85</td><td style={{padding:'8px 12px'}}>3.39</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>2.40</td></tr>
+<tr style={{borderTop:'1px solid #ddd'}}><td rowSpan={4} style={{padding:'8px 12px', textAlign:'left', fontWeight:600, verticalAlign:'top'}}>RoNIN-LSTM</td><td style={{padding:'8px 12px', textAlign:'left'}}>ATE (m)</td><td style={{padding:'8px 12px'}}>9.10</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>6.83</td><td style={{padding:'8px 12px'}}>8.76</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>5.88</td><td style={{padding:'8px 12px'}}>5.93</td><td style={{padding:'8px 12px'}}>5.89</td></tr>
+<tr><td style={{padding:'8px 12px', textAlign:'left'}}>RTE-5s (m)</td><td style={{padding:'8px 12px'}}>0.330</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>0.281</td><td style={{padding:'8px 12px'}}>0.289</td><td style={{padding:'8px 12px'}}>0.261</td><td style={{padding:'8px 12px'}}>0.254</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>0.246</td></tr>
+<tr><td style={{padding:'8px 12px', textAlign:'left'}}>RTE-1s (m)</td><td style={{padding:'8px 12px'}}>0.103</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>0.092</td><td style={{padding:'8px 12px'}}>0.093</td><td style={{padding:'8px 12px'}}>0.088</td><td style={{padding:'8px 12px'}}>0.085</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>0.084</td></tr>
+<tr><td style={{padding:'8px 12px', textAlign:'left'}}>Drift (%)</td><td style={{padding:'8px 12px'}}>6.22</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>3.99</td><td style={{padding:'8px 12px'}}>6.13</td><td style={{padding:'8px 12px', fontWeight:600, color:'#4E2A84', background:'#f3eefa'}}>3.44</td><td style={{padding:'8px 12px'}}>3.64</td><td style={{padding:'8px 12px'}}>3.61</td></tr>
+</tbody>
+</table>
+</div>
+
+<p style={{color:'#666', fontSize:'0.88em'}}>Removing gravity from the raw accelerometer before encoding helps every variant (AirIO + All: 6.12 m to 4.64 m ATE). Mid-level feature fusion also outperforms early concatenation and cross-attention in our ablations. The paper reports the same pattern on Aria Everyday Activities and on the TLIO dataset.</p>
+
+<div style={{maxWidth:'560px', margin:'1.5rem auto 0'}}>
+
+![Three Nymeria sequences shown as top-down trajectories in three columns: TLIO, TLIO with the pose prior, and TLIO with all sensors, each drawn over the ground truth in grey.](./images/fig5_trajectories.png)
+
+</div>
+
+<p style={{color:'#666', fontSize:'0.92em'}}>
+  <strong>Three Nymeria sequences, three TLIO variants.</strong> Ground truth in grey; start and end positions marked. Adding the pose prior pulls the estimate back toward the true path, and adding the remaining sensors removes most of the residual drift. Scale bars: 2 m, 8 m and 24 m.
+</p>
