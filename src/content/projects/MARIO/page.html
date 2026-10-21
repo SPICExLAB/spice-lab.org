@@ -3,6 +3,7 @@
 :root {
   --bg: #f7f8fa; --surface: #ffffff; --fg: #16181d; --mute: #5f6673; --line: #dfe3e8;
   --accent: #e8590c; --accent-ink: #b3430a; --accent-soft: #fdeee5; --gt: #16181d;
+  --bar-base: #c3c8cf; --bar-pose: #f5a572;
   --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
   --body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
   --mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
@@ -86,6 +87,24 @@ p { margin: 0 0 14px; }
 .legend i { display: inline-block; width: 18px; height: 3px; vertical-align: middle; margin-right: 7px; border-radius: 2px; }
 .legend .gt i { background: var(--gt); }
 .legend .ours i { background: var(--accent); }
+
+/* gain panel: ATE per backbone, linear 0 .. 12 m; bars reuse the .power panel shell */
+.gain { margin-top: 22px; }
+.gain .heads { display: flex; flex-wrap: wrap; gap: 8px 32px; }
+.gain .heads .ratio small { display: block; margin: 6px 0 0; }
+.gain .key { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13.5px; color: var(--mute); }
+.gain .key i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 7px; }
+.ggroups { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 16px 36px; }
+.ggroup { display: grid; gap: 6px; }
+.ggroup .gh { display: flex; justify-content: space-between; gap: 12px; font-family: var(--display); font-weight: 700; font-size: 15.5px; }
+.ggroup .gh span { font-family: var(--mono); font-weight: 500; font-size: 12.5px; color: var(--accent-ink); align-self: center; }
+.gain .pbar { grid-template-columns: 4.2em minmax(0, 1fr) 3.4em; font-size: 13.5px; }
+.gain .pbar .name { font-weight: 400; color: var(--mute); }
+.gain .pbar .track { height: 12px; }
+.gain .pbar .val { text-align: right; font-size: 12.5px; white-space: nowrap; }
+.gain .base .fill { background: var(--bar-base); }
+.gain .pose .fill { background: var(--bar-pose); }
+.gain .all .fill { background: var(--accent); }
 
 .method { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 32px; align-items: start; }
 .method img { border: 1px solid var(--line); border-radius: 6px; background: #fff; padding: 8px; }
@@ -197,6 +216,41 @@ footer { margin-top: 72px; border-top: 1px solid var(--line); padding-top: 22px;
       </video>
       <div class="legend"><span class="gt"><i></i>Xsens ground truth</span><span class="ours"><i></i>PoseNet from the head IMU</span></div>
       <figcaption><b>Pose prior.</b> PoseNet predicts the SMPL body configuration from a single head-mounted IMU and its orientation. Shown on a held-out Nymeria sequence (20230622_s0_john_solomon_act4) at 50 Hz, root-relative, with the pelvis and leg joints that feed the fusion module highlighted; the inset is the wearer's egocentric view at the same moment, for context only. Over the full 12-minute sequence the mean per-joint error is 10.1 cm.</figcaption>
+    </div>
+    <div class="power gain" role="figure" aria-label="Bar chart of ATE on the Nymeria test split for four backbones, comparing the base model, the model with the pose prior, and the model with all sensors">
+      <h3>What the pose prior buys, and what the other sensors add</h3>
+      <div class="heads">
+        <div class="ratio">−18%<small>mean ATE vs. base, + Pose</small></div>
+        <div class="ratio">−38%<small>mean ATE vs. base, + All sensors</small></div>
+      </div>
+      <div class="key"><span><i style="background:var(--bar-base)"></i>Base</span><span><i style="background:var(--bar-pose)"></i>+ Pose</span><span><i style="background:var(--accent)"></i>+ All (pose, 2nd IMU, baro, mag)</span></div>
+      <div class="ggroups">
+        <div class="ggroup">
+          <div class="gh">AirIO<span>All vs. Pose −11%</span></div>
+          <div class="pbar base"><span class="name">Base</span><span class="track"><span class="fill" style="width:57.1%"></span></span><span class="val">6.85</span></div>
+          <div class="pbar pose"><span class="name">+ Pose</span><span class="track"><span class="fill" style="width:43.5%"></span></span><span class="val">5.22</span></div>
+          <div class="pbar all"><span class="name">+ All</span><span class="track"><span class="fill" style="width:38.7%"></span></span><span class="val">4.64</span></div>
+        </div>
+        <div class="ggroup">
+          <div class="gh">TLIO<span>All vs. Pose −28%</span></div>
+          <div class="pbar base"><span class="name">Base</span><span class="track"><span class="fill" style="width:84.9%"></span></span><span class="val">10.19</span></div>
+          <div class="pbar pose"><span class="name">+ Pose</span><span class="track"><span class="fill" style="width:66.4%"></span></span><span class="val">7.97</span></div>
+          <div class="pbar all"><span class="name">+ All</span><span class="track"><span class="fill" style="width:47.8%"></span></span><span class="val">5.73</span></div>
+        </div>
+        <div class="ggroup">
+          <div class="gh">EqNIO<span>All vs. Pose −41%</span></div>
+          <div class="pbar base"><span class="name">Base</span><span class="track"><span class="fill" style="width:63.6%"></span></span><span class="val">7.63</span></div>
+          <div class="pbar pose"><span class="name">+ Pose</span><span class="track"><span class="fill" style="width:63.8%"></span></span><span class="val">7.65</span></div>
+          <div class="pbar all"><span class="name">+ All</span><span class="track"><span class="fill" style="width:37.7%"></span></span><span class="val">4.52</span></div>
+        </div>
+        <div class="ggroup">
+          <div class="gh">RoNIN-LSTM<span>All vs. Pose −14%</span></div>
+          <div class="pbar base"><span class="name">Base</span><span class="track"><span class="fill" style="width:75.8%"></span></span><span class="val">9.10</span></div>
+          <div class="pbar pose"><span class="name">+ Pose</span><span class="track"><span class="fill" style="width:56.9%"></span></span><span class="val">6.83</span></div>
+          <div class="pbar all"><span class="name">+ All</span><span class="track"><span class="fill" style="width:49.1%"></span></span><span class="val">5.89</span></div>
+        </div>
+      </div>
+      <p class="note">ATE in metres on the Nymeria test split, lower is better; all bars share one 0–12 m scale. Same numbers as the results table below. Averaged over the four backbones, the pose prior alone delivers about half of the full-fusion gain. The second IMU, barometer and magnetometer add the rest, and on EqNIO, where the pose prior alone does not help, they supply all of it.</p>
     </div>
   </section>
 
