@@ -72,6 +72,15 @@
   },
 
   {
+    "name": "Zhefu Jin",
+    "role": "Researcher",
+    "blurb": "Zhefu is an M.S. student in Computer Science. His research interests include multimodal AI, audiovisual communication, and wearable sensing.",
+    "website": "https://www.linkedin.com/in/zhefujin/",
+    "photo": "zhefu.png",
+    "active": true
+  },
+
+  {
     "_comment": "Undergrad, Masters, Alumni & Mentees",
     "name": "Charlie Zou",
     "role": "Undergrad Researcher",
@@ -97,13 +106,6 @@
     "name": "Suril Mehta",
     "role": "Undergrad Researcher",
     "website": "https://linkedin.com/in/suril-mehta",
-    "active": true
-  },
-
-  {
-    "name": "Zhefu Jin",
-    "role": "Undergrad Researcher",
-    "website": "https://www.linkedin.com/in/zhefujin/",
     "active": true
   },
 
