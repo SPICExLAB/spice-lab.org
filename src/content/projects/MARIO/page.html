@@ -88,7 +88,7 @@ p { margin: 0 0 14px; }
 .legend .gt i { background: var(--gt); }
 .legend .ours i { background: var(--accent); }
 
-/* gain panel: ATE per backbone, linear 0 .. 12 m; bars reuse the .power panel shell */
+/* gain panel: RTE-5s per backbone, linear 0 .. 0.4 m; bars reuse the .power panel shell */
 .gain { margin-top: 22px; }
 .gain .heads { display: flex; flex-wrap: wrap; gap: 8px 32px; }
 .gain .heads .ratio small { display: block; margin: 6px 0 0; }
@@ -217,40 +217,40 @@ footer { margin-top: 72px; border-top: 1px solid var(--line); padding-top: 22px;
       <div class="legend"><span class="gt"><i></i>Xsens ground truth</span><span class="ours"><i></i>PoseNet from the head IMU</span></div>
       <figcaption><b>Pose prior.</b> PoseNet predicts the SMPL body configuration from a single head-mounted IMU and its orientation. Shown on a held-out Nymeria sequence (20230622_s0_john_solomon_act4) at 50 Hz, root-relative, with the pelvis and leg joints that feed the fusion module highlighted; the inset is the wearer's egocentric view at the same moment, for context only. Over the full 12-minute sequence the mean per-joint error is 10.1 cm.</figcaption>
     </div>
-    <div class="power gain" role="figure" aria-label="Bar chart of ATE on the Nymeria test split for four backbones, comparing the base model, the model with the pose prior, and the model with all sensors">
+    <div class="power gain" role="figure" aria-label="Bar chart of RTE-5s on the Nymeria test split for four backbones, comparing the base model, the model with the pose prior, and the model with all sensors">
       <h3>What the pose prior buys, and what the other sensors add</h3>
       <div class="heads">
-        <div class="ratio">−18%<small>mean ATE vs. base, + Pose</small></div>
-        <div class="ratio">−38%<small>mean ATE vs. base, + All sensors</small></div>
+        <div class="ratio">−14%<small>mean RTE-5s vs. base, + Pose</small></div>
+        <div class="ratio">−27%<small>mean RTE-5s vs. base, + All sensors</small></div>
       </div>
       <div class="key"><span><i style="background:var(--bar-base)"></i>Base</span><span><i style="background:var(--bar-pose)"></i>+ Pose</span><span><i style="background:var(--accent)"></i>+ All (pose, 2nd IMU, baro, mag)</span></div>
       <div class="ggroups">
         <div class="ggroup">
-          <div class="gh">AirIO<span>All vs. Pose −11%</span></div>
-          <div class="pbar base"><span class="name">Base</span><span class="track"><span class="fill" style="width:57.1%"></span></span><span class="val">6.85</span></div>
-          <div class="pbar pose"><span class="name">+ Pose</span><span class="track"><span class="fill" style="width:43.5%"></span></span><span class="val">5.22</span></div>
-          <div class="pbar all"><span class="name">+ All</span><span class="track"><span class="fill" style="width:38.7%"></span></span><span class="val">4.64</span></div>
+          <div class="gh">AirIO<span>All vs. Pose −8%</span></div>
+          <div class="pbar base"><span class="name">Base</span><span class="track"><span class="fill" style="width:90.8%"></span></span><span class="val">0.363</span></div>
+          <div class="pbar pose"><span class="name">+ Pose</span><span class="track"><span class="fill" style="width:80.8%"></span></span><span class="val">0.323</span></div>
+          <div class="pbar all"><span class="name">+ All</span><span class="track"><span class="fill" style="width:74.2%"></span></span><span class="val">0.297</span></div>
         </div>
         <div class="ggroup">
-          <div class="gh">TLIO<span>All vs. Pose −28%</span></div>
-          <div class="pbar base"><span class="name">Base</span><span class="track"><span class="fill" style="width:84.9%"></span></span><span class="val">10.19</span></div>
-          <div class="pbar pose"><span class="name">+ Pose</span><span class="track"><span class="fill" style="width:66.4%"></span></span><span class="val">7.97</span></div>
-          <div class="pbar all"><span class="name">+ All</span><span class="track"><span class="fill" style="width:47.8%"></span></span><span class="val">5.73</span></div>
+          <div class="gh">TLIO<span>All vs. Pose −14%</span></div>
+          <div class="pbar base"><span class="name">Base</span><span class="track"><span class="fill" style="width:80.5%"></span></span><span class="val">0.322</span></div>
+          <div class="pbar pose"><span class="name">+ Pose</span><span class="track"><span class="fill" style="width:70.2%"></span></span><span class="val">0.281</span></div>
+          <div class="pbar all"><span class="name">+ All</span><span class="track"><span class="fill" style="width:60.5%"></span></span><span class="val">0.242</span></div>
         </div>
         <div class="ggroup">
-          <div class="gh">EqNIO<span>All vs. Pose −41%</span></div>
-          <div class="pbar base"><span class="name">Base</span><span class="track"><span class="fill" style="width:63.6%"></span></span><span class="val">7.63</span></div>
-          <div class="pbar pose"><span class="name">+ Pose</span><span class="track"><span class="fill" style="width:63.8%"></span></span><span class="val">7.65</span></div>
-          <div class="pbar all"><span class="name">+ All</span><span class="track"><span class="fill" style="width:37.7%"></span></span><span class="val">4.52</span></div>
+          <div class="gh">EqNIO<span>All vs. Pose −27%</span></div>
+          <div class="pbar base"><span class="name">Base</span><span class="track"><span class="fill" style="width:94.8%"></span></span><span class="val">0.379</span></div>
+          <div class="pbar pose"><span class="name">+ Pose</span><span class="track"><span class="fill" style="width:79.0%"></span></span><span class="val">0.316</span></div>
+          <div class="pbar all"><span class="name">+ All</span><span class="track"><span class="fill" style="width:57.8%"></span></span><span class="val">0.231</span></div>
         </div>
         <div class="ggroup">
-          <div class="gh">RoNIN-LSTM<span>All vs. Pose −14%</span></div>
-          <div class="pbar base"><span class="name">Base</span><span class="track"><span class="fill" style="width:75.8%"></span></span><span class="val">9.10</span></div>
-          <div class="pbar pose"><span class="name">+ Pose</span><span class="track"><span class="fill" style="width:56.9%"></span></span><span class="val">6.83</span></div>
-          <div class="pbar all"><span class="name">+ All</span><span class="track"><span class="fill" style="width:49.1%"></span></span><span class="val">5.89</span></div>
+          <div class="gh">RoNIN-LSTM<span>All vs. Pose −12%</span></div>
+          <div class="pbar base"><span class="name">Base</span><span class="track"><span class="fill" style="width:82.5%"></span></span><span class="val">0.330</span></div>
+          <div class="pbar pose"><span class="name">+ Pose</span><span class="track"><span class="fill" style="width:70.2%"></span></span><span class="val">0.281</span></div>
+          <div class="pbar all"><span class="name">+ All</span><span class="track"><span class="fill" style="width:61.5%"></span></span><span class="val">0.246</span></div>
         </div>
       </div>
-      <p class="note">ATE in metres on the Nymeria test split, lower is better; all bars share one 0–12 m scale. Same numbers as the results table below. Averaged over the four backbones, the pose prior alone delivers about half of the full-fusion gain. The second IMU, barometer and magnetometer add the rest, and on EqNIO, where the pose prior alone does not help, they supply all of it.</p>
+      <p class="note">RTE-5s in metres on the Nymeria test split (relative position error over 5-second windows), lower is better; all bars share one 0–0.4 m scale. Same numbers as the results table below. Averaged over the four backbones, the pose prior alone delivers about half of the full-fusion gain, and the second IMU, barometer and magnetometer add the rest. The pose prior lowers RTE-5s on every backbone, and the other sensors add the most on EqNIO.</p>
     </div>
   </section>
 
