@@ -47,6 +47,15 @@
   },
   {
     "_comment": "RESEARCHERS",
+    "name": "Anish Prabhu",
+    "role": "Researcher",
+    "blurb": "Anish is a Research Scientist developing on-device machine learning and real-time perception systems for intuitive prosthetic control and feedback.",
+    "website": "https://scholar.google.com/citations?user=1zqcBjcAAAAJ",
+    "photo": "anish.png",
+    "active": true
+  },
+
+  {
     "name": "Novel Alam",
     "role": "Researcher",
     "blurb": "Novel is an M.S. student in Computer Engineering researching novel, non-camera-based hand and arm pose estimation and gesture recognition.",
@@ -77,15 +86,6 @@
     "blurb": "Zhefu is an M.S. student in Computer Science. His research interests include multimodal AI, audiovisual communication, and wearable sensing.",
     "website": "https://www.linkedin.com/in/zhefujin/",
     "photo": "zhefu.png",
-    "active": true
-  },
-
-  {
-    "name": "Anish Prabhu",
-    "role": "Researcher",
-    "blurb": "Anish is a Research Scientist developing on-device machine learning and real-time perception systems for intuitive prosthetic control and feedback.",
-    "website": "https://scholar.google.com/citations?user=1zqcBjcAAAAJ",
-    "photo": "anish.png",
     "active": true
   },
 
