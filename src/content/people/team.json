@@ -81,6 +81,15 @@
   },
 
   {
+    "name": "Anish Prabhu",
+    "role": "Researcher",
+    "blurb": "Anish is a Research Scientist developing on-device machine learning and real-time perception systems for intuitive prosthetic control and feedback.",
+    "website": "https://scholar.google.com/citations?user=1zqcBjcAAAAJ",
+    "photo": "anish.png",
+    "active": true
+  },
+
+  {
     "_comment": "Undergrad, Masters, Alumni & Mentees",
     "name": "Charlie Zou",
     "role": "Undergrad Researcher",
