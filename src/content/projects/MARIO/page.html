@@ -87,7 +87,6 @@ p { margin: 0 0 14px; }
 .legend i { display: inline-block; width: 18px; height: 3px; vertical-align: middle; margin-right: 7px; border-radius: 2px; }
 .legend .gt i { background: var(--gt); }
 .legend .ours i { background: var(--accent); }
-.legend .base i { background: #2f7fc1; }
 
 /* gain panel: RTE-5s per backbone, linear 0 .. 0.4 m; bars reuse the .power panel shell */
 .gain { margin-top: 22px; }
@@ -208,8 +207,8 @@ footer { margin-top: 72px; border-top: 1px solid var(--line); padding-top: 22px;
       <video controls muted loop playsinline preload="metadata" poster="/images/MARIO/trajectory_poster.jpg" width="1024" height="512">
         <source src="/videos/MARIO/trajectory.mp4" type="video/mp4">
       </video>
-      <div class="legend"><span class="gt"><i></i>Ground truth (Aria MPS)</span><span class="base"><i></i>AirIO baseline</span><span class="ours"><i></i>MARIO, AirIO + all sensors</span></div>
-      <figcaption><b>Trajectory.</b> Left: the egocentric RGB stream of an Aria Everyday Activities recording (loc1_script1_seq6_rec1, 128 s, 53 m of walking around an apartment). Right: the top-down trajectories integrated from the velocity estimates of MARIO and of the AirIO baseline, drawn against the ground truth as the person moves. Both models were trained on Nymeria only and are run here without fine-tuning. MARIO stays closer to the true path for most of the walk (0.51 m ATE against 0.63 m for AirIO), though on this sequence it drifts slightly more by the end (2.9% against 2.1%). The camera is shown for context only and is never an input to the model.</figcaption>
+      <div class="legend"><span class="gt"><i></i>Ground truth (Aria MPS)</span><span class="ours"><i></i>MARIO, AirIO + all sensors</span></div>
+      <figcaption><b>Trajectory.</b> Left: the egocentric RGB stream of an Aria Everyday Activities recording (loc1_script1_seq6_rec1, 128 s, 53 m of walking around an apartment). Right: the top-down trajectory integrated from MARIO's velocity estimates, drawn against the ground truth as the person moves. The model was trained on Nymeria only and is run here without fine-tuning; it ends the sequence with 0.51 m ATE and 2.9% drift. The camera is shown for context only and is never an input to the model.</figcaption>
     </div>
     <div class="demo">
       <video controls muted loop playsinline preload="metadata" width="1024" height="576">
