@@ -20,7 +20,6 @@ award:
 pdfLink: '/papers/MARIO.pdf'
 arxivLink: 'https://arxiv.org/abs/2606.02996'
 github: 'https://github.com/SPICExLAB/MARIO'
-standaloneHtml: './page.html'
 videoLink:
 conference: "CVPR '26: Proceedings of the 2026 IEEE/CVF Conference on Computer Vision and Pattern Recognition (Findings)"
 conferencePage:
@@ -89,6 +88,50 @@ We further improve long-term performance through a sensor-fusion framework that 
 <p style={{color:'#666', fontSize:'0.92em'}}>
   <strong>Pose prior.</strong> PoseNet predicts the SMPL body configuration from a single head-mounted IMU and its orientation. Shown on a held-out Nymeria sequence (20230622_s0_john_solomon_act4) at 50 Hz, root-relative, with the pelvis and leg joints that feed the fusion module highlighted; the inset is the wearer's egocentric view at the same moment, for context only. Over the full 12-minute sequence the mean per-joint error is 10.1 cm.
 </p>
+
+<div style={{marginTop:'1.5rem', marginBottom:'1.5rem', border:'1px solid #ddd', borderRadius:'10px', padding:'18px 20px 14px', display:'grid', gap:'14px'}} role="figure" aria-label="Bar chart of RTE-5s on the Nymeria test split for four backbones, comparing the base model, the model with the pose prior, and the model with all sensors">
+<div style={{fontWeight:700, fontSize:'1.1em'}}>What the pose prior buys, and what the other sensors add</div>
+<div style={{display:'flex', flexWrap:'wrap', gap:'8px 32px'}}>
+  <div><div style={{fontSize:'1.9em', fontWeight:700, lineHeight:1, color:'#4E2A84'}}>&minus;14%</div><div style={{fontSize:'0.85em', fontWeight:600, color:'#666', marginTop:'6px'}}>mean RTE-5s vs. base, + Pose</div></div>
+  <div><div style={{fontSize:'1.9em', fontWeight:700, lineHeight:1, color:'#4E2A84'}}>&minus;27%</div><div style={{fontSize:'0.85em', fontWeight:600, color:'#666', marginTop:'6px'}}>mean RTE-5s vs. base, + All sensors</div></div>
+</div>
+<div style={{display:'flex', flexWrap:'wrap', gap:'6px 18px', fontSize:'0.85em', color:'#666'}}><span><span style={{display:'inline-block', width:'12px', height:'12px', borderRadius:'3px', background:'#c8c8c8', marginRight:'7px', verticalAlign:'-1px'}}></span>Base</span><span><span style={{display:'inline-block', width:'12px', height:'12px', borderRadius:'3px', background:'#b9a3d6', marginRight:'7px', verticalAlign:'-1px'}}></span>+ Pose</span><span><span style={{display:'inline-block', width:'12px', height:'12px', borderRadius:'3px', background:'#4E2A84', marginRight:'7px', verticalAlign:'-1px'}}></span>+ All (pose, 2nd IMU, baro, mag)</span></div>
+<div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap:'16px 36px'}}>
+  <div style={{display:'grid', gap:'6px'}}>
+    <div style={{display:'flex', justifyContent:'space-between', gap:'12px', fontWeight:700}}>AirIO<span style={{fontFamily:'monospace', fontWeight:400, fontSize:'0.85em', color:'#4E2A84', alignSelf:'center'}}>All vs. Pose &minus;8%</span></div>
+    <div style={{display:'grid', gridTemplateColumns:'4.2em minmax(0, 1fr) 3.4em', gap:'6px 12px', alignItems:'center', fontSize:'0.88em'}}>
+      <span style={{color:'#666'}}>Base</span><span style={{position:'relative', height:'12px', background:'#f0f0f0', borderRadius:'6px', overflow:'hidden'}}><span style={{position:'absolute', left:0, top:0, bottom:0, width:'90.8%', background:'#c8c8c8', borderRadius:'6px'}}></span></span><span style={{fontFamily:'monospace', textAlign:'right'}}>0.363</span>
+      <span style={{color:'#666'}}>+ Pose</span><span style={{position:'relative', height:'12px', background:'#f0f0f0', borderRadius:'6px', overflow:'hidden'}}><span style={{position:'absolute', left:0, top:0, bottom:0, width:'80.8%', background:'#b9a3d6', borderRadius:'6px'}}></span></span><span style={{fontFamily:'monospace', textAlign:'right'}}>0.323</span>
+      <span style={{color:'#666'}}>+ All</span><span style={{position:'relative', height:'12px', background:'#f0f0f0', borderRadius:'6px', overflow:'hidden'}}><span style={{position:'absolute', left:0, top:0, bottom:0, width:'74.2%', background:'#4E2A84', borderRadius:'6px'}}></span></span><span style={{fontFamily:'monospace', textAlign:'right'}}>0.297</span>
+    </div>
+  </div>
+  <div style={{display:'grid', gap:'6px'}}>
+    <div style={{display:'flex', justifyContent:'space-between', gap:'12px', fontWeight:700}}>TLIO<span style={{fontFamily:'monospace', fontWeight:400, fontSize:'0.85em', color:'#4E2A84', alignSelf:'center'}}>All vs. Pose &minus;14%</span></div>
+    <div style={{display:'grid', gridTemplateColumns:'4.2em minmax(0, 1fr) 3.4em', gap:'6px 12px', alignItems:'center', fontSize:'0.88em'}}>
+      <span style={{color:'#666'}}>Base</span><span style={{position:'relative', height:'12px', background:'#f0f0f0', borderRadius:'6px', overflow:'hidden'}}><span style={{position:'absolute', left:0, top:0, bottom:0, width:'80.5%', background:'#c8c8c8', borderRadius:'6px'}}></span></span><span style={{fontFamily:'monospace', textAlign:'right'}}>0.322</span>
+      <span style={{color:'#666'}}>+ Pose</span><span style={{position:'relative', height:'12px', background:'#f0f0f0', borderRadius:'6px', overflow:'hidden'}}><span style={{position:'absolute', left:0, top:0, bottom:0, width:'70.2%', background:'#b9a3d6', borderRadius:'6px'}}></span></span><span style={{fontFamily:'monospace', textAlign:'right'}}>0.281</span>
+      <span style={{color:'#666'}}>+ All</span><span style={{position:'relative', height:'12px', background:'#f0f0f0', borderRadius:'6px', overflow:'hidden'}}><span style={{position:'absolute', left:0, top:0, bottom:0, width:'60.5%', background:'#4E2A84', borderRadius:'6px'}}></span></span><span style={{fontFamily:'monospace', textAlign:'right'}}>0.242</span>
+    </div>
+  </div>
+  <div style={{display:'grid', gap:'6px'}}>
+    <div style={{display:'flex', justifyContent:'space-between', gap:'12px', fontWeight:700}}>EqNIO<span style={{fontFamily:'monospace', fontWeight:400, fontSize:'0.85em', color:'#4E2A84', alignSelf:'center'}}>All vs. Pose &minus;27%</span></div>
+    <div style={{display:'grid', gridTemplateColumns:'4.2em minmax(0, 1fr) 3.4em', gap:'6px 12px', alignItems:'center', fontSize:'0.88em'}}>
+      <span style={{color:'#666'}}>Base</span><span style={{position:'relative', height:'12px', background:'#f0f0f0', borderRadius:'6px', overflow:'hidden'}}><span style={{position:'absolute', left:0, top:0, bottom:0, width:'94.8%', background:'#c8c8c8', borderRadius:'6px'}}></span></span><span style={{fontFamily:'monospace', textAlign:'right'}}>0.379</span>
+      <span style={{color:'#666'}}>+ Pose</span><span style={{position:'relative', height:'12px', background:'#f0f0f0', borderRadius:'6px', overflow:'hidden'}}><span style={{position:'absolute', left:0, top:0, bottom:0, width:'79.0%', background:'#b9a3d6', borderRadius:'6px'}}></span></span><span style={{fontFamily:'monospace', textAlign:'right'}}>0.316</span>
+      <span style={{color:'#666'}}>+ All</span><span style={{position:'relative', height:'12px', background:'#f0f0f0', borderRadius:'6px', overflow:'hidden'}}><span style={{position:'absolute', left:0, top:0, bottom:0, width:'57.8%', background:'#4E2A84', borderRadius:'6px'}}></span></span><span style={{fontFamily:'monospace', textAlign:'right'}}>0.231</span>
+    </div>
+  </div>
+  <div style={{display:'grid', gap:'6px'}}>
+    <div style={{display:'flex', justifyContent:'space-between', gap:'12px', fontWeight:700}}>RoNIN-LSTM<span style={{fontFamily:'monospace', fontWeight:400, fontSize:'0.85em', color:'#4E2A84', alignSelf:'center'}}>All vs. Pose &minus;12%</span></div>
+    <div style={{display:'grid', gridTemplateColumns:'4.2em minmax(0, 1fr) 3.4em', gap:'6px 12px', alignItems:'center', fontSize:'0.88em'}}>
+      <span style={{color:'#666'}}>Base</span><span style={{position:'relative', height:'12px', background:'#f0f0f0', borderRadius:'6px', overflow:'hidden'}}><span style={{position:'absolute', left:0, top:0, bottom:0, width:'82.5%', background:'#c8c8c8', borderRadius:'6px'}}></span></span><span style={{fontFamily:'monospace', textAlign:'right'}}>0.330</span>
+      <span style={{color:'#666'}}>+ Pose</span><span style={{position:'relative', height:'12px', background:'#f0f0f0', borderRadius:'6px', overflow:'hidden'}}><span style={{position:'absolute', left:0, top:0, bottom:0, width:'70.2%', background:'#b9a3d6', borderRadius:'6px'}}></span></span><span style={{fontFamily:'monospace', textAlign:'right'}}>0.281</span>
+      <span style={{color:'#666'}}>+ All</span><span style={{position:'relative', height:'12px', background:'#f0f0f0', borderRadius:'6px', overflow:'hidden'}}><span style={{position:'absolute', left:0, top:0, bottom:0, width:'61.5%', background:'#4E2A84', borderRadius:'6px'}}></span></span><span style={{fontFamily:'monospace', textAlign:'right'}}>0.246</span>
+    </div>
+  </div>
+</div>
+<p style={{fontSize:'0.85em', color:'#666', margin:0}}>RTE-5s in metres on the Nymeria test split (relative position error over 5-second windows), lower is better; all bars share one 0&ndash;0.4 m scale. Same numbers as the results table below. Averaged over the four backbones, the pose prior alone delivers about half of the full-fusion gain, and the second IMU, barometer and magnetometer add the rest. The pose prior lowers RTE-5s on every backbone, and the other sensors add the most on EqNIO.</p>
+</div>
 
 ## Method
 
