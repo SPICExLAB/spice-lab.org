@@ -76,7 +76,7 @@ We further improve long-term performance through a sensor-fusion framework that 
 </div>
 
 <p style={{color:'#666', fontSize:'0.92em'}}>
-  <strong>Trajectory.</strong> Left: the egocentric RGB stream of an Aria Everyday Activities recording (loc1_script1_seq6_rec1, 128 s, 53 m of walking around an apartment). Right: the top-down trajectory integrated from MARIO's velocity estimates (orange), drawn against the ground truth (black) as the person moves. The model was trained on Nymeria only and is run here without fine-tuning; it ends the sequence with 0.51 m ATE and 2.9% drift. The camera is shown for context only and is never an input to the model.
+  <strong>Trajectory.</strong> Left: the egocentric RGB stream of an Aria Everyday Activities recording (loc1_script1_seq6_rec1, 128 s, 53 m of walking around an apartment). Right: the top-down trajectories integrated from the velocity estimates of MARIO (AirIO + all sensors, orange) and the AirIO baseline (blue), drawn against the ground truth (black) as the person moves. Both models were trained on Nymeria only and are run here without fine-tuning. MARIO stays closer to the true path for most of the walk (0.51 m ATE against 0.63 m for AirIO), though on this sequence it drifts slightly more by the end (2.9% against 2.1%). The camera is shown for context only and is never an input to the model.
 </p>
 
 <div style={{width:'min(1150px, 94vw)', marginLeft:'calc(50% - min(575px, 47vw))', marginBottom:'0.75rem'}}>
