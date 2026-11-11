@@ -121,6 +121,16 @@ const AwardBadge = styled.span`
 
 const awardsData = [
   {
+    title: 'Google PhD Fellowship',
+    members: ['Chenfeng Gao'],
+    year: '2026',
+  },
+  {
+    title: 'Design Research Cluster Fellowship, Northwestern University Center for HCI+Design',
+    members: ['Chenfeng Gao'],
+    year: '2026',
+  },
+  {
     title: 'PhD Student Research Award, Northwestern University CS Department',
     members: ['Chenfeng Gao'],
     year: '2026',
