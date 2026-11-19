@@ -70,10 +70,12 @@ jobs:
           path: |
             public
             .cache
-          key: ${{ runner.os }}-gatsby-build-${{ hashFiles('package-lock.json', 'yarn.lock') }}-${{ github.sha }}
+          # Bump the version (v2, v3, ...) to start from an empty public/ and
+          # drop files left behind by deleted content.
+          key: ${{ runner.os }}-gatsby-build-v2-${{ hashFiles('package-lock.json', 'yarn.lock') }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-gatsby-build-${{ github.sha }}
-            ${{ runner.os }}-gatsby-build-
+            ${{ runner.os }}-gatsby-build-v2-${{ github.sha }}
+            ${{ runner.os }}-gatsby-build-v2-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Gatsby

@@ -91,6 +91,16 @@ export const query = graphql`
         bibtex
         coverImage {
           publicURL
+          childImageSharp {
+            original {
+              width
+            }
+            resize(width: 1200, toFormat: JPG, quality: 85) {
+              src
+              width
+              height
+            }
+          }
         }
       }
     }

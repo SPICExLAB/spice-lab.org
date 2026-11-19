@@ -29,11 +29,37 @@ const MDXImage = ({ src, alt }) => {
   return <Image src={imagePath} alt={alt} />;
 };
 
+const Video = styled.video`
+  display: block;
+  width: 100%;
+  height: auto;
+`;
+
+// Silent looping clip that behaves like a gif but is a fraction of the size.
+const MDXVideo = ({ src, alt }) => (
+  <Video
+    src={withPrefix(src)}
+    aria-label={alt}
+    autoPlay
+    loop
+    muted
+    playsInline
+    preload="metadata"
+  />
+);
+
+const isVideo = (src) => /\.(mp4|webm)$/i.test(src || '');
+
+// Media grid entry: image or looping video depending on the file type.
+const MDXMedia = ({ src, alt }) =>
+  isVideo(src) ? <MDXVideo src={src} alt={alt} /> : <MDXImage src={src} alt={alt} />;
+
 const MDXComponents = {
   MediaGrid,
   MediaItem,
   MDXImage,
+  MDXVideo,
 };
 
-export { MediaGrid, MediaItem, MDXImage };
+export { MediaGrid, MediaItem, MDXImage, MDXVideo, MDXMedia };
 export default MDXComponents;

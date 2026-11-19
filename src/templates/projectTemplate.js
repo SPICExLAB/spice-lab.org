@@ -8,7 +8,7 @@ import { projectSeo } from '../components/projectSeo';
 import MDXComponents, {
   MediaGrid,
   MediaItem,
-  MDXImage,
+  MDXMedia,
 } from '../components/MDXcomponents';
 
 import conferenceIcon from '../images/publication.svg';
@@ -427,7 +427,7 @@ export default function ProjectTemplate({
             <MediaGrid>
               {medias.map((image) => (
                 <MediaItem key={image.publicURL}>
-                  <MDXImage src={image.publicURL} alt={image.alt || ''} />
+                  <MDXMedia src={image.publicURL} alt={image.alt || ''} />
                 </MediaItem>
               ))}
             </MediaGrid>
@@ -466,6 +466,16 @@ export const query = graphql`
         year
         coverImage {
           publicURL
+          childImageSharp {
+            original {
+              width
+            }
+            resize(width: 1200, toFormat: JPG, quality: 85) {
+              src
+              width
+              height
+            }
+          }
         }
         showCoverVideo
         published

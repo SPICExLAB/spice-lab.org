@@ -38,7 +38,14 @@ export const projectSeo = (frontmatter, siteUrl) => {
   const venue = conference ? conference.split(':')[0].trim() : null;
   const pathname = canonicalPath(`/projects/${slug}`);
   const url = absoluteUrl(siteUrl, pathname);
-  const image = coverImage?.publicURL || null;
+  // Link-card image: covers wider than 1200 px are scaled down to 1200 px
+  // (aspect ratio kept, no cropping) so Slack and X do not fetch a
+  // multi-megabyte original; smaller covers are used as they are.
+  const sharp = coverImage?.childImageSharp;
+  const image =
+    (sharp?.original?.width > 1200 && sharp?.resize?.src) ||
+    coverImage?.publicURL ||
+    null;
   const isPublished = published === 'yes';
 
   const description = [
