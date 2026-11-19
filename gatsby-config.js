@@ -2,9 +2,10 @@
 module.exports = {
   pathPrefix: '/spice-lab.org',
   siteMetadata: {
-    title: `SPICE Lab Site`,
+    title: `SPICE Lab`,
+    titleLong: `SPICE Lab – Sensing, Perception, Interactive Computing and Experiences Lab at Northwestern University`,
     siteUrl: `https://spice-lab.org`,
-    description: `Sensing, Perception and Interactive Computing Exploration (SPICE) Lab in Northwestern University`,
+    description: `SPICE Lab at Northwestern University, led by Karan Ahuja, builds technologies that sense, track, and understand people for mobile health, mixed reality, and natural interfaces.`,
     defaultImage: `/lab.png`,
   },
   plugins: [
@@ -23,7 +24,15 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
+        name: 'SPICE Lab',
+        short_name: 'SPICE Lab',
         icon: 'src/images/icon.png',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-sitemap',
+      options: {
+        excludes: ['/404/', '/404.html', '/dev-404-page/'],
       },
     },
     {

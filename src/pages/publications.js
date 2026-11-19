@@ -33,7 +33,7 @@ const PublicationsPage = ({ data }) => {
     <MainLayout>
       <SEO
         title="Publications | SPICE Lab | Northwestern University"
-        description="See our publications"
+        description="Papers from SPICE Lab at Northwestern University on sensing, body and hand tracking, wearables, and mixed reality, with PDFs, videos, code, and BibTeX."
         pathname="/publications"
       />
 

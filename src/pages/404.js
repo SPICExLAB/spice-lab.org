@@ -57,6 +57,7 @@ const NotFoundPage = () => {
         title="404: Page Not Found | SPICE Lab"
         description="The page you're looking for may be under construction. Navigate back to the SPICE Lab homepage."
         pathname="/404"
+        noindex
       />
       <NotFoundContainer>
         <ConstructionIcon role="img" aria-label="Construction Sign">
@@ -79,7 +80,3 @@ const NotFoundPage = () => {
 };
 
 export default NotFoundPage;
-
-export const Head = () => (
-  <title>404: Page Under Construction | SPICE Lab</title>
-);

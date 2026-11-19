@@ -54,8 +54,8 @@ const ContactPage = () => {
     <MainLayout>
       <SEO
         title="Contact | SPICE Lab | Northwestern University"
-        description="Welcome to visite SPICE Lab!"
-        pathname="/Contact"
+        description="Visit SPICE Lab at Northwestern University in Mudd Building room 3546, 2233 Tech Dr, Evanston, IL, or use our form to get involved in our research."
+        pathname="/contact"
       />
 
       <ContactContainer>

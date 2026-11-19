@@ -5,6 +5,18 @@ import styled from 'styled-components';
 import MainLayout from '../components/MainLayout';
 import SEO from '../components/SEO';
 
+const VisuallyHiddenH1 = styled.h1`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+`;
+
 const SectionTitle = styled.h2`
   font-size: 1.5rem;
   font-weight: bold;
@@ -223,9 +235,11 @@ const TeamPage = ({ data }) => {
     <MainLayout>
       <SEO
         title="Team | SPICE Lab | Northwestern University"
-        description="Meet our team"
+        description="Meet SPICE Lab at Northwestern University: Professor Karan Ahuja, PhD students, researchers, and student collaborators working on sensing and interactive computing."
         pathname="/team"
       />
+
+      <VisuallyHiddenH1>SPICE Lab Team</VisuallyHiddenH1>
 
       {pi && (
         <PiSection>

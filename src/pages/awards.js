@@ -218,7 +218,7 @@ const AwardsPage = ({ data }) => {
     <MainLayout>
       <SEO
         title="Awards | SPICE Lab | Northwestern University"
-        description="Awards and honors received by SPICE Lab members"
+        description="Paper awards, fellowships, and honors received by SPICE Lab members at Northwestern University."
         pathname="/awards"
       />
 

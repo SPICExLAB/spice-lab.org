@@ -7,6 +7,65 @@ import MainLayout from '../components/MainLayout';
 import ProjectCard from '../components/projectCard';
 import NewsCard from '../components/NewsCard';
 
+// Structured data for Google: the site name shown above search results
+// (WebSite) and the lab as an organization within Northwestern.
+const homeJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': 'https://spice-lab.org/#website',
+      name: 'SPICE Lab',
+      alternateName: [
+        'SPICE Lab Northwestern',
+        'Sensing, Perception, Interactive Computing and Experiences Lab',
+      ],
+      url: 'https://spice-lab.org/',
+    },
+    {
+      '@type': 'ResearchOrganization',
+      '@id': 'https://spice-lab.org/#organization',
+      name: 'SPICE Lab',
+      alternateName:
+        'Sensing, Perception, Interactive Computing and Experiences Lab',
+      url: 'https://spice-lab.org/',
+      logo: 'https://spice-lab.org/lab.png',
+      description: 'SPICE Lab at Northwestern University, led by Karan Ahuja, builds technologies that sense, track, and understand people for mobile health, mixed reality, and natural interfaces.',
+      parentOrganization: {
+        '@type': 'CollegeOrUniversity',
+        name: 'Northwestern University',
+        url: 'https://www.northwestern.edu/',
+      },
+      founder: {
+        '@type': 'Person',
+        name: 'Karan Ahuja',
+        url: 'https://karan-ahuja.com/',
+      },
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '2233 Tech Dr, Mudd Building, Room 3546',
+        addressLocality: 'Evanston',
+        addressRegion: 'IL',
+        postalCode: '60208',
+        addressCountry: 'US',
+      },
+      sameAs: ['https://github.com/SPICExLAB'],
+    },
+  ],
+};
+
+const VisuallyHiddenH1 = styled.h1`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+`;
+
 const MarkdownText = styled.div`
   font-weight: light;
   font-size: 1.2rem;
@@ -116,10 +175,16 @@ const IndexPage = ({ data }) => {
   return (
     <MainLayout>
       <SEO
-        title="Sensing, Perception, Interactive Computing and Experiences Lab | Northwestern University"
-        description="Explore our latest research projects and news at SPICE Lab."
+        title="SPICE Lab – Sensing, Perception, Interactive Computing and Experiences Lab at Northwestern University"
+        description="SPICE Lab at Northwestern University, led by Karan Ahuja, builds technologies that sense, track, and understand people for mobile health, mixed reality, and natural interfaces."
         pathname="/"
+        jsonLd={homeJsonLd}
       />
+
+      <VisuallyHiddenH1>
+        SPICE Lab: Sensing, Perception, Interactive Computing and Experiences
+        Lab at Northwestern University
+      </VisuallyHiddenH1>
 
       <MarkdownText>
         <ReactMarkdown>
@@ -215,4 +280,3 @@ export const query = graphql`
 
 export default IndexPage;
 
-export const Head = () => <title>Spice Lab Site</title>;

@@ -4,6 +4,7 @@ import { MDXProvider } from '@mdx-js/react';
 import styled from 'styled-components';
 import MainLayout from '../components/MainLayout';
 import SEO from '../components/SEO';
+import { projectSeo } from '../components/projectSeo';
 import MDXComponents, {
   MediaGrid,
   MediaItem,
@@ -242,7 +243,7 @@ const findTeamMember = (name, teamMembers) => {
 };
 
 export default function ProjectTemplate({
-  data: { mdx, allTeamJson },
+  data: { mdx, allTeamJson, site },
   children,
 }) {
   const {
@@ -265,6 +266,8 @@ export default function ProjectTemplate({
     medias,
   } = mdx.frontmatter;
 
+  const seo = projectSeo(mdx.frontmatter, site.siteMetadata.siteUrl);
+
   const teamMembers = allTeamJson.nodes.reduce((acc, member) => {
     acc[member.name] = member;
     return acc;
@@ -277,12 +280,18 @@ export default function ProjectTemplate({
   return (
     <MainLayout>
       <SEO
-        title={`${title} | SPICE Lab | Northwestern University`}
-        description={subtitle}
-        image={coverImage?.publicURL}
-        pathname={`/projects/${mdx.frontmatter.slug}`}
+        title={seo.title}
+        description={seo.description}
+        image={seo.image}
+        imageAlt={seo.imageAlt}
+        pathname={seo.pathname}
+        jsonLd={seo.jsonLd}
         article
-      />
+      >
+        {seo.scholarTags.map(([name, content], i) => (
+          <meta key={`${name}-${i}`} name={name} content={content} />
+        ))}
+      </SEO>
 
       <ProjectContainer>
         <Header>
@@ -450,6 +459,7 @@ export const query = graphql`
   query ProjectByID($id: String!) {
     mdx(id: { eq: $id }) {
       frontmatter {
+        slug
         title
         subtitle
         authors
@@ -475,6 +485,11 @@ export const query = graphql`
           label
           url
         }
+      }
+    }
+    site {
+      siteMetadata {
+        siteUrl
       }
     }
     allTeamJson {

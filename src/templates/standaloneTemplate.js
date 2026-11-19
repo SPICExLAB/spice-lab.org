@@ -1,4 +1,7 @@
 import React, { useEffect } from 'react';
+import { graphql } from 'gatsby';
+import { absoluteUrl } from '../components/SEO';
+import { projectSeo } from '../components/projectSeo';
 
 // Renders a project page from a hand-written HTML file instead of the MDX
 // template. Used when a project's frontmatter sets `standaloneHtml`; the file
@@ -40,16 +43,62 @@ export default function StandaloneTemplate({ pageContext }) {
   return <div dangerouslySetInnerHTML={{ __html: pageContext.html }} />;
 }
 
-export function Head({ pageContext }) {
-  const { title, description, fonts } = pageContext;
+export function Head({ data, pageContext }) {
+  const { fonts } = pageContext;
+  const { siteUrl, title: siteName } = data.site.siteMetadata;
+  const seo = projectSeo(data.mdx.frontmatter, siteUrl);
+  const image = absoluteUrl(siteUrl, seo.image || '/lab.png');
   return (
     <>
-      <title>{`${title} | SPICE Lab | Northwestern University`}</title>
-      {description && <meta name="description" content={description} />}
-      <meta property="og:title" content={title} />
-      {description && <meta property="og:description" content={description} />}
+      <html lang="en" />
+      <title>{seo.title}</title>
+      <meta name="description" content={seo.description} />
+      <link rel="canonical" href={seo.url} />
+      <meta property="og:site_name" content={siteName} />
+      <meta property="og:locale" content="en_US" />
+      <meta property="og:url" content={seo.url} />
+      <meta property="og:type" content="article" />
+      <meta property="og:title" content={seo.title} />
+      <meta property="og:description" content={seo.description} />
+      <meta property="og:image" content={image} />
+      <meta property="og:image:alt" content={seo.imageAlt} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={seo.title} />
+      <meta name="twitter:description" content={seo.description} />
+      <meta name="twitter:image" content={image} />
+      {seo.scholarTags.map(([name, content], i) => (
+        <meta key={`${name}-${i}`} name={name} content={content} />
+      ))}
+      <script type="application/ld+json">{JSON.stringify(seo.jsonLd)}</script>
       {fonts && <link rel="preconnect" href="https://fonts.googleapis.com" />}
       {fonts && <link rel="stylesheet" href={fonts} />}
     </>
   );
 }
+
+export const query = graphql`
+  query StandaloneProjectByID($id: String!) {
+    mdx(id: { eq: $id }) {
+      frontmatter {
+        slug
+        title
+        subtitle
+        authors
+        year
+        conference
+        published
+        pdfLink
+        bibtex
+        coverImage {
+          publicURL
+        }
+      }
+    }
+    site {
+      siteMetadata {
+        title
+        siteUrl
+      }
+    }
+  }
+`;

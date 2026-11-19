@@ -205,12 +205,12 @@ const Header = ({ isScrolled }) => {
         <HeaderWrapper $isScrolled={isScrolled}>
           <Logo $isScrolled={isScrolled} className="logo">
             <Link to="/">
-              <img src={isScrolled ? logoSmall : logoFull} alt="Logo" />
+              <img src={isScrolled ? logoSmall : logoFull} alt="SPICE Lab logo" />
             </Link>
           </Logo>
           <Nav className={isMenuOpen ? 'active' : ''}>
             <MobileLogo>
-              <img src={logoFormal} alt="Lab Logo Formal" />
+              <img src={logoFormal} alt="SPICE Lab, Northwestern University" />
             </MobileLogo>
             <ul>
               <li>
